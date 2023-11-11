@@ -11,6 +11,14 @@ public class Profesor{
     public void setContrasena(String contrasena){
         this.contrasena = contrasena;
     }
-    
+
+    public String getNombre(){
+        return this.nombre;
+    }
+
+    public String getContrasena(){
+        return this.contrasena;
+    }
+
 
 }
