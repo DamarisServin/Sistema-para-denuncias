@@ -1,11 +1,11 @@
 
 public class Profesor{
  
-    String nombre_completo;
-    String contrasena;
-    String correo;
-    String escuela;
-    String no_poli;
+    private String nombre_completo;
+    private String contrasena;
+    private String correo;
+    private String escuela;
+    private String no_poli;
 
     
     public void setNombreCompleto(String nombre, String ap_paterno, String ap_materno){
