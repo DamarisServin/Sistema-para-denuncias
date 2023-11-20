@@ -1,3 +1,5 @@
+package com.escom.prototipo.DAOs;
+
 
 public class Profesor{
  
