@@ -34,10 +34,13 @@ public class Bienvenido extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        label1 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Bienvenido");
+        jLabel1.setFont(new java.awt.Font("Kokonor", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel1.setText("BIENVENIDO");
 
         jButton1.setText("Denuncia");
 
@@ -52,36 +55,49 @@ public class Bienvenido extends javax.swing.JFrame {
 
         jButton4.setText("Salir");
 
+        label1.setFont(new java.awt.Font("Bodoni 72 Oldstyle", 1, 14)); // NOI18N
+        label1.setText("PROTOTIPO PARA LA COORDINACIÓN Y EL SEGUIMIENTO DE \nDENUNCIAS POR VIOLENCIA DE GÉNERO EN LA ESCOM");
+
         javax.swing.GroupLayout BienvenidoLayout = new javax.swing.GroupLayout(Bienvenido);
         Bienvenido.setLayout(BienvenidoLayout);
         BienvenidoLayout.setHorizontalGroup(
             BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BienvenidoLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(BienvenidoLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jButton1)
-                .addGap(32, 32, 32)
-                .addComponent(jButton2)
-                .addGap(35, 35, 35)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BienvenidoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
-                .addGap(17, 17, 17))
+                .addGap(23, 23, 23))
+            .addGroup(BienvenidoLayout.createSequentialGroup()
+                .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BienvenidoLayout.createSequentialGroup()
+                        .addGap(233, 233, 233)
+                        .addComponent(jLabel1))
+                    .addGroup(BienvenidoLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(BienvenidoLayout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(39, 39, 39)
+                                .addComponent(jButton2)
+                                .addGap(55, 55, 55)
+                                .addComponent(jButton3)))))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         BienvenidoLayout.setVerticalGroup(
             BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BienvenidoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(9, 9, 9)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addContainerGap(344, Short.MAX_VALUE))
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(37, 37, 37))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,5 +168,6 @@ public class Bienvenido extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
+    private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }

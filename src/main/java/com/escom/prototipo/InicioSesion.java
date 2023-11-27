@@ -72,10 +72,11 @@ public class InicioSesion extends javax.swing.JFrame {
 
         ConstrasenaField.setText("jPasswordField1");
 
-        LoginLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        LoginLabel.setFont(new java.awt.Font("Kokonor", 1, 18)); // NOI18N
+        LoginLabel.setForeground(new java.awt.Color(51, 51, 255));
         LoginLabel.setText("Login");
 
-        IngresarBtn.setBackground(new java.awt.Color(51, 102, 255));
+        IngresarBtn.setBackground(new java.awt.Color(206, 226, 240));
         IngresarBtn.setText("Ingresar");
 
         UsuarioField.addActionListener(new java.awt.event.ActionListener() {
