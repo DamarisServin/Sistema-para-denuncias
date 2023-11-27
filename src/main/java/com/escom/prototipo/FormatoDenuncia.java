@@ -299,6 +299,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jRadioButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+
                                 .addComponent(jRadioButton2))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -349,6 +350,10 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                                 .addGap(54, 54, 54)
                                 .addComponent(jLabel30)))
                         .addGap(0, 198, Short.MAX_VALUE)))
+
+                                .addComponent(jRadioButton2)))
+                        .addGap(0, 169, Short.MAX_VALUE)))
+
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
