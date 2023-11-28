@@ -35,14 +35,21 @@
               <Component id="RegistrarPanel" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
           </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="RegistrarseBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-              <Component id="RegistrarPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="46" max="32767" attributes="0"/>
+              <Component id="RegistrarPanel" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="RegistrarseBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,34 +60,20 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                          <Component id="Registro" min="-2" pref="219" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="84" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="NombreField" pref="174" max="32767" attributes="0"/>
-                              <Component id="PaternoField" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="CorreoField" alignment="1" min="-2" pref="174" max="-2" attributes="0"/>
-                              <Component id="MaternoField" alignment="1" min="-2" pref="174" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="Registro" min="-2" pref="219" max="-2" attributes="0"/>
+                      <Component id="NombreField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="PaternoField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="MaternoField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="CorreoField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="NoEmpleadoField" alignment="0" pref="241" max="32767" attributes="0"/>
+                      <Component id="EscuelaBox" max="32767" attributes="0"/>
+                      <Component id="ContrasenaField" max="32767" attributes="0"/>
+                      <Component id="ContrasenaField2" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="RegistrarseBtn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                  <EmptySpace pref="223" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -97,8 +90,15 @@
                   <Component id="MaternoField" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="CorreoField" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
-                  <Component id="RegistrarseBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="NoEmpleadoField" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="EscuelaBox" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="ContrasenaField" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="ContrasenaField2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -135,15 +135,51 @@
             <Property name="text" type="java.lang.String" value="Ingrese su correo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="RegistrarseBtn">
+        <Component class="javax.swing.JTextField" name="NoEmpleadoField">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="66" red="33" type="rgb"/>
+            <Property name="text" type="java.lang.String" value="Ingrese su n&#xfa;mero de empleado"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NoEmpleadoFieldActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="EscuelaBox">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Elija su escuela"/>
+                <StringItem index="1" value="ESCOM"/>
+                <StringItem index="2" value="ESCA"/>
+                <StringItem index="3" value="ESIQUIE"/>
+              </StringArray>
             </Property>
-            <Property name="text" type="java.lang.String" value="Registrarse"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EscuelaBoxActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="ContrasenaField">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="ContrasenaField2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="RegistrarseBtn">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="66" red="33" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Registrarse"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

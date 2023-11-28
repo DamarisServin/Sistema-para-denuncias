@@ -34,6 +34,10 @@ public class Registro extends javax.swing.JFrame {
         PaternoField = new javax.swing.JTextField();
         MaternoField = new javax.swing.JTextField();
         CorreoField = new javax.swing.JTextField();
+        NoEmpleadoField = new javax.swing.JTextField();
+        EscuelaBox = new javax.swing.JComboBox<>();
+        ContrasenaField = new javax.swing.JPasswordField();
+        ContrasenaField2 = new javax.swing.JPasswordField();
         RegistrarseBtn = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
@@ -56,34 +60,41 @@ public class Registro extends javax.swing.JFrame {
 
         CorreoField.setText("Ingrese su correo");
 
-        RegistrarseBtn.setBackground(new java.awt.Color(51, 102, 255));
-        RegistrarseBtn.setText("Registrarse");
+        NoEmpleadoField.setText("Ingrese su número de empleado");
+        NoEmpleadoField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NoEmpleadoFieldActionPerformed(evt);
+            }
+        });
+
+        EscuelaBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elija su escuela", "ESCOM", "ESCA", "ESIQUIE" }));
+        EscuelaBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EscuelaBoxActionPerformed(evt);
+            }
+        });
+
+        ContrasenaField.setText("jPasswordField1");
+
+        ContrasenaField2.setText("jPasswordField1");
 
         javax.swing.GroupLayout RegistrarPanelLayout = new javax.swing.GroupLayout(RegistrarPanel);
         RegistrarPanel.setLayout(RegistrarPanelLayout);
         RegistrarPanelLayout.setHorizontalGroup(
             RegistrarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RegistrarPanelLayout.createSequentialGroup()
-                .addGroup(RegistrarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(RegistrarPanelLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(Registro, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 84, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(RegistrarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(NombreField, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                            .addComponent(PaternoField)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(RegistrarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CorreoField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MaternoField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(RegistrarseBtn)
-                .addGap(93, 93, 93))
+                .addGap(19, 19, 19)
+                .addGroup(RegistrarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Registro, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NombreField)
+                    .addComponent(PaternoField)
+                    .addComponent(MaternoField)
+                    .addComponent(CorreoField)
+                    .addComponent(NoEmpleadoField, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addComponent(EscuelaBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ContrasenaField)
+                    .addComponent(ContrasenaField2))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
         RegistrarPanelLayout.setVerticalGroup(
             RegistrarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,9 +109,19 @@ public class Registro extends javax.swing.JFrame {
                 .addComponent(MaternoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CorreoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(RegistrarseBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NoEmpleadoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EscuelaBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ContrasenaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ContrasenaField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
+
+        RegistrarseBtn.setBackground(new java.awt.Color(51, 102, 255));
+        RegistrarseBtn.setText("Registrarse");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,13 +131,19 @@ public class Registro extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(RegistrarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(48, 48, 48))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(RegistrarseBtn)
+                .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addComponent(RegistrarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addComponent(RegistrarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RegistrarseBtn)
+                .addGap(32, 32, 32))
         );
 
         pack();
@@ -125,6 +152,15 @@ public class Registro extends javax.swing.JFrame {
     private void NombreFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NombreFieldActionPerformed
+
+    private void NoEmpleadoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoEmpleadoFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NoEmpleadoFieldActionPerformed
+
+    private void EscuelaBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EscuelaBoxActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_EscuelaBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,8 +198,12 @@ public class Registro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField ContrasenaField;
+    private javax.swing.JPasswordField ContrasenaField2;
     private javax.swing.JTextField CorreoField;
+    private javax.swing.JComboBox<String> EscuelaBox;
     private javax.swing.JTextField MaternoField;
+    private javax.swing.JTextField NoEmpleadoField;
     private javax.swing.JTextField NombreField;
     private javax.swing.JTextField PaternoField;
     private javax.swing.JPanel RegistrarPanel;
