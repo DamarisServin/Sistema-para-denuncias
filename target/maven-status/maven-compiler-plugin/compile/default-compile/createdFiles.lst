@@ -9,7 +9,11 @@ com/escom/prototipo/InicioSesion.class
 com/escom/prototipo/RecuperarContraseña$2.class
 com/escom/prototipo/Registro$1.class
 com/escom/prototipo/Prototipo.class
+com/escom/prototipo/FDD$1.class
+com/escom/prototipo/FormatoDenuncia$10.class
 com/escom/prototipo/conexion/Conexion.class
+com/escom/prototipo/FDD.class
+com/escom/prototipo/FDD$3.class
 com/escom/prototipo/FormatoDenuncia$6.class
 com/escom/prototipo/Registro.class
 com/escom/prototipo/InicioSesion$2.class
@@ -22,6 +26,7 @@ com/escom/prototipo/FormatoDenuncia$8.class
 com/escom/prototipo/DAOs/Datos_involucrado.class
 com/escom/prototipo/RecuperarContraseña$1.class
 com/escom/prototipo/FormatoDenuncia$7.class
+com/escom/prototipo/FDD$2.class
 com/escom/prototipo/DAOs/Denuncia.class
 com/escom/prototipo/FormatoDenuncia$2.class
 com/escom/prototipo/InicioSesion$1.class
