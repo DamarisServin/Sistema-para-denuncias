@@ -43,7 +43,9 @@ public class RecuperarContraseña extends javax.swing.JFrame {
             }
         });
 
-        RecuperarBtn.setBackground(new java.awt.Color(51, 102, 255));
+        RecuperarBtn.setBackground(new java.awt.Color(153, 204, 255));
+        RecuperarBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        RecuperarBtn.setForeground(new java.awt.Color(255, 0, 51));
         RecuperarBtn.setText("Recupera contraseña");
 
         javax.swing.GroupLayout RecuperarPanelLayout = new javax.swing.GroupLayout(RecuperarPanel);
@@ -63,7 +65,7 @@ public class RecuperarContraseña extends javax.swing.JFrame {
                             .addGroup(RecuperarPanelLayout.createSequentialGroup()
                                 .addGap(86, 86, 86)
                                 .addComponent(RecuperarBtn)))
-                        .addGap(0, 84, Short.MAX_VALUE)))
+                        .addGap(0, 77, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         RecuperarPanelLayout.setVerticalGroup(
