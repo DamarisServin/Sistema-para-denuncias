@@ -627,7 +627,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             if(edad<2 && edad>110){
                 System.out.println("La edad no es un numero valido");
             }
-            else if (!aux6.contains("@")){
+            else if (!aux6.contains("@")){ // regex  "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$"
                 System.out.println("El correo no cumple con el formato correcto");
                 
                 }
