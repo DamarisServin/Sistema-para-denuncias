@@ -15,6 +15,7 @@ public class RecuperarContraseña extends javax.swing.JFrame {
      */
     public RecuperarContraseña() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

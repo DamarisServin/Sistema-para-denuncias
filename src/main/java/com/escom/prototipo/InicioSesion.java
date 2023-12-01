@@ -5,6 +5,7 @@
 package com.escom.prototipo;
 
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
@@ -12,13 +13,15 @@ import javax.swing.JOptionPane;
  *
  * @author Damaris
  */
-public class InicioSesion extends javax.swing.JFrame {
+public final class InicioSesion extends javax.swing.JFrame {
 
     /**
      * Creates new form InicioSesion
      */
     public InicioSesion() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        //cerrar(); //llamamos al metodo de cerrar
     }
     public void close(){
         WindowEvent closeWindow = new WindowEvent (this, WindowEvent.WINDOW_CLOSING);
@@ -42,6 +45,7 @@ public class InicioSesion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        Salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("InicioSesion");
@@ -94,6 +98,17 @@ public class InicioSesion extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon("/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/log T.png")); // NOI18N
 
+        Salir.setBackground(new java.awt.Color(255, 204, 255));
+        Salir.setFont(new java.awt.Font("Helvetica Neue", 3, 14)); // NOI18N
+        Salir.setForeground(new java.awt.Color(255, 0, 51));
+        Salir.setText("Salir");
+        Salir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout LoginPanelLayout = new javax.swing.GroupLayout(LoginPanel);
         LoginPanel.setLayout(LoginPanelLayout);
         LoginPanelLayout.setHorizontalGroup(
@@ -101,11 +116,6 @@ public class InicioSesion extends javax.swing.JFrame {
             .addGroup(LoginPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LoginPanelLayout.createSequentialGroup()
-                        .addComponent(OlvidasteConstrasenaBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
-                        .addComponent(IngresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
                     .addGroup(LoginPanelLayout.createSequentialGroup()
                         .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(LoginPanelLayout.createSequentialGroup()
@@ -121,7 +131,14 @@ public class InicioSesion extends javax.swing.JFrame {
                                 .addComponent(LoginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))))
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
+                        .addComponent(OlvidasteConstrasenaBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                        .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(IngresarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         LoginPanelLayout.setVerticalGroup(
             LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,10 +165,12 @@ public class InicioSesion extends javax.swing.JFrame {
                     .addGroup(LoginPanelLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(OlvidasteConstrasenaBtn)
-                        .addContainerGap(20, Short.MAX_VALUE))
-                    .addGroup(LoginPanelLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(IngresarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addComponent(IngresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
 
@@ -164,14 +183,14 @@ public class InicioSesion extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(LoginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(LoginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(LoginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         LoginPanel.getAccessibleContext().setAccessibleName("LoginPanel");
@@ -204,6 +223,40 @@ public class InicioSesion extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_IngresarBtnActionPerformed
 
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        // TODO add your handling code here:
+        System.exit(WIDTH);
+    }//GEN-LAST:event_SalirActionPerformed
+
+   /* 
+   //Método para confirmar el cierre de la ventana
+    public void cerrar(){
+        try {
+            this.setDefaultCloseOperation(InicioSesion.DO_NOTHING_ON_CLOSE); // referencia al frame actual
+            addWindowListener(new WindowAdapter() {
+                public void windowclossing (WindowEvent e){
+                    confirmarsalida(); //metodo para confirmar salida.
+                }//fin metodo windowclossing
+            });// fin del addwindow listener
+            this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }//fin catch
+    }// fin método cerrar
+    
+    
+    public void confirmarsalida(){
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea salir?", "Advertencia",JOptionPane.YES_NO_OPTION);
+        if(valor == JOptionPane.YES_OPTION){
+            JOptionPane.showConfirmDialog(null, "Gracias por su visita","Gracias", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+            
+        }// fin if
+    }//fin metodo confirmar salida
+    
+    */
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -245,6 +298,7 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JLabel LoginLabel;
     private javax.swing.JPanel LoginPanel;
     private javax.swing.JButton OlvidasteConstrasenaBtn;
+    private javax.swing.JButton Salir;
     private javax.swing.JTextField User;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
