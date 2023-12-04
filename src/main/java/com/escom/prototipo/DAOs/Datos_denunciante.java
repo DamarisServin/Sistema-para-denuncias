@@ -9,11 +9,12 @@ public class Datos_denunciante{
     private String domicilio;
     private String telefono;
     private String correo;
+    private String ocupacion;
     private String unidad_academica;
     private String turno;
     private boolean anonimo;
 
-    public Datos_denunciante(String fecha, String nombre_completo, int edad, String genero, String domicilio, String telefono, String correo, String unidad_academica, String turno, boolean anonimo) {
+    public Datos_denunciante(String fecha, String nombre_completo, int edad, String genero, String domicilio, String telefono, String correo, String ocupacion, String unidad_academica, String turno, boolean anonimo) {
         this.fecha = fecha;
         this.nombre_completo = nombre_completo;
         this.edad = edad;
@@ -21,6 +22,7 @@ public class Datos_denunciante{
         this.domicilio = domicilio;
         this.telefono = telefono;
         this.correo = correo;
+        this.ocupacion = ocupacion;
         this.unidad_academica = unidad_academica;
         this.turno = turno;
         this.anonimo = anonimo;
@@ -81,6 +83,14 @@ public class Datos_denunciante{
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getOcupacion() {
+        return ocupacion;
+    }
+
+    public void setOcupacion(String ocupacion) {
+        this.ocupacion = ocupacion;
     }
 
     public String getUnidad_academica() {
