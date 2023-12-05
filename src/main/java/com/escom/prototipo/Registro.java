@@ -1,5 +1,8 @@
 package com.escom.prototipo;
 
+import com.escom.prototipo.DAOs.Profesor;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -49,6 +52,7 @@ public class Registro extends javax.swing.JFrame {
         Registro.setText("Registro");
 
         NombreField.setText("Ingrese su nombre");
+        NombreField.setToolTipText("");
         NombreField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NombreFieldActionPerformed(evt);
@@ -123,6 +127,11 @@ public class Registro extends javax.swing.JFrame {
 
         RegistrarseBtn.setBackground(new java.awt.Color(51, 102, 255));
         RegistrarseBtn.setText("Registrarse");
+        RegistrarseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarseBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,6 +171,42 @@ public class Registro extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_EscuelaBoxActionPerformed
+
+    private void RegistrarseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseBtnActionPerformed
+        String aux1 = NombreField.getText();
+        String aux2 = PaternoField.getText();
+        String aux3 = MaternoField.getText();
+        String aux4 = CorreoField.getText();
+        String aux5 = NoEmpleadoField.getText();
+        String aux6 = (String) EscuelaBox.getSelectedItem();
+        String aux7 = new String( ContrasenaField.getPassword());
+        String aux8 = new String (ContrasenaField2.getPassword());
+        
+        if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux4.isEmpty() || aux5.isEmpty() || aux6.isEmpty() || aux7.isEmpty() || aux8.isEmpty() ){
+            System.out.println("Alguno de los espacios esta vacio");
+            JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+        }else if (!aux7.equals(aux8)){
+            System.out.println("Las contraseñas no coinciden");
+            JOptionPane.showMessageDialog(null, "Los campos de las contraseñas no coinciden", "Campo incorrecto", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Profesor pf = new Profesor(aux1, aux2, aux3, aux7, aux4, aux6, aux5);
+            if(pf.saveProfesor()){
+                InicioSesion in = new InicioSesion();
+                in.setVisible(true);
+                dispose();
+                
+            }
+            else {
+                System.out.println("No se guardo al profesor");
+                JOptionPane.showMessageDialog(null, "Algo ocurrio el profesor no fue dado de alta", "Error", JOptionPane.WARNING_MESSAGE);
+
+            }
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_RegistrarseBtnActionPerformed
 
     /**
      * @param args the command line arguments

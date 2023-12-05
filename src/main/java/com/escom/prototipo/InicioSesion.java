@@ -212,7 +212,7 @@ public final class InicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         //codigo botón ingresar
         String usuario = User.getText();
-        String pasw = Contrasena.getText();
+        String pasw = new String (Contrasena.getPassword());
         
         if( usuario.isEmpty() || pasw.isEmpty() ) {
              JOptionPane.showMessageDialog(null, "Algún campo está vacío");

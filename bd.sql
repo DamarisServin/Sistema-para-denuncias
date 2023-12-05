@@ -301,3 +301,13 @@ call guardaProfesor(
 );
 
 select * from Profesor;
+
+
+
+drop procedure if exists consultarProfesorById;
+delimiter $$
+create procedure consultarProfesorById(in id int)
+begin
+	select * from Profesor where id = id;
+end; $$
+delimiter ;
