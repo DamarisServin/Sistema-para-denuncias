@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 com\escom\prototipo\test\CalendarWithNavigation$1.class
+=======
+
+com/escom/prototipo/test/CalendatView.class
+
+>>>>>>> d3fce23b8e85c0b686fc195ccb3042fcc444f0ec
 com\escom\prototipo\InicioSesion$5.class
 com\escom\prototipo\test\CalendatView.class
 com\escom\prototipo\Registro$5.class
 com\escom\prototipo\test\CalendarWithNavigation$2.class
 com\escom\prototipo\test\CalendarWithNavigation.class
 com\escom\prototipo\FormatoDenuncia$7.class
+
