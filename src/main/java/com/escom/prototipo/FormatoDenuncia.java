@@ -6,9 +6,11 @@ package com.escom.prototipo;
 
 import com.escom.prototipo.DAOs.Datos_denunciante;
 import com.escom.prototipo.DAOs.Datos_involucrado;
+import com.escom.prototipo.DAOs.Denuncia;
 import com.escom.prototipo.DAOs.Descripcion_hechos;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -620,12 +622,14 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     }//GEN-LAST:event_NombreDenuncianteFieldActionPerformed
 
     private void EnviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarButtonActionPerformed
-        crearDatosDenuncia();
-        crearDatosInvolucrado();
-        crearDescripcionHechos();
+       if( crearDatosDenuncia() && crearDatosInvolucrado() && crearDescripcionHechos()){
+           //set next vista visible
+           new Denuncia (df.format(date).toString(), dd, di, dh);
+       }
+        
     }//GEN-LAST:event_EnviarButtonActionPerformed
 
-    private void crearDatosDenuncia(){
+    private boolean crearDatosDenuncia(){
         
         String aux1 = NombreDenuncianteField.getText();
         String aux2 = EdadDenuncianteField.getText();
@@ -665,7 +669,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                     
                         System.out.println("Datos validados");
                         dd = new Datos_denunciante (df.format(date),aux1, number, aux3, aux4, aux5, aux6, aux7, aux8, aux9, flag);
-
+                        return true;
                     }
 
                 } catch (NumberFormatException e) {
@@ -673,10 +677,12 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "El correo proporcionado no cumple con el formato correcto", "Campo vacío", JOptionPane.WARNING_MESSAGE);
                 }
             }
+            
         } 
+        return false;
     }
     
-    private void crearDatosInvolucrado(){
+    private boolean crearDatosInvolucrado(){
         String aux1 = NombreInvolucradoField.getText();
         String aux2 = DependenciaInvolucradoField.getText();
         String aux3 = (String) TurnoInvolucradoCombo.getSelectedItem();
@@ -688,10 +694,49 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         }
         else{
             di = new Datos_involucrado(aux1, aux2, aux3);
+            return true;
         }
+        return false;
     }
-    private void crearDescripcionHechos(){
+    private boolean crearDescripcionHechos(){
     
+        String aux1 = DiaHechosField.getText();
+        String aux2 = MesHechosField.getText();
+        String aux3 = AñoHechosField.getText();
+        String aux4 = HoraHechosField.getText();
+        String aux5 = LugarHechosField.getText();
+        String aux6 = DescripcionHechosField.getText();
+        String aux7 = TestigosHechosField.getText();
+        
+        
+        if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux4.isEmpty()|| aux5.isEmpty() || aux6.isEmpty()|| aux7.isEmpty() ){
+            System.out.println("Alguno de los espacios esta vacio");
+            JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+        }
+        else {
+            try {
+                Integer.parseInt(aux1);
+                Integer.parseInt(aux2);
+                Integer.parseInt(aux3);
+                try {
+                    Date newDate = df.parse(aux3 +"/"+ aux2 +"/"+aux1+"/"+" "+aux4+":00");
+                    System.out.println("Fecha convertida: " + newDate);
+                    dh = new Descripcion_hechos ( newDate.toString(), aux5, aux6, aux7);
+                    return true;
+                } catch (ParseException e) {
+                    System.out.println("Error al convertir la cadena a fecha: " + e.getMessage());
+                }
+                
+            } catch (NumberFormatException e) {
+                System.out.println("Alguno de los espacios no contiene el formato correcto");
+                JOptionPane.showMessageDialog(null, "Alguno de los campos de fecha no contiene numeros", "Campo inválido", JOptionPane.WARNING_MESSAGE);
+
+            }
+            
+            
+
+        }
+        return false;
     }
     
     
