@@ -657,8 +657,8 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             Matcher matcher = pattern.matcher(aux6);
 
             if(!matcher.matches()){
-                System.out.println("La edad no es un numero valido");
-                JOptionPane.showMessageDialog(null, "Verifica que la edad ingresada sea correcta", "Campo inválido", JOptionPane.WARNING_MESSAGE);
+                System.out.println("El correo no cumple con el formato correcto");
+                 JOptionPane.showMessageDialog(null, "El correo proporcionado no cumple con el formato correcto", "Campo vacío", JOptionPane.WARNING_MESSAGE);
 
             }
             else{ 
@@ -673,9 +673,9 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                     }
 
                 } catch (NumberFormatException e) {
-                    System.out.println("El correo no cumple con el formato correcto");
-                    JOptionPane.showMessageDialog(null, "El correo proporcionado no cumple con el formato correcto", "Campo vacío", JOptionPane.WARNING_MESSAGE);
-                }
+                    System.out.println("La edad no es un numero valido");
+                    JOptionPane.showMessageDialog(null, "Verifica que la edad ingresada sea correcta", "Campo inválido", JOptionPane.WARNING_MESSAGE);
+                 }
             }
             
         } 

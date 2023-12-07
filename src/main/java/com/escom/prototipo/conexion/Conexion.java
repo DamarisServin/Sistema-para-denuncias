@@ -29,8 +29,8 @@ public class Conexion {
     public Conexion () {
         this.usrBD = "root";
         this.passBD = "root";
-        this.urlBD = "jdbc:mysql://127.0.0.1:3306/DB1";
-        this.driverClassName = "com.mysql.jdbc.Driver";
+        this.urlBD = "jdbc:mysql://127.0.0.1:3306/DB1?serverTimezone=UTC";
+        this.driverClassName = "com.mysql.cj.jdbc.Driver";
     }
     
     //metodos para establecer los valores de conexion a la BD
@@ -52,10 +52,10 @@ public class Conexion {
     
     //Conexion a la BD
     public void conectar() throws SQLException {
-        try {
-            Class.forName(this.driverClassName).newInstance();
-            this.conn = DriverManager.getConnection(this.urlBD, this.usrBD, this.passBD);
- 
+        try { 
+            this.conn = DriverManager.getConnection(urlBD, usrBD, passBD); 
+            
+            System.out.println("Connected to the database!");
         } catch (Exception err) {
             System.out.println("Error " + err.getMessage());
         }
@@ -75,30 +75,10 @@ public class Conexion {
         return statement.executeUpdate();
     }
     
-    public int archivos(String sta, int uno, InputStream archivo) throws SQLException {
-        PreparedStatement statement = this.conn.prepareStatement(sta);
-        statement.setInt(1, uno);
-        if (archivo != null) {
-            statement.setBlob(2, archivo);
-        }
-        return statement.executeUpdate();
-    }
-
     public ResultSet consulta(String consulta) throws SQLException {
         this.estancia = (Statement) conn.createStatement();
         return this.estancia.executeQuery(consulta);
     } 
-    public void actualizar(String actualiza) throws SQLException {
-        this.estancia = (Statement) conn.createStatement();
-        estancia.executeUpdate(actualiza);
-    } 
-    public ResultSet borrar(String borra) throws SQLException {
-        Statement st = (Statement) this.conn.createStatement();
-        return (ResultSet) st.executeQuery(borra);
-    } 
-    public int insertar(String inserta) throws SQLException {
-        Statement st = (Statement) this.conn.createStatement();
-        return st.executeUpdate(inserta);
-    }
+
 }
 

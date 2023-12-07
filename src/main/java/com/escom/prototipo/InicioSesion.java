@@ -5,8 +5,9 @@
 package com.escom.prototipo;
 
 import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,7 +42,7 @@ public final class InicioSesion extends javax.swing.JFrame {
         Contrasena = new javax.swing.JPasswordField();
         LoginLabel = new javax.swing.JLabel();
         IngresarBtn = new javax.swing.JButton();
-        User = new javax.swing.JTextField();
+        Email = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -83,20 +84,18 @@ public final class InicioSesion extends javax.swing.JFrame {
             }
         });
 
-        User.setName("user"); // NOI18N
-        User.addActionListener(new java.awt.event.ActionListener() {
+        Email.setName("user"); // NOI18N
+        Email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserActionPerformed(evt);
+                EmailActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Usuario:");
+        jLabel1.setText("Correo:");
         jLabel1.setName("lusuario"); // NOI18N
 
         jLabel2.setText("Contraseña:");
         jLabel2.setName("lcontraseña"); // NOI18N
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/log T.png")); // NOI18N
 
         Salir.setBackground(new java.awt.Color(255, 204, 255));
         Salir.setFont(new java.awt.Font("Helvetica Neue", 3, 14)); // NOI18N
@@ -125,7 +124,7 @@ public final class InicioSesion extends javax.swing.JFrame {
                                 .addGap(44, 44, 44)
                                 .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(LoginPanelLayout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addComponent(LoginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -155,7 +154,7 @@ public final class InicioSesion extends javax.swing.JFrame {
                                 .addComponent(jLabel2))
                             .addGroup(LoginPanelLayout.createSequentialGroup()
                                 .addGap(20, 20, 20)
-                                .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
@@ -174,7 +173,7 @@ public final class InicioSesion extends javax.swing.JFrame {
                         .addContainerGap())))
         );
 
-        User.getAccessibleContext().setAccessibleName("Usuario");
+        Email.getAccessibleContext().setAccessibleName("Usuario");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,23 +203,34 @@ public final class InicioSesion extends javax.swing.JFrame {
         rp.setVisible(true);
     }//GEN-LAST:event_OlvidasteConstrasenaBtnActionPerformed
 
-    private void UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserActionPerformed
+    private void EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_UserActionPerformed
+    }//GEN-LAST:event_EmailActionPerformed
 
     private void IngresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarBtnActionPerformed
         // TODO add your handling code here:
         //codigo botón ingresar
-        String usuario = User.getText();
+        String email = Email.getText();
         String pasw = new String (Contrasena.getPassword());
         
-        if( usuario.isEmpty() || pasw.isEmpty() ) {
+        if( email.isEmpty() || pasw.isEmpty() ) {
              JOptionPane.showMessageDialog(null, "Algún campo está vacío");
-        }else {
+        }else  {
+            String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        
+
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(email);
+
+            if(!matcher.matches()){
+                System.out.println("El correo no es válido");
+                JOptionPane.showMessageDialog(null, "Verifica que el correo ingresado cumpla con los requisitos necesarios", "Campo inválido", JOptionPane.WARNING_MESSAGE);
+
+            }else{
             
+            
+            }
         }
-                
-                
     }//GEN-LAST:event_IngresarBtnActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
@@ -294,12 +304,12 @@ public final class InicioSesion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField Contrasena;
+    private javax.swing.JTextField Email;
     private javax.swing.JButton IngresarBtn;
     private javax.swing.JLabel LoginLabel;
     private javax.swing.JPanel LoginPanel;
     private javax.swing.JButton OlvidasteConstrasenaBtn;
     private javax.swing.JButton Salir;
-    private javax.swing.JTextField User;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

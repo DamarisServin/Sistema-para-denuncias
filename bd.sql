@@ -227,7 +227,7 @@ drop procedure if exists guardaProfesor;
 delimiter **
 create procedure guardaProfesor(
 in idE int,
-in correo nvarchar(150),
+in email nvarchar(150),
 in nombre nvarchar(50),
 in ap_paterno nvarchar(50),
 in ap_materno nvarchar(50),
@@ -245,7 +245,7 @@ set newid = 0;
 
 if idE = 0 then
 	
-    set existeCorreo = (select count(*) from Profesor where correo = correo);
+    set existeCorreo = (select count(*) from Profesor where correo = email);
 
     if ( existeCorreo = 0 )  then
 		set newid = (select ifnull(max(id), 0) + 1 from Profesor);
@@ -253,7 +253,7 @@ if idE = 0 then
 		insert into Profesor (
 			id, correo, nombre, ap_paterno, ap_materno, escuela, no_poli, contrasena
         )
-			values(newid, correo, nombre, ap_paterno, ap_materno, escuela, no_poli, md5(contrasena)
+			values(newid, email, nombre, ap_paterno, ap_materno, escuela, no_poli, md5(contrasena)
         );            
 		set msj =  'Usuario guardado con exito';
     else
@@ -267,7 +267,7 @@ set newid = idE;
 	if((select count(*) from Profesor where id = newid = 1)) then
 		set msj =  'Usuario Actualizado';
         
-        update Profesor set correo = correo,
+        update Profesor set 
 			nombre = nombre, ap_paterno=ap_paterno, ap_materno=ap_materno, 
 			escuela=escuela, no_poli=no_poli, contrasena=md5(contrasena) where id=newid;
         
@@ -278,7 +278,7 @@ set newid = idE;
 end if;
 
 if(msj='Usuario guardado con exito') then
-	select msj as Resultado, id as id from Profesor where nombre = nombre and correo = correo;
+	select msj as Resultado, id as id from Profesor where nombre = nombre and correo = email;
 else
 	select msj as Resultado, 0 as id;
 end if;
@@ -302,8 +302,6 @@ call guardaProfesor(
 
 select * from Profesor;
 
-
-
 drop procedure if exists consultarProfesorById;
 delimiter $$
 create procedure consultarProfesorById(in id int)
@@ -311,3 +309,6 @@ begin
 	select * from Profesor where id = id;
 end; $$
 delimiter ;
+
+
+

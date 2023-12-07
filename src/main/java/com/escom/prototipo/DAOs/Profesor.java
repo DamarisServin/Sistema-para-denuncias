@@ -58,7 +58,9 @@ public class Profesor{
         Conexion con = new Conexion();
         try {
             con.conectar();
-            ResultSet rsguarda = con.consulta("call guardaProfesor(0, '" + correo + "', '" + nombre + "', '" + ap_paterno + "', '" + ap_materno + "', '" + escuela + "', '" + no_poli +"', "+contrasena+ ");");
+            String str = "call guardaProfesor(0, '" + correo + "', '" + nombre + "', '" + ap_paterno + "', '" + ap_materno + "', '" + escuela + "', '" + no_poli +"', '"+contrasena+ "');";
+
+            ResultSet rsguarda = con.consulta(str);
             
             if (rsguarda.next()) {
                 if (rsguarda.getString("Resultado").equals("Usuario guardado con exito")) {
@@ -73,7 +75,7 @@ public class Profesor{
             return true;
         } 
         catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e + " saveProfesor()");
         }
         return false;
     }
@@ -82,7 +84,7 @@ public class Profesor{
         Conexion con = new Conexion();
         try {
             con.conectar();
-            ResultSet rsguarda = con.consulta("call guardaProfesor(" + id + ", '" + correo + "', '" + nombre + "', '" + ap_paterno + "', '" + ap_materno + "', '" + escuela + "', '" + no_poli +"', "+contrasena+ ");");
+            ResultSet rsguarda = con.consulta("call guardaProfesor(" + id + ", '" + correo + "', '" + nombre + "', '" + ap_paterno + "', '" + ap_materno + "', '" + escuela + "', '" + no_poli +"', '"+contrasena+ "');");
             
             if (rsguarda.next()) {
                 System.out.println("Usuario Actualizado");
@@ -96,6 +98,27 @@ public class Profesor{
         return false;
     }
 
+    public boolean logIn(String email, String psw){
+        Conexion con = new Conexion();
+        try {
+            con.conectar();
+            String str = "select * from Profesor where correo ='"+email+"' and psw = '"+psw+"');"; //MODIFICAR
+
+            ResultSet rsguarda = con.consulta(str);
+            
+            if (rsguarda.next()) {
+
+                //Inicio sesion
+            }
+            con.cierraConexion();
+            return true;
+        } 
+        catch (Exception e) {
+            System.out.println(e + " logIn()");
+        }
+        return false;
+    }
+    
     public int getId() {
         return id;
     }
