@@ -64,9 +64,6 @@ public class Registro extends javax.swing.JFrame {
         Registro.setForeground(new java.awt.Color(255, 0, 0));
         Registro.setText("Registro");
 
-
-   
-
         NombreField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NombreFieldActionPerformed(evt);
@@ -85,10 +82,6 @@ public class Registro extends javax.swing.JFrame {
                 EscuelaBoxActionPerformed(evt);
             }
         });
-
-        ContrasenaField.setText("jPasswordField1");
-
-        ContrasenaField2.setText("jPasswordField1");
 
         jLabel1.setText("Nombre");
 

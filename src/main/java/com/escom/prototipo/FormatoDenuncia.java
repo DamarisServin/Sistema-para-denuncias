@@ -624,6 +624,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     private void EnviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarButtonActionPerformed
        if( crearDatosDenuncia() && crearDatosInvolucrado() && crearDescripcionHechos()){
            //set next vista visible
+           
            new Denuncia (df.format(date).toString(), dd, di, dh);
        }
         
@@ -718,8 +719,9 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                 Integer.parseInt(aux1);
                 Integer.parseInt(aux2);
                 Integer.parseInt(aux3);
+                Integer.parseInt(aux4);
                 try {
-                    Date newDate = df.parse(aux3 +"/"+ aux2 +"/"+aux1+"/"+" "+aux4+":00");
+                    Date newDate = df.parse(aux3 +"/"+ aux2 +"/"+aux1+" "+aux4+":00");
                     System.out.println("Fecha convertida: " + newDate);
                     dh = new Descripcion_hechos ( newDate.toString(), aux5, aux6, aux7);
                     return true;

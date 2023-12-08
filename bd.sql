@@ -2,11 +2,8 @@
 DROP DATABASE IF EXISTS DB1;
 
 CREATE DATABASE DB1;
-/* <<<<<<< HEAD */
-USE DB1;
-/* =======*/
 
-/*>>>>>>> df66b329790b81d81bd3425723c16ca713e790d2 */
+USE DB1;
 
 CREATE TABLE Profesor (
   id int NOT NULL AUTO_INCREMENT,
@@ -44,9 +41,7 @@ CREATE TABLE Genero (
 CREATE TABLE Datos_denunciante (
   id int NOT NULL AUTO_INCREMENT,
   fecha DATE NOT NULL,
-  nombre varchar(50) NOT NULL,
-  ap_paterno varchar(50) NOT NULL,
-  ap_materno varchar(50) NOT NULL,
+  nombre varchar(150) NOT NULL,
   edad int NOT NULL,
   genero_id int NOT NULL,
   domicilio varchar(150) NOT NULL,
@@ -312,3 +307,80 @@ delimiter ;
 
 
 
+drop procedure if exists guardaDatosDenunciante;
+
+delimiter **
+create procedure guardaDatosDenunciante(
+in idE int,
+in fechaI date,
+in nombreI nvarchar(150),
+in edadI int,
+in generoI int,
+in domicilioI nvarchar(150),
+in telefonoI nvarchar(15),
+in correoI nvarchar(50),
+in unidadI nvarchar(50),
+in turnoI nvarchar(50),
+in anonimoI int(1)
+)
+begin 
+declare newid int;
+declare msj nvarchar(200);
+declare existeDenunciante int;
+
+set newid = 0;
+
+
+if idE = 0 then
+	
+    set existeDenunciante = (select count(*) from Datos_denunciante
+    where nombre = nombreI and correo = correoI);
+
+    if ( existeDenunciante = 0 )  then
+		set newid = (select ifnull(max(id), 0) + 1 from Datos_denunciante);
+        
+		insert into Datos_denunciante (
+			  id, fecha, nombre, edad, genero_id, domicilio, telefono, correo, unidad_academica, turno, anonimo
+        )
+			values(
+				  newid, fechaI, nombreI, edadI, generoI, domicilioI, telefonoI, correoI, unidadI, turnoI, anonimoI
+        );            
+		set msj =  'Datos del denunciante guardados con exito';
+    else
+		set msj = 'Ya existe un denunciante con ese nombre y correo';
+    end if;
+   
+else
+
+set newid = idE;
+
+	if((select count(*) from Datos_denunciante where id = newid = 1)) then
+		set msj =  'Datos del denunciante Actualizado';
+        
+        update Datos_denunciante set 
+			 fecha = fechaI, edad = edadI, genero_id = generoI, domicilio = domicilioI, telefono = telefonoI, unidad_academica = unidadI, turno = turnoI, anonimo = anonimoI
+            where id=newid;
+        
+    else
+		set msj =  'El denunciante no se actualizo';
+    end if;
+    
+end if;
+
+if(msj='Denunciante guardado con exito') then
+	select msj as Resultado, id as id from Datos_denunciante where nombre = nombreI and correo = correoI;
+else
+	select msj as Resultado, 0 as id;
+end if;
+
+end; **
+
+delimiter ;
+
+call guardaDatosDenunciante(
+"0", "12/12/12 12:12:12", "Nombre Apellido Apellido2", 12, 1, "Domicilio", "1234567", "correo", "unidad", "turno", 1
+);
+call guardaDatosDenunciante(
+"1", "12/12/12 12:12:12", "Nombre Apellido Apellido", 12, 1, "calle numero", "1234567", "correo", "unidad", "turno", 1
+);
+select * from Datos_denunciante;

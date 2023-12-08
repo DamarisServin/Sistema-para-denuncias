@@ -178,14 +178,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="NombreField">
-          <Properties>
-<<<<<<< HEAD
-            <Property name="text" type="java.lang.String" value="Ingrese su nombre"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
-=======
-            <Property name="name" type="java.lang.String" value="" noResource="true"/>
->>>>>>> d3fce23b8e85c0b686fc195ccb3042fcc444f0ec
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NombreFieldActionPerformed"/>
           </Events>
@@ -269,14 +261,8 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JPasswordField" name="ContrasenaField">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="ContrasenaField2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
