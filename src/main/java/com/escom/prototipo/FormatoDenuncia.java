@@ -623,9 +623,16 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
     private void EnviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarButtonActionPerformed
        if( crearDatosDenuncia() && crearDatosInvolucrado() && crearDescripcionHechos()){
-           //set next vista visible
-           
            new Denuncia (df.format(date).toString(), dd, di, dh);
+
+           if (dd.getOcupacion().contains("Alumno")){
+                AlumnoDenunciante ad = new AlumnoDenunciante();
+                ad.setVisible(true);
+                dispose();
+           }
+           else{
+               
+           }
        }
         
     }//GEN-LAST:event_EnviarButtonActionPerformed
@@ -719,21 +726,29 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                 Integer.parseInt(aux1);
                 Integer.parseInt(aux2);
                 Integer.parseInt(aux3);
-                Integer.parseInt(aux4);
-                try {
-                    Date newDate = df.parse(aux3 +"/"+ aux2 +"/"+aux1+" "+aux4+":00");
-                    System.out.println("Fecha convertida: " + newDate);
-                    dh = new Descripcion_hechos ( newDate.toString(), aux5, aux6, aux7);
-                    return true;
-                } catch (ParseException e) {
-                    System.out.println("Error al convertir la cadena a fecha: " + e.getMessage());
+                String patron = "^\\d{2}:\\d{2}$";
+                Pattern pattern = Pattern.compile(patron);
+                Matcher matcher = pattern.matcher(aux4);
+                if (matcher.matches()) {
+                    try {
+                        Date newDate = df.parse(aux3 +"/"+ aux2 +"/"+aux1+" "+aux4+":00");
+                        System.out.println("Fecha convertida: " + newDate);
+                        dh = new Descripcion_hechos ( newDate.toString(), aux5, aux6, aux7);
+                        return true;
+                    } catch (ParseException e) {
+                        System.out.println("Error al convertir la cadena a fecha: " + e.getMessage());
+                    }
                 }
-                
+                else{
+                    System.out.println("Hora incorrecta");
+                    JOptionPane.showMessageDialog(null, "Asegurate que la fecha tenga el siguiente formato:  HH:MM", "Campo inválido", JOptionPane.WARNING_MESSAGE);
+                }
             } catch (NumberFormatException e) {
                 System.out.println("Alguno de los espacios no contiene el formato correcto");
                 JOptionPane.showMessageDialog(null, "Alguno de los campos de fecha no contiene numeros", "Campo inválido", JOptionPane.WARNING_MESSAGE);
 
             }
+            
             
             
 
