@@ -106,10 +106,8 @@ public class Profesor{
             String str = "call sesionProfesor('" +  correo + "', '" +contrasena+ "');";
 
             ResultSet rsVal = con.consulta(str);
-            System.out.println(str);
             if (rsVal.next())  {
                 this.id = Integer.parseInt(rsVal.getString("idProf"));
-                System.out.println(id);
                 if ( id != 0) { 
                     str = "call consultarProfesorById(" + id+ ");";
                     rsVal = con.consulta(str);
@@ -119,7 +117,6 @@ public class Profesor{
                         this.correo = rsVal.getString("correo");
                         this.escuela = rsVal.getString("escuela");
                         this.no_poli = rsVal.getString("no_poli");
-                        System.out.println(no_poli);
                         flag = true;
                     }
                 }
