@@ -12,18 +12,20 @@ public class Profesor{
     private String escuela;
     private String no_poli;
     private String nombre;
-    private String ap_paterno;
-    private String ap_materno;
+//    private String ap_paterno;
+//    private String ap_materno;
 
+    public Profesor(String contrasena, String correo) {
+        this.contrasena = contrasena;
+        this.correo = correo;
+    }
     
     public Profesor(String nombre, String ap_paterno, String ap_materno, String contrasena, String correo, String escuela, String no_poli) {
         this.contrasena = contrasena;
         this.correo = correo;
         this.escuela = escuela;
         this.no_poli = no_poli;
-        this.nombre = nombre;
-        this.ap_paterno = ap_paterno;
-        this.ap_materno = ap_materno;
+        this.nombre = nombre + " "+ap_paterno+ " "+ap_materno;
     }
     
     public boolean getProfesorById(int id) {
@@ -36,8 +38,6 @@ public class Profesor{
                 if (Integer.parseInt(rsVal.getString("id")) > 0) {  
                     this.id = id;
                     this.nombre = rsVal.getString("nombre");
-                    this.ap_paterno = rsVal.getString("ap_paterno");
-                    this.ap_materno= rsVal.getString("ap_materno");
                     this.contrasena = rsVal.getString("contrasena");
                     this.correo = rsVal.getString("correo");
                     this.escuela = rsVal.getString("escuela");
@@ -58,7 +58,7 @@ public class Profesor{
         Conexion con = new Conexion();
         try {
             con.conectar();
-            String str = "call guardaProfesor(0, '" + correo + "', '" + nombre + "', '" + ap_paterno + "', '" + ap_materno + "', '" + escuela + "', '" + no_poli +"', '"+contrasena+ "');";
+            String str = "call guardaProfesor(0, '" + correo + "', '" + nombre + "', '" + escuela + "', '" + no_poli +"', '"+contrasena+ "');";
 
             ResultSet rsguarda = con.consulta(str);
             
@@ -84,7 +84,7 @@ public class Profesor{
         Conexion con = new Conexion();
         try {
             con.conectar();
-            ResultSet rsguarda = con.consulta("call guardaProfesor(" + id + ", '" + correo + "', '" + nombre + "', '" + ap_paterno + "', '" + ap_materno + "', '" + escuela + "', '" + no_poli +"', '"+contrasena+ "');");
+            ResultSet rsguarda = con.consulta("call guardaProfesor(" + id + ", '" + correo + "', '" + nombre + "', '" + "', '" + escuela + "', '" + no_poli +"', '"+contrasena+ "');");
             
             if (rsguarda.next()) {
                 System.out.println("Usuario Actualizado");
@@ -98,25 +98,39 @@ public class Profesor{
         return false;
     }
 
-    public boolean logIn(String email, String psw){
+    public boolean logIn(){
         Conexion con = new Conexion();
+        boolean flag = false;
         try {
             con.conectar();
-            String str = "select * from Profesor where correo ='"+email+"' and psw = '"+psw+"');"; //MODIFICAR
+            String str = "call sesionProfesor('" +  correo + "', '" +contrasena+ "');";
 
-            ResultSet rsguarda = con.consulta(str);
-            
-            if (rsguarda.next()) {
+            ResultSet rsVal = con.consulta(str);
+            System.out.println(str);
+            if (rsVal.next())  {
+                this.id = Integer.parseInt(rsVal.getString("idProf"));
+                System.out.println(id);
+                if ( id != 0) { 
+                    str = "call consultarProfesorById(" + id+ ");";
+                    rsVal = con.consulta(str);
+                    if (rsVal.next())  {
+                        
+                        this.nombre = rsVal.getString("nombre");
+                        this.correo = rsVal.getString("correo");
+                        this.escuela = rsVal.getString("escuela");
+                        this.no_poli = rsVal.getString("no_poli");
+                        System.out.println(no_poli);
+                        flag = true;
+                    }
+                }
 
-                //Inicio sesion
             }
             con.cierraConexion();
-            return true;
         } 
         catch (Exception e) {
             System.out.println(e + " logIn()");
         }
-        return false;
+        return flag;
     }
     
     public int getId() {
@@ -165,22 +179,6 @@ public class Profesor{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getAp_paterno() {
-        return ap_paterno;
-    }
-
-    public void setAp_paterno(String ap_paterno) {
-        this.ap_paterno = ap_paterno;
-    }
-
-    public String getAp_materno() {
-        return ap_materno;
-    }
-
-    public void setAp_materno(String ap_materno) {
-        this.ap_materno = ap_materno;
     }
 
 }

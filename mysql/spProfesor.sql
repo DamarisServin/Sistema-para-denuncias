@@ -1,5 +1,7 @@
 drop procedure if exists guardaProfesor;
 drop procedure if exists consultarProfesorById;
+drop procedure if exists sesionProfesor;
+
 
 delimiter **
 	create procedure guardaProfesor(
@@ -8,7 +10,7 @@ delimiter **
 	in nombre nvarchar(50),
 	in escuela nvarchar(50),
 	in no_poli nvarchar(50),
-	in constrasena nvarchar(50)
+	in psw nvarchar(50)
 	)
 	begin 
 	declare newid int;
@@ -27,7 +29,7 @@ delimiter **
 			insert into Profesor (
 				id, correo, nombre, escuela, no_poli, contrasena
 			)
-				values(newid, email, nombre, escuela, no_poli, md5(contrasena)
+				values(newid, email, nombre, escuela, no_poli, md5(psw)
 			);            
 			set msj =  'Usuario guardado con exito';
 		else
@@ -42,7 +44,7 @@ delimiter **
 			set msj =  'Usuario Actualizado';
 			
 			update Profesor set 
-				nombre = nombre, escuela=escuela, no_poli=no_poli, contrasena=md5(contrasena) where id=newid;
+				nombre = nombre, escuela=escuela, no_poli=no_poli, contrasena=md5(psw) where id=newid;
 			
 		else
 			set msj =  'El usuario no se actualizo';
@@ -62,7 +64,28 @@ delimiter **
 	begin
 		select * from Profesor where id = idE;
 	end; **
+    
+    create procedure sesionProfesor(in email nvarchar(150), in psw  nvarchar(50))
+	begin
+	declare existe int;
+	declare msj nvarchar(200);
+	declare idProf int;
+
+	set existe = (select count(*) from Profesor where correo = email and contrasena = md5(psw));
+	if (existe = 1) then
+
+		set msj = 'Profesor encontrado';
+		select id as idProf, msj from Profesor where correo = email and contrasena = md5(psw);
+	else
+		set msj = 'No se inicio sesion';
+		select 0 as idProf, msj;
+		
+	end if;
+	end; **
+    
 delimiter ;
+
+
 
 
 ########################## TEST ##########################
@@ -71,10 +94,8 @@ call guardaProfesor(
 "0", "ejemplo@correo.com", "Nombre",  "ESCOM", "1234567", "contrasena"
 );
 
-
-call guardaProfesor(
-"2", "ejemplo@correo.com", "NombreSegundo", "ESCOM", "1234567", "contrasena"
-);
+call sesionProfesor(
+"correo@ejemplo.com",  "contrasena");
 
 select * from Profesor;
 

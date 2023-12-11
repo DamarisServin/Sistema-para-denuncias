@@ -4,6 +4,7 @@
  */
 package com.escom.prototipo;
 
+import com.escom.prototipo.DAOs.Profesor;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.util.regex.Matcher;
@@ -227,7 +228,18 @@ public final class InicioSesion extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Verifica que el correo ingresado cumpla con los requisitos necesarios", "Campo inválido", JOptionPane.WARNING_MESSAGE);
 
             }else{
-            
+                Profesor pf = new Profesor(pasw, email);
+                
+                if(pf.logIn()){
+                    Bienvenido bv = new Bienvenido();
+                    bv.setVisible(true);
+                    dispose();
+                }
+                else{
+                    System.out.println("No se pudo iniciar sesion");
+                    JOptionPane.showMessageDialog(null, "Correo o constraseña son incorrectas", "Inicio Fallido", JOptionPane.WARNING_MESSAGE);
+                    
+                }
             
             }
         }

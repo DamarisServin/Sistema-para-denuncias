@@ -1,6 +1,6 @@
 
 
-INSERT INTO Profesor VALUES ("0", "correo@ejemplo.com", "Nombre de Ejemplo",  "ESCOM", "123456789", "contrasena");
+INSERT INTO Profesor VALUES ("0", "correo@ejemplo.com", "Nombre de Ejemplo",  "ESCOM", "123456789", md5("contrasena"));
 
 
 INSERT INTO Genero VALUES (1, "Masculino");
