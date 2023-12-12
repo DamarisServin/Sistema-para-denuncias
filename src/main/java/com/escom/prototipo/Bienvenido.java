@@ -30,12 +30,12 @@ public class Bienvenido extends javax.swing.JFrame {
         jPopupMenu2 = new javax.swing.JPopupMenu();
         Bienvenido = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        BDenuncia = new javax.swing.JButton();
+        BReportes = new javax.swing.JButton();
+        BCentros = new javax.swing.JButton();
         label1 = new java.awt.Label();
         jLabel2 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        BBSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,25 +45,30 @@ public class Bienvenido extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("BIENVENIDO");
 
-        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 102, 255));
-        jButton1.setText("Denuncia");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jButton2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 51, 255));
-        jButton2.setText("Reportres");
-        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BDenuncia.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        BDenuncia.setForeground(new java.awt.Color(51, 102, 255));
+        BDenuncia.setText("Denuncia");
+        BDenuncia.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BDenuncia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BDenunciaActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(51, 153, 255));
-        jButton3.setText("Centros de ayuda");
-        jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BReportes.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        BReportes.setForeground(new java.awt.Color(255, 51, 255));
+        BReportes.setText("Reportres");
+        BReportes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BReportesActionPerformed(evt);
+            }
+        });
+
+        BCentros.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        BCentros.setForeground(new java.awt.Color(51, 153, 255));
+        BCentros.setText("Centros de ayuda");
+        BCentros.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         label1.setFont(new java.awt.Font("Bodoni 72 Oldstyle", 1, 24)); // NOI18N
         label1.setForeground(new java.awt.Color(255, 0, 255));
@@ -71,10 +76,15 @@ public class Bienvenido extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon("/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/logi.png")); // NOI18N
 
-        jButton4.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 0, 0));
-        jButton4.setText("Salir");
-        jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BBSalir.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        BBSalir.setForeground(new java.awt.Color(255, 0, 0));
+        BBSalir.setText("Salir");
+        BBSalir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BienvenidoLayout = new javax.swing.GroupLayout(Bienvenido);
         Bienvenido.setLayout(BienvenidoLayout);
@@ -84,15 +94,15 @@ public class Bienvenido extends javax.swing.JFrame {
                 .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BienvenidoLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BDenuncia, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
                         .addComponent(jLabel2)
                         .addGap(60, 60, 60)
                         .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(BBSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BCentros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(BienvenidoLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -117,11 +127,11 @@ public class Bienvenido extends javax.swing.JFrame {
                     .addGroup(BienvenidoLayout.createSequentialGroup()
                         .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(BReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BDenuncia, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(BCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))))
         );
 
@@ -145,9 +155,17 @@ public class Bienvenido extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BReportesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BReportesActionPerformed
+
+    private void BBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BBSalirActionPerformed
+
+    private void BDenunciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDenunciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BDenunciaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,11 +203,11 @@ public class Bienvenido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BBSalir;
+    private javax.swing.JButton BCentros;
+    private javax.swing.JButton BDenuncia;
+    private javax.swing.JButton BReportes;
     private javax.swing.JPanel Bienvenido;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPopupMenu jPopupMenu1;
