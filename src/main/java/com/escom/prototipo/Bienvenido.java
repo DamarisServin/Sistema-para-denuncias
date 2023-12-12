@@ -39,14 +39,12 @@ public class Bienvenido extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Bienvenido.setBackground(new java.awt.Color(255, 255, 255));
-
         jLabel1.setFont(new java.awt.Font("Krungthep", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("BIENVENIDO");
 
+        BDenuncia.setBackground(new java.awt.Color(206, 226, 240));
         BDenuncia.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        BDenuncia.setForeground(new java.awt.Color(51, 102, 255));
         BDenuncia.setText("Denuncia");
         BDenuncia.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BDenuncia.addActionListener(new java.awt.event.ActionListener() {
@@ -55,8 +53,8 @@ public class Bienvenido extends javax.swing.JFrame {
             }
         });
 
+        BReportes.setBackground(new java.awt.Color(206, 226, 240));
         BReportes.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        BReportes.setForeground(new java.awt.Color(255, 51, 255));
         BReportes.setText("Reportres");
         BReportes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BReportes.addActionListener(new java.awt.event.ActionListener() {
@@ -65,17 +63,18 @@ public class Bienvenido extends javax.swing.JFrame {
             }
         });
 
+        BCentros.setBackground(new java.awt.Color(206, 226, 240));
         BCentros.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        BCentros.setForeground(new java.awt.Color(51, 153, 255));
         BCentros.setText("Centros de ayuda");
         BCentros.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         label1.setFont(new java.awt.Font("Bodoni 72 Oldstyle", 1, 24)); // NOI18N
-        label1.setForeground(new java.awt.Color(255, 0, 255));
+        label1.setForeground(new java.awt.Color(204, 204, 204));
         label1.setText("<html>PROTOTIPO PARA LA COORDINACIÓN Y EL SEGUIMIENTO DE DENUNCIAS POR VIOLENCIA DE GÉNERO EN LA ESCOM<html>");
 
         jLabel2.setIcon(new javax.swing.ImageIcon("/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/logi.png")); // NOI18N
 
+        BBSalir.setBackground(new java.awt.Color(255, 204, 255));
         BBSalir.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         BBSalir.setForeground(new java.awt.Color(255, 0, 0));
         BBSalir.setText("Salir");
@@ -161,6 +160,7 @@ public class Bienvenido extends javax.swing.JFrame {
 
     private void BBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBSalirActionPerformed
         // TODO add your handling code here:
+        System.exit(WIDTH);
     }//GEN-LAST:event_BBSalirActionPerformed
 
     private void BDenunciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDenunciaActionPerformed

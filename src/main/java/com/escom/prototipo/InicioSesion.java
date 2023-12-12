@@ -54,6 +54,8 @@ public final class InicioSesion extends javax.swing.JFrame {
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
 
+        LoginPanel.setBackground(new java.awt.Color(245, 245, 245));
+
         OlvidasteConstrasenaBtn.setBackground(new java.awt.Color(242, 242, 242));
         OlvidasteConstrasenaBtn.setFont(new java.awt.Font("Helvetica Neue", 3, 13)); // NOI18N
         OlvidasteConstrasenaBtn.setForeground(new java.awt.Color(255, 0, 0));
@@ -75,7 +77,7 @@ public final class InicioSesion extends javax.swing.JFrame {
         LoginLabel.setText("Login");
 
         IngresarBtn.setBackground(new java.awt.Color(206, 226, 240));
-        IngresarBtn.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        IngresarBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         IngresarBtn.setText("Ingresar");
         IngresarBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         IngresarBtn.setName("ingresarlog"); // NOI18N
@@ -99,7 +101,7 @@ public final class InicioSesion extends javax.swing.JFrame {
         jLabel2.setName("lcontraseña"); // NOI18N
 
         Salir.setBackground(new java.awt.Color(255, 204, 255));
-        Salir.setFont(new java.awt.Font("Helvetica Neue", 3, 14)); // NOI18N
+        Salir.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         Salir.setForeground(new java.awt.Color(255, 0, 51));
         Salir.setText("Salir");
         Salir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -129,16 +131,16 @@ public final class InicioSesion extends javax.swing.JFrame {
                             .addGroup(LoginPanelLayout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addComponent(LoginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
+                    .addGroup(LoginPanelLayout.createSequentialGroup()
                         .addComponent(OlvidasteConstrasenaBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                        .addGap(72, 72, 72)
                         .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(IngresarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
-                        .addContainerGap())))
+                            .addComponent(IngresarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         LoginPanelLayout.setVerticalGroup(
             LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,14 +166,13 @@ public final class InicioSesion extends javax.swing.JFrame {
                 .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LoginPanelLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addComponent(OlvidasteConstrasenaBtn)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(IngresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(OlvidasteConstrasenaBtn))
+                    .addGroup(LoginPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(IngresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         Email.getAccessibleContext().setAccessibleName("Usuario");
