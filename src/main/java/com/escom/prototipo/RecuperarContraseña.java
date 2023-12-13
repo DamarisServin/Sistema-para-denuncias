@@ -4,6 +4,9 @@
  */
 package com.escom.prototipo;
 
+import com.escom.validaciones.Validaciones;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Damaris
@@ -48,6 +51,11 @@ public class RecuperarContraseña extends javax.swing.JFrame {
         RecuperarBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         RecuperarBtn.setForeground(new java.awt.Color(255, 0, 51));
         RecuperarBtn.setText("Recupera contraseña");
+        RecuperarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RecuperarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout RecuperarPanelLayout = new javax.swing.GroupLayout(RecuperarPanel);
         RecuperarPanel.setLayout(RecuperarPanelLayout);
@@ -104,6 +112,16 @@ public class RecuperarContraseña extends javax.swing.JFrame {
     private void CorreoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorreoFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CorreoFieldActionPerformed
+
+    private void RecuperarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecuperarBtnActionPerformed
+       Validaciones v = new Validaciones();
+       if(v.isEmail(CorreoField.getText())){
+           //JOptionPane.showMessageDialog(null, "Se envio un mensaje al correo proporcionado!", "Correo Enviado", JOptionPane.WARNING_MESSAGE);
+
+       }else{
+            JOptionPane.showMessageDialog(null, "El correo proporcionado no cumple con el formato correcto", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+       }
+    }//GEN-LAST:event_RecuperarBtnActionPerformed
 
     /**
      * @param args the command line arguments

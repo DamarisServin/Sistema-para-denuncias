@@ -8,6 +8,7 @@ import com.escom.prototipo.DAOs.Datos_denunciante;
 import com.escom.prototipo.DAOs.Datos_involucrado;
 import com.escom.prototipo.DAOs.Denuncia;
 import com.escom.prototipo.DAOs.Descripcion_hechos;
+import com.escom.validaciones.Validaciones;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -28,6 +29,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     static Datos_denunciante dd;
     static Datos_involucrado di;
     static Descripcion_hechos dh;
+    static Validaciones v;
     
     public FormatoDenuncia() {
         initComponents();
@@ -623,15 +625,15 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
     private void EnviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarButtonActionPerformed
        if( crearDatosDenuncia() && crearDatosInvolucrado() && crearDescripcionHechos()){
-           new Denuncia (df.format(date).toString(), dd, di, dh);
+           new Denuncia (df.format(date), dd, di, dh);
 
            if (dd.getOcupacion().contains("Alumno")){
                 AlumnoDenunciante ad = new AlumnoDenunciante();
                 ad.setVisible(true);
-                dispose();
            }
-           else{
-               
+           if (dd.getOcupacion().contains("Profesor")){
+//                AlumnoDenunciante ad = new AlumnoDenunciante();
+//                ad.setVisible(true);
            }
        }
         
@@ -651,39 +653,29 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         String aux10 = (String) AnonimatoCombo.getSelectedItem();
         
         boolean flag = false;
+        
         if (aux10.startsWith("S"))
             flag = true;
 
         if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux5.isEmpty() || aux6.isEmpty() || aux7.isEmpty() || aux8.isEmpty() || aux9.isEmpty() || aux10.isEmpty()){
             System.out.println("Alguno de los espacios esta vacio");
-             JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
         }
         else{
-            String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(aux6);
-
-            if(!matcher.matches()){
-                System.out.println("El correo no cumple con el formato correcto");
-                 JOptionPane.showMessageDialog(null, "El correo proporcionado no cumple con el formato correcto", "Campo vacío", JOptionPane.WARNING_MESSAGE);
-
+            if(v.isEmail(aux6)){
+                JOptionPane.showMessageDialog(null, "El correo proporcionado no cumple con el formato correcto", "Campo vacío", JOptionPane.WARNING_MESSAGE);
             }
             else{ 
-                try {
-                    int number = Integer.parseInt(aux2);
-
-                    if (number >= 5 && number <= 150){
+                if(v.isNumber(aux2)){
+                    if (v.getNumber() >= 5 && v.getNumber() <= 150){
                     
                         System.out.println("Datos validados");
-                        dd = new Datos_denunciante (df.format(date),aux1, number, aux3, aux4, aux5, aux6, aux7, aux8, aux9, flag);
+                        dd = new Datos_denunciante (df.format(date),aux1, v.getNumber(), aux3, aux4, aux5, aux6, aux7, aux8, aux9, flag);
                         return true;
-                    }
-
-                } catch (NumberFormatException e) {
-                    System.out.println("La edad no es un numero valido");
-                    JOptionPane.showMessageDialog(null, "Verifica que la edad ingresada sea correcta", "Campo inválido", JOptionPane.WARNING_MESSAGE);
-                 }
+                    }               
+                }
+                JOptionPane.showMessageDialog(null, "Verifica que la edad ingresada sea correcta", "Campo inválido", JOptionPane.WARNING_MESSAGE);
             }
             
         } 
@@ -722,36 +714,18 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
         }
         else {
-            try {
-                Integer.parseInt(aux1);
-                Integer.parseInt(aux2);
-                Integer.parseInt(aux3);
-                String patron = "^\\d{2}:\\d{2}$";
-                Pattern pattern = Pattern.compile(patron);
-                Matcher matcher = pattern.matcher(aux4);
-                if (matcher.matches()) {
-                    try {
-                        Date newDate = df.parse(aux3 +"/"+ aux2 +"/"+aux1+" "+aux4+":00");
-                        System.out.println("Fecha convertida: " + newDate);
-                        dh = new Descripcion_hechos ( newDate.toString(), aux5, aux6, aux7);
-                        return true;
-                    } catch (ParseException e) {
-                        System.out.println("Error al convertir la cadena a fecha: " + e.getMessage());
-                    }
+            if(v.isNumber(aux1) && v.isNumber(aux2) && v.isNumber(aux3)){
+                if (v.isHour(aux4)){
+                    dh = new Descripcion_hechos ( v.getDate(aux1, aux2, aux3, aux4), aux5, aux6, aux7);
+                    return true;
                 }
                 else{
-                    System.out.println("Hora incorrecta");
                     JOptionPane.showMessageDialog(null, "Asegurate que la fecha tenga el siguiente formato:  HH:MM", "Campo inválido", JOptionPane.WARNING_MESSAGE);
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("Alguno de los espacios no contiene el formato correcto");
-                JOptionPane.showMessageDialog(null, "Alguno de los campos de fecha no contiene numeros", "Campo inválido", JOptionPane.WARNING_MESSAGE);
-
             }
-            
-            
-            
-
+            else{
+                JOptionPane.showMessageDialog(null, "Verifica que la fecha sea correcta", "Campo inválido", JOptionPane.WARNING_MESSAGE);
+                }
         }
         return false;
     }
@@ -776,7 +750,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         //Get Date
         df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         date = new Date();
-        System.out.println(df.format(date));
+//        System.out.println(df.format(date));
  
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

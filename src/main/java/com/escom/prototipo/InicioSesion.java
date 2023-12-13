@@ -5,10 +5,9 @@
 package com.escom.prototipo;
 
 import com.escom.prototipo.DAOs.Profesor;
+import com.escom.validaciones.Validaciones;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -214,20 +213,12 @@ public final class InicioSesion extends javax.swing.JFrame {
         //codigo botón ingresar
         String email = Email.getText();
         String pasw = new String (Contrasena.getPassword());
-        
+        Validaciones v= new Validaciones();
         if( email.isEmpty() || pasw.isEmpty() ) {
              JOptionPane.showMessageDialog(null, "Algún campo está vacío");
         }else  {
-            String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        
-
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(email);
-
-            if(!matcher.matches()){
-                System.out.println("El correo no es válido");
+            if(v.isEmail(email)){
                 JOptionPane.showMessageDialog(null, "Verifica que el correo ingresado cumpla con los requisitos necesarios", "Campo inválido", JOptionPane.WARNING_MESSAGE);
-
             }else{
                 Profesor pf = new Profesor(pasw, email);
                 
