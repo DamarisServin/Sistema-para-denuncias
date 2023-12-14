@@ -1,8 +1,8 @@
 package com.escom.prototipo;
 
 import com.escom.prototipo.DAOs.Profesor;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.escom.validaciones.Validaciones;
+
 import javax.swing.JOptionPane;
 
 /*
@@ -228,6 +228,7 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_EscuelaBoxActionPerformed
 
     private void RegistrarseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseBtnActionPerformed
+        Validaciones v = new Validaciones();
         String aux1 = NombreField.getText();
         String aux2 = PaternoField.getText();
         String aux3 = MaternoField.getText();
@@ -241,13 +242,8 @@ public class Registro extends javax.swing.JFrame {
             System.out.println("Alguno de los espacios esta vacio");
             JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
         }else{             
-            String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(aux4);
-
-            if(!matcher.matches()){
-                System.out.println("El correo no es válido");
+            if(v.isEmail(aux4)){
                 JOptionPane.showMessageDialog(null, "Verifica que el correo ingresado cumpla con los requisitos necesarios", "Campo inválido", JOptionPane.WARNING_MESSAGE);
 
             }else
@@ -260,7 +256,6 @@ public class Registro extends javax.swing.JFrame {
                     InicioSesion in = new InicioSesion();
                     in.setVisible(true);
                     dispose();
-
                 }
                 else {
                     System.out.println("No se guardo al profesor");

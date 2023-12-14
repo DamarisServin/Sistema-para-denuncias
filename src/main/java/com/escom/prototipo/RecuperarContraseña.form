@@ -114,6 +114,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Recupera contrase&#xf1;a"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RecuperarBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
