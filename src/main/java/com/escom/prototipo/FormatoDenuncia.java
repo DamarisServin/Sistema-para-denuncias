@@ -29,7 +29,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     static Datos_denunciante dd;
     static Datos_involucrado di;
     static Descripcion_hechos dh;
-    static Validaciones v;
+    static Validaciones v = new Validaciones();
     
     public FormatoDenuncia() {
         initComponents();
@@ -106,6 +106,10 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         TestigosHechosField = new javax.swing.JTextField();
         EnviarButton = new javax.swing.JButton();
         jLabel37 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel20.setVisible(false);
+        TutorField = new javax.swing.JTextField();
+        TutorField.setVisible(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(this.MAXIMIZED_BOTH);
@@ -171,6 +175,12 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
         jLabel11.setText("Edad:");
 
+        EdadDenuncianteField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                EdadDenuncianteFieldFocusLost(evt);
+            }
+        });
+
         jLabel12.setText("Años");
 
         jLabel13.setText("Género:");
@@ -225,13 +235,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
         jLabel30.setText("de");
 
-        MesHechosField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MesHechosFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel31.setText("de 20");
+        jLabel31.setText("de ");
 
         jLabel32.setText("Hora aproximada:");
 
@@ -255,6 +259,8 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         });
 
         jLabel37.setText("Por favor, revise que la información sea correcta antes de proceder.");
+
+        jLabel20.setText("Nombre Completo del Padre, Madre, Tutor o Tutora: ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -317,7 +323,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addGap(58, 58, 58)
                         .addComponent(NombreDenuncianteField, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,16 +389,16 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                         .addComponent(jLabel28)
                         .addGap(36, 36, 36)
                         .addComponent(jLabel29)
-                        .addGap(27, 27, 27)
-                        .addComponent(DiaHechosField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DiaHechosField, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel30)
-                        .addGap(18, 18, 18)
-                        .addComponent(MesHechosField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(MesHechosField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel31)))
-                .addGap(18, 18, 18)
-                .addComponent(AñoHechosField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AñoHechosField, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,6 +433,12 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel36)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(TutorField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -470,7 +482,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addComponent(jLabel12))))
-                .addGap(12, 12, 12)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -518,7 +530,11 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addComponent(jLabel21))
                     .addComponent(AnonimatoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(TutorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel22)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -663,17 +679,13 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         }
         else{
 
-            if(v.isEmail(aux6)){
-                JOptionPane.showMessageDialog(null, "El correo proporcionado no cumple con el formato correcto", "Campo vacío", JOptionPane.WARNING_MESSAGE);
-            }
-            else{ 
-                if(v.isNumber(aux2)){
-                    if (v.getNumber() >= 5 && v.getNumber() <= 150){
-                    
-                        System.out.println("Datos validados");
-                        dd = new Datos_denunciante (df.format(date),aux1, v.getNumber(), aux3, aux4, aux5, aux6, aux7, aux8, aux9, flag);
-                        return true;
-                    }               
+            if(v.isEmail(aux6)){ 
+                if (v.isEdad(aux2)){
+
+                    System.out.println("Datos validados");
+                    dd = new Datos_denunciante (df.format(date),aux1, v.getEdad(), aux3, aux4, aux5, aux6, aux7, aux8, aux9, flag);
+                    return true;
+
                 }
                 JOptionPane.showMessageDialog(null, "Verifica que la edad ingresada sea correcta", "Campo inválido", JOptionPane.WARNING_MESSAGE);
             }
@@ -709,7 +721,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         String aux7 = TestigosHechosField.getText();
         
         
-        if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux4.isEmpty()|| aux5.isEmpty() || aux6.isEmpty()|| aux7.isEmpty() ){
+        if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux4.isEmpty()|| aux5.isEmpty() || aux6.isEmpty() ){
             System.out.println("Alguno de los espacios esta vacio");
             JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
         }
@@ -731,9 +743,16 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     }
     
     
-    private void MesHechosFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MesHechosFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MesHechosFieldActionPerformed
+    private void EdadDenuncianteFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EdadDenuncianteFieldFocusLost
+        if(v.isEdad(EdadDenuncianteField.getText())){
+            if (v.getEdad() <18){
+                jLabel20.setVisible(true);
+                TutorField.setVisible(true);
+            }else{
+                jLabel20.setVisible(false);
+                TutorField.setVisible(false);            }               
+        }
+    }//GEN-LAST:event_EdadDenuncianteFieldFocusLost
     
 
  
@@ -805,6 +824,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> TipoInvolucradoCombo;
     private javax.swing.JComboBox<String> TurnoDenuncianteCombo;
     private javax.swing.JComboBox<String> TurnoInvolucradoCombo;
+    private javax.swing.JTextField TutorField;
     private javax.swing.JTextField UADenuncianteField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -818,6 +838,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;

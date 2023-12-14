@@ -8,12 +8,12 @@ package com.escom.prototipo;
  *
  * @author damar
  */
-public class AlumnoDenunciante extends javax.swing.JFrame {
+public class TrabajadorDenunciante extends javax.swing.JFrame {
 
     /**
-     * Creates new form AlumnoDenunciante
+     * Creates new form TrabajadorDenunciante
      */
-    public AlumnoDenunciante() {
+    public TrabajadorDenunciante() {
         initComponents();
     }
 
@@ -28,22 +28,18 @@ public class AlumnoDenunciante extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         SemestreField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         GrupoField = new javax.swing.JTextField();
-        CarreraField = new javax.swing.JTextField();
         SubmitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Por favor, llena los siguientes datos acerca del denunciante: ");
 
-        jLabel2.setText("Semestre:");
+        jLabel2.setText("Funcion Actual: ");
 
-        jLabel3.setText("Grupo: ");
-
-        jLabel4.setText("Carrera: ");
+        jLabel3.setText("Tipo de contrato: ");
 
         GrupoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,14 +64,11 @@ public class AlumnoDenunciante extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel3)))
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SemestreField, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                    .addComponent(GrupoField)
-                    .addComponent(CarreraField)))
+                    .addComponent(GrupoField)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,11 +83,7 @@ public class AlumnoDenunciante extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(GrupoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(CarreraField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addComponent(SubmitButton)
                 .addGap(54, 54, 54))
         );
@@ -123,32 +112,30 @@ public class AlumnoDenunciante extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AlumnoDenunciante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrabajadorDenunciante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AlumnoDenunciante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrabajadorDenunciante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AlumnoDenunciante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrabajadorDenunciante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AlumnoDenunciante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrabajadorDenunciante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AlumnoDenunciante().setVisible(true);
+                new TrabajadorDenunciante().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CarreraField;
     private javax.swing.JTextField GrupoField;
     private javax.swing.JTextField SemestreField;
     private javax.swing.JButton SubmitButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

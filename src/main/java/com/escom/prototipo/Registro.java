@@ -243,7 +243,7 @@ public class Registro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
         }else{             
 
-            if(v.isEmail(aux4)){
+            if(!v.isEmail(aux4)){
                 JOptionPane.showMessageDialog(null, "Verifica que el correo ingresado cumpla con los requisitos necesarios", "Campo inválido", JOptionPane.WARNING_MESSAGE);
 
             }else

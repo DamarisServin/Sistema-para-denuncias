@@ -126,7 +126,7 @@
                               <Component id="NombreDenuncianteField" min="-2" pref="508" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="217" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -210,18 +210,18 @@
                               <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="36" pref="36" max="-2" attributes="0"/>
                               <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
-                              <Component id="DiaHechosField" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="36" pref="36" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="DiaHechosField" min="-2" pref="109" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                              <Component id="MesHechosField" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="MesHechosField" min="-2" pref="102" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                      <Component id="AñoHechosField" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="AñoHechosField" min="-2" pref="76" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -266,6 +266,13 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="TutorField" min="-2" pref="173" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -322,7 +329,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
@@ -386,7 +393,12 @@
                           </Group>
                           <Component id="AnonimatoCombo" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TutorField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -588,6 +600,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="EdadDenuncianteField">
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="EdadDenuncianteFieldFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
@@ -789,13 +804,10 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="MesHechosField">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MesHechosFieldActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel31">
               <Properties>
-                <Property name="text" type="java.lang.String" value="de 20"/>
+                <Property name="text" type="java.lang.String" value="de "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="A&#xf1;oHechosField">
@@ -857,6 +869,19 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Por favor, revise que la informaci&#xf3;n sea correcta antes de proceder."/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel20">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre Completo del Padre, Madre, Tutor o Tutora: "/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jLabel20.setVisible(false);"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JTextField" name="TutorField">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="TutorField.setVisible(false);"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

@@ -215,7 +215,7 @@ public final class InicioSesion extends javax.swing.JFrame {
         if( email.isEmpty() || pasw.isEmpty() ) {
              JOptionPane.showMessageDialog(null, "Algún campo está vacío");
         }else  {
-            if(v.isEmail(email)){
+            if(!v.isEmail(email)){
                 JOptionPane.showMessageDialog(null, "Verifica que el correo ingresado cumpla con los requisitos necesarios", "Campo inválido", JOptionPane.WARNING_MESSAGE);
             }else{
                 Profesor pf = new Profesor(pasw, email);

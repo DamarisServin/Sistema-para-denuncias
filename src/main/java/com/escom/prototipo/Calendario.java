@@ -37,16 +37,19 @@ public class Calendario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jCalendar2, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(22, 22, 22)
+                .addComponent(jCalendar2, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jCalendar2, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jCalendar2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        setBounds(0, 0, 416, 308);
+        setBounds(0, 0, 573, 389);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

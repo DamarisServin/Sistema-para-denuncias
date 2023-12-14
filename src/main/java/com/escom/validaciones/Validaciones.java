@@ -8,8 +8,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -19,10 +17,23 @@ import javax.swing.JOptionPane;
  * @author damar
  */
 public class Validaciones {
-    int number;
+    int edad;
     
-    public int getNumber(){
-        return number;
+    public int getEdad(){
+        return edad;
+    }
+    public boolean isEdad(String str){
+        try {
+            edad= Integer.parseInt(str);
+            if(edad >= 5 && edad <= 150){
+                return true;
+            }
+          
+        } catch (NumberFormatException e) {
+            System.out.println("Numero Inválido");
+         }
+
+        return false;
     }
     
     public boolean isHour(String str){
@@ -43,17 +54,18 @@ public class Validaciones {
         } catch (ParseException ex) {
             System.out.println("Error" +ex);
         }
-//        System.out.println("Fecha convertida: " + newDate);
+        System.out.println("Fecha convertida: " + newDate);
+        System.out.println("Fecha convertida: " + newDate.toString());
         return newDate.toString();
     }
     public boolean isNumber(String str){
         try {
-            number = Integer.parseInt(str);
+            Integer.parseInt(str);
             return true;            
         } catch (NumberFormatException e) {
             System.out.println("Numero Inválido");
          }
-        number = 0;
+
         return false;
     }
     public boolean isEmail(String str){
@@ -70,6 +82,8 @@ public class Validaciones {
         return true;
         
     }
+    
+
     
             
 }
