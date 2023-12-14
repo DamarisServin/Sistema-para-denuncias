@@ -15,6 +15,7 @@ public class Bienvenido extends javax.swing.JFrame {
      */
     public Bienvenido() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -38,6 +39,7 @@ public class Bienvenido extends javax.swing.JFrame {
         BBSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Bienvenido");
 
         jLabel1.setFont(new java.awt.Font("Krungthep", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
@@ -67,6 +69,11 @@ public class Bienvenido extends javax.swing.JFrame {
         BCentros.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         BCentros.setText("Centros de ayuda");
         BCentros.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BCentros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BCentrosActionPerformed(evt);
+            }
+        });
 
         label1.setFont(new java.awt.Font("Bodoni 72 Oldstyle", 1, 24)); // NOI18N
         label1.setForeground(new java.awt.Color(204, 204, 204));
@@ -74,7 +81,7 @@ public class Bienvenido extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon("/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/logi.png")); // NOI18N
 
-        BBSalir.setBackground(new java.awt.Color(255, 204, 255));
+        BBSalir.setBackground(new java.awt.Color(249, 238, 249));
         BBSalir.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         BBSalir.setForeground(new java.awt.Color(255, 0, 0));
         BBSalir.setText("Salir");
@@ -105,7 +112,7 @@ public class Bienvenido extends javax.swing.JFrame {
                     .addGroup(BienvenidoLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BienvenidoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -129,7 +136,7 @@ public class Bienvenido extends javax.swing.JFrame {
                                 .addComponent(BReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(BDenuncia, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(BCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                         .addComponent(BBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))))
         );
@@ -141,7 +148,7 @@ public class Bienvenido extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Bienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +172,17 @@ public class Bienvenido extends javax.swing.JFrame {
 
     private void BDenunciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDenunciaActionPerformed
         // TODO add your handling code here:
+        //this.setVisible(true);
+        FormatoDenuncia Fd = new FormatoDenuncia();
+        Fd.setVisible(true);
     }//GEN-LAST:event_BDenunciaActionPerformed
+
+    private void BCentrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCentrosActionPerformed
+        // TODO add your handling code here:
+        CentrosAyuda Ca = new CentrosAyuda();
+        Ca.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BCentrosActionPerformed
 
     /**
      * @param args the command line arguments
