@@ -72,8 +72,10 @@ CREATE TABLE Descripcion_hechos(
   fechahora DATE NOT NULL,
   lugar varchar(50) NOT NULL,
   descripcion varchar(500) NOT NULL,
-  testigos varchar(200) NOT NULL,
+  testigos varchar(200) ,
   medios_probatorios int(1) NOT NULL,
+  medios_probatorios_descripcion varchar(500),
+  otros varchar(500),
 
   PRIMARY KEY (id)
 );

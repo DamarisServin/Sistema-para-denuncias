@@ -2,6 +2,15 @@ package com.escom.prototipo.DAOs;
 
 public class Datos_denunciante{
 
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     private String fecha;
     private String nombre_completo;
     private int edad;
@@ -13,6 +22,11 @@ public class Datos_denunciante{
     private String unidad_academica;
     private String turno;
     private boolean anonimo;
+    private String semestre;
+    private String grupo;
+    private String carrera;
+    private String funcion;
+    private String contrato;
 
     public Datos_denunciante(String fecha, String nombre_completo, int edad, String genero, String domicilio, String telefono, String correo, String ocupacion, String unidad_academica, String turno, boolean anonimo) {
         this.fecha = fecha;
@@ -27,7 +41,35 @@ public class Datos_denunciante{
         this.turno = turno;
         this.anonimo = anonimo;
     }
+    public void setAlumnoDenunciante(String sm, String gp, String cr){
+        this.semestre = sm;
+        this.grupo= gp;
+        this.carrera = cr;
+    }
+    public void setTrabajadorDenunciante(String fn, String ct){
+        this.contrato = ct;
+        this.funcion= fn;
+    }
 
+    public String getSemestre() {
+        return semestre;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public String getFuncion() {
+        return funcion;
+    }
+
+    public String getContrato() {
+        return contrato;
+    }
     
     public String getFecha() {
         return fecha;

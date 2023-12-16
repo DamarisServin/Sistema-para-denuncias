@@ -10,6 +10,7 @@ package com.escom.prototipo.DAOs;
  * @author damar
  */
 public class Datos_involucrado {
+    private int id;
      private String nombre_completo;
      private String dependencia_politecnico;
      private String turno;
@@ -18,6 +19,14 @@ public class Datos_involucrado {
         this.nombre_completo = nombre_completo;
         this.dependencia_politecnico = dependencia_politecnico;
         this.turno = turno;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
      
