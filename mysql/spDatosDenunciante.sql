@@ -74,15 +74,4 @@ delimiter **
 delimiter ;
 
 
-########################## TEST ##########################
-
-call guardaDatosDenunciante(
-"0", "12/12/12 12:12:12", "Nombre Apellido Apellido2", 12, 1, "Domicilio", "1234567", "correo", "unidad", "turno", 1
-);
-call guardaDatosDenunciante(
-"1", "12/12/12 12:12:12", "Nombre Apellido Apellido", 12, 1, "calle numero", "1234567", "correo", "unidad", "turno", 1
-);
-select * from Datos_denunciante;
-
-call consultarDatosDenuncianteById("1");
 

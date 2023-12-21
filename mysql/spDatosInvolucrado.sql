@@ -61,14 +61,3 @@ delimiter **
 	end; **
 
 delimiter ;
-
-call guardaDatosInvolucrado(
-"0",  "Nombre Apellido Apellido", "Dependencia", "turno"
-);
-call guardaDatosInvolucrado(
-"1", "Nombre Apellido Apellido", "Dependencia", "Turno"
-);
-
-select * from Datos_involucrado;
-
-#DELETE FROM Datos_involucrado WHERE id >0;

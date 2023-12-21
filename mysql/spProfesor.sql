@@ -88,19 +88,4 @@ delimiter ;
 
 
 
-########################## TEST ##########################
-
-call guardaProfesor(
-"0", "ejemplo@correo.com", "Nombre",  "ESCOM", "1234567", "contrasena"
-);
-
-call sesionProfesor(
-"correo@ejemplo.com",  "contrasena");
-
-select * from Profesor;
-
-
-call consultarProfesorById(2);
-
-# DELETE FROM Profesor WHERE id >0;
 

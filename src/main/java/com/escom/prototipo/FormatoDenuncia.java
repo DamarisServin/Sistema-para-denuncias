@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.escom.prototipo;
 
 import com.escom.prototipo.DAOs.Datos_denunciante;
@@ -15,10 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author damar
- */
 public class FormatoDenuncia extends javax.swing.JFrame {
 
     static DateFormat df;
@@ -33,12 +25,10 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         initComponents();
     }
 
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mediosProbatoriosGroup = new javax.swing.ButtonGroup();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -122,9 +112,10 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
         OtrosField = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
         jLabel45 = new javax.swing.JLabel();
+        ElementoProbatorioCombo = new javax.swing.JComboBox<>();
+        jLabel46 = new javax.swing.JLabel();
+        ElementoProbatorioField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(this.MAXIMIZED_BOTH);
@@ -167,6 +158,12 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
         jLabel10.setText("Nombre completo:");
 
+        NombreDenuncianteField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                NombreDenuncianteFieldFocusLost(evt);
+            }
+        });
+
         jLabel11.setText("Edad:");
 
         EdadDenuncianteField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -183,9 +180,27 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
         jLabel14.setText("Domicilio: (opcional)");
 
+        DomicilioDenuncianteField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                DomicilioDenuncianteFieldFocusLost(evt);
+            }
+        });
+
         jLabel15.setText("Télefono (extensión en su caso):");
 
+        TelefonoDenuncianteField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TelefonoDenuncianteFieldFocusLost(evt);
+            }
+        });
+
         jLabel16.setText("Correo Electrónico:");
+
+        CorreoDenuncianteField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                CorreoDenuncianteFieldFocusLost(evt);
+            }
+        });
 
         jLabel17.setText("Ocupación");
 
@@ -197,6 +212,12 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         });
 
         jLabel18.setText("Unidad académica de procedencia:");
+
+        UADenuncianteField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                UADenuncianteFieldFocusLost(evt);
+            }
+        });
 
         jLabel19.setText("Turno:");
 
@@ -214,13 +235,25 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
         jLabel23.setText("Nombre completo respecto de quien se presenta la denuncia:");
 
+        NombreInvolucradoField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                NombreInvolucradoFieldFocusLost(evt);
+            }
+        });
+
         jLabel24.setText("Dependencia Politécnica de procedencia:");
+
+        DependenciaInvolucradoField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                DependenciaInvolucradoFieldFocusLost(evt);
+            }
+        });
 
         jLabel25.setText("Turno:");
 
         TurnoInvolucradoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matutino", "Vespertino" }));
 
-        jLabel26.setText("Tipo de persona involucrada,");
+        jLabel26.setText("Tipo de persona involucrada:");
 
         TipoInvolucradoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alumno/a", "Profesor/a" }));
 
@@ -240,7 +273,19 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
         jLabel33.setText("Lugar dónde ocurrieron los hechos:");
 
+        LugarHechosField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                LugarHechosFieldFocusLost(evt);
+            }
+        });
+
         jLabel34.setText("Describa cómo ocurrieron los hechos:");
+
+        DescripcionHechosField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                DescripcionHechosFieldFocusLost(evt);
+            }
+        });
 
         jLabel35.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(255, 51, 51));
@@ -261,29 +306,60 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
         jLabel20.setText("Nombre Completo del Padre, Madre, Tutor o Tutora: ");
 
+        TutorField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TutorFieldFocusLost(evt);
+            }
+        });
+
         jLabel38.setText("Semestre:");
         jLabel38.setVisible(false);
 
         SemestreField.setVisible(false);
+        SemestreField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                SemestreFieldFocusLost(evt);
+            }
+        });
 
         jLabel39.setText("Grupo: ");
         jLabel39.setVisible(false);
 
+        GrupoField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                GrupoFieldFocusLost(evt);
+            }
+        });
         GrupoField.setVisible(false);
 
         jLabel40.setText("Carrera: ");
         jLabel40.setVisible(false);
 
         CarreraField.setVisible(false);
+        CarreraField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                CarreraFieldFocusLost(evt);
+            }
+        });
 
         jLabel41.setText("Funcion Actual: ");
         jLabel41.setVisible(false);
 
         FuncionField.setVisible(false);
+        FuncionField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                FuncionFieldFocusLost(evt);
+            }
+        });
 
         jLabel42.setText("Tipo de contrato: ");
         jLabel42.setVisible(false);
 
+        ContratoField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ContratoFieldFocusLost(evt);
+            }
+        });
         ContratoField.setVisible(false);
 
         jLabel43.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -292,22 +368,37 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
         jLabel44.setText("En caso de no contar con ellos, pero que se sepa de su existencia, indique dónde se localizan o a quién le consta.");
 
-        mediosProbatoriosGroup.add(jRadioButton1);
-        jRadioButton1.setText("Si");
-
-        mediosProbatoriosGroup.add(jRadioButton2);
-        jRadioButton2.setText("No");
+        OtrosField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                OtrosFieldFocusLost(evt);
+            }
+        });
 
         jLabel45.setText("¿Cuenta con documentos que sustenten se denuncia o algún elemento probatorio adicional?");
+
+        ElementoProbatorioCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
+        ElementoProbatorioCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ElementoProbatorioComboFocusLost(evt);
+            }
+        });
+
+        jLabel46.setText("Descríbelos:");
+
+        ElementoProbatorioField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ElementoProbatorioFieldFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(331, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(338, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(236, 236, 236)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -361,7 +452,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addGap(58, 58, 58)
                         .addComponent(NombreDenuncianteField, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -451,9 +542,9 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(LugarHechosField, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                        .addContainerGap()
                         .addComponent(jLabel34)
-                        .addGap(26, 26, 26)
+                        .addGap(18, 18, 18)
                         .addComponent(DescripcionHechosField, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(317, 317, 317)
@@ -496,13 +587,6 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                     .addComponent(ContratoField, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(368, 368, 368)
-                        .addComponent(EnviarButton))
-                    .addComponent(jLabel37))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(OtrosField, javax.swing.GroupLayout.PREFERRED_SIZE, 809, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -518,9 +602,23 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton1))
+                .addComponent(ElementoProbatorioCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel46)
+                .addContainerGap(803, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ElementoProbatorioField, javax.swing.GroupLayout.PREFERRED_SIZE, 809, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(372, 372, 372)
+                .addComponent(EnviarButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel37)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -614,7 +712,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel42)
                     .addComponent(ContratoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -685,11 +783,9 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                         .addComponent(jLabel33))
                     .addComponent(LugarHechosField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel34))
-                    .addComponent(DescripcionHechosField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DescripcionHechosField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel34))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel35)
                 .addGap(18, 18, 18)
@@ -698,21 +794,23 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                 .addComponent(TestigosHechosField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel43)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ElementoProbatorioCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ElementoProbatorioField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(OtrosField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87)
+                .addGap(28, 28, 28)
                 .addComponent(EnviarButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel37)
-                .addGap(45, 45, 45))
+                .addGap(58, 58, 58))
         );
 
         jScrollPane2.setViewportView(jPanel1);
@@ -730,11 +828,11 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1841, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1861, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        setBounds(0, 0, 829, 1861);
+        setBounds(0, 0, 829, 1881);
     }// </editor-fold>//GEN-END:initComponents
 
     private void EnviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarButtonActionPerformed
@@ -743,12 +841,10 @@ public class FormatoDenuncia extends javax.swing.JFrame {
            dnc =new Denuncia (df.format(date), dd, di, dh);
            dnc.saveDenuncia();
            if (dd.getOcupacion().contains("Alumno")){
-               
-
+               dd.setAlumnoDenunciante(SemestreField.getText(), GrupoField.getText(), CarreraField.getText());
            }
            if (dd.getOcupacion().contains("Trabajador")){
-//                AlumnoDenunciante ad = new AlumnoDenunciante();
-//                ad.setVisible(true);
+               dd.setTrabajadorDenunciante(FuncionField.getText(), ContratoField.getText());
            }
        }
         
@@ -766,7 +862,8 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         String aux8 = UADenuncianteField.getText();
         String aux9 = (String)TurnoDenuncianteCombo.getSelectedItem();
         String aux10 = (String) AnonimatoCombo.getSelectedItem();
-        
+        String aux11 = TutorField.getText();
+
         boolean flag = false;
         
         if (aux10.startsWith("S"))
@@ -777,18 +874,8 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
         }
         else{
-
-            if(v.isEmail(aux6)){ 
-                if (v.isEdad(aux2)){
-
-                    System.out.println("Datos validados");
-                    dd = new Datos_denunciante (df.format(date),aux1, v.getEdad(), aux3, aux4, aux5, aux6, aux7, aux8, aux9, flag);
-                    return true;
-
-                }
-                JOptionPane.showMessageDialog(null, "Verifica que la edad ingresada sea correcta", "Campo inválido", JOptionPane.WARNING_MESSAGE);
-            }
-            
+            dd = new Datos_denunciante (df.format(date),aux1, v.getEdad(), aux3, aux4, aux5, aux6, aux7, aux8, aux9, flag, aux11);
+            return true;     
         } 
         return false;
     }
@@ -818,10 +905,14 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         String aux5 = LugarHechosField.getText();
         String aux6 = DescripcionHechosField.getText();
         String aux7 = TestigosHechosField.getText();
-        boolean aux8 = mediosProbatoriosGroup.getSelection().isSelected();
-        String aux9 = "";
+        String aux8 = (String) ElementoProbatorioCombo.getSelectedItem();
+        String aux9 = ElementoProbatorioField.getText();
         String aux10 = OtrosField.getText();
+        boolean flag = false;
         
+        if (aux8.startsWith("S"))
+            flag = true;
+
         if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux4.isEmpty()|| aux5.isEmpty() || aux6.isEmpty() ){
             System.out.println("Alguno de los espacios esta vacio");
             JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
@@ -829,7 +920,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         else {
             if(v.isNumber(aux1) && v.isNumber(aux2) && v.isNumber(aux3)){
                 if (v.isHour(aux4)){
-                    dh = new Descripcion_hechos ( v.getDate(aux1, aux2, aux3, aux4), aux5, aux6, aux7, aux8, aux9, aux10);
+                    dh = new Descripcion_hechos ( v.getDate(aux1, aux2, aux3, aux4), aux5, aux6, aux7, flag, aux9, aux10);
                     return true;
                 }
                 else{
@@ -852,6 +943,8 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             }else{
                 jLabel20.setVisible(false);
                 TutorField.setVisible(false);            }               
+        }else{
+            JOptionPane.showMessageDialog(null, "Verifica que la edad ingresada sea correcta", "Campo inválido", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_EdadDenuncianteFieldFocusLost
 
@@ -884,6 +977,101 @@ public class FormatoDenuncia extends javax.swing.JFrame {
       }
         
     }//GEN-LAST:event_OcupacionDenuncianteComboFocusLost
+
+    private void NombreDenuncianteFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreDenuncianteFieldFocusLost
+        if (!v.isLetters(NombreDenuncianteField.getText()))
+            JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_NombreDenuncianteFieldFocusLost
+
+    private void DomicilioDenuncianteFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DomicilioDenuncianteFieldFocusLost
+        if (!v.isLettersNumbers(DomicilioDenuncianteField.getText()))
+            JOptionPane.showMessageDialog(null, "El formato del domicio no es valido", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_DomicilioDenuncianteFieldFocusLost
+
+    private void TelefonoDenuncianteFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TelefonoDenuncianteFieldFocusLost
+        if (!v.isPhone(TelefonoDenuncianteField.getText()))
+            JOptionPane.showMessageDialog(null, "El formato del telefono no es valido", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_TelefonoDenuncianteFieldFocusLost
+
+    private void CorreoDenuncianteFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CorreoDenuncianteFieldFocusLost
+        if (!v.isEmail(CorreoDenuncianteField.getText()))
+            JOptionPane.showMessageDialog(null, "El correo proporcionado no cumple con el formato correcto", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_CorreoDenuncianteFieldFocusLost
+
+    private void SemestreFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SemestreFieldFocusLost
+        if (!v.isNumber(SemestreField.getText()))
+            JOptionPane.showMessageDialog(null, "El semestre tiene que ser un numero", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_SemestreFieldFocusLost
+
+    private void GrupoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_GrupoFieldFocusLost
+        if (!v.isLettersNumbers(GrupoField.getText()))
+            JOptionPane.showMessageDialog(null, "El grupo no puede contener carecteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_GrupoFieldFocusLost
+
+    private void CarreraFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CarreraFieldFocusLost
+        if (!v.isLetters(CarreraField.getText()))
+            JOptionPane.showMessageDialog(null, "La carrera solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_CarreraFieldFocusLost
+
+    private void FuncionFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FuncionFieldFocusLost
+        if (!v.isLetters(FuncionField.getText()))
+            JOptionPane.showMessageDialog(null, "La funcion solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_FuncionFieldFocusLost
+
+    private void ContratoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ContratoFieldFocusLost
+        if (!v.isLetters(ContratoField.getText()))
+            JOptionPane.showMessageDialog(null, "El contrato solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_ContratoFieldFocusLost
+
+    private void UADenuncianteFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UADenuncianteFieldFocusLost
+        if (!v.isLetters(UADenuncianteField.getText()))
+            JOptionPane.showMessageDialog(null, "La unidad academica solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_UADenuncianteFieldFocusLost
+
+    private void TutorFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TutorFieldFocusLost
+        if (!v.isLetters(TutorField.getText()))
+            JOptionPane.showMessageDialog(null, "El nombre del tutor solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_TutorFieldFocusLost
+
+    private void NombreInvolucradoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreInvolucradoFieldFocusLost
+        if (!v.isLetters(NombreInvolucradoField.getText()))
+            JOptionPane.showMessageDialog(null, "El nombre del involucrado solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_NombreInvolucradoFieldFocusLost
+
+    private void DependenciaInvolucradoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DependenciaInvolucradoFieldFocusLost
+        if (!v.isLettersNumbers(DependenciaInvolucradoField.getText()))
+            JOptionPane.showMessageDialog(null, "La dependencia no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_DependenciaInvolucradoFieldFocusLost
+
+    private void LugarHechosFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_LugarHechosFieldFocusLost
+        if (!v.isLettersNumbers(LugarHechosField.getText()))
+            JOptionPane.showMessageDialog(null, "El lugar no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_LugarHechosFieldFocusLost
+
+    private void DescripcionHechosFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DescripcionHechosFieldFocusLost
+        if (!v.isLettersNumbers(DescripcionHechosField.getText()))
+            JOptionPane.showMessageDialog(null, "La descripcion no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_DescripcionHechosFieldFocusLost
+
+    private void ElementoProbatorioComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ElementoProbatorioComboFocusLost
+        if (ElementoProbatorioCombo.getSelectedIndex()== 0){
+            jLabel46.setVisible(true);
+            ElementoProbatorioField.setVisible(true);
+        }else{
+            jLabel46.setVisible(false);
+            ElementoProbatorioField.setVisible(false);            
+        }               
+    }//GEN-LAST:event_ElementoProbatorioComboFocusLost
+
+    private void ElementoProbatorioFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ElementoProbatorioFieldFocusLost
+        if (!v.isLettersNumbers(ElementoProbatorioField.getText()))
+            JOptionPane.showMessageDialog(null, "La descripcion no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_ElementoProbatorioFieldFocusLost
+
+    private void OtrosFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_OtrosFieldFocusLost
+        if (!v.isLettersNumbers(OtrosField.getText()))
+            JOptionPane.showMessageDialog(null, "La descripcion no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_OtrosFieldFocusLost
     
 
  
@@ -941,6 +1129,8 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     private javax.swing.JTextField DiaPresentField;
     private javax.swing.JTextField DomicilioDenuncianteField;
     private javax.swing.JTextField EdadDenuncianteField;
+    private javax.swing.JComboBox<String> ElementoProbatorioCombo;
+    private javax.swing.JTextField ElementoProbatorioField;
     private javax.swing.JButton EnviarButton;
     private javax.swing.JTextField FuncionField;
     private javax.swing.JComboBox<String> GeneroDenuncianteCombo;
@@ -1003,15 +1193,13 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.ButtonGroup mediosProbatoriosGroup;
     // End of variables declaration//GEN-END:variables
 }

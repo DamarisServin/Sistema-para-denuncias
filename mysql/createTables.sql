@@ -81,6 +81,7 @@ CREATE TABLE Descripcion_hechos(
 );
 CREATE TABLE Denuncia(
   id int NOT NULL AUTO_INCREMENT,
+  fecha DATE NOT NULL,
   Datos_denunciante_id int NOT NULL,
   Datos_involucrado_id int NOT NULL,
   Descripcion_hechos_id int NOT NULL, 

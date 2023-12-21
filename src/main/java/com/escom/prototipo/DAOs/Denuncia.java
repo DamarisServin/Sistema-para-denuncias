@@ -6,6 +6,8 @@ package com.escom.prototipo.DAOs;
 
 import com.escom.prototipo.conexion.Conexion;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -34,6 +36,7 @@ public class Denuncia {
         try {
             con.conectar();
             String str = "call guardaDenuncia(0, '" 
+                    + fecha + "', '" 
                     + dd.getId() + "', '" 
                     + di.getId() + "', '" 
                     + dh.getId()+ "');";
@@ -160,4 +163,26 @@ public class Denuncia {
         return false;
 
     }        
+
+    public ArrayList getDates(){
+        ArrayList <Date> dates = new ArrayList <Date> ();
+        Conexion con = new Conexion();
+        try {
+            con.conectar();
+            String str = "select fecha from Denuncia;";
+            System.out.println("str");
+            ResultSet rsguarda = con.consulta(str);
+            
+            while (rsguarda.next()) {
+
+                dates.add(rsguarda.getDate("fecha"));
+
+            }
+            con.cierraConexion();
+        } 
+        catch (Exception e) {
+            System.out.println(e + " getDates()");
+        }
+        return dates;
+    }
 }

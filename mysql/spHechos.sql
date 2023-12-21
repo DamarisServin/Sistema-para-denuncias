@@ -57,13 +57,3 @@ delimiter **
 end; **
 
 delimiter ;
-
-call guardaHechos(
-"0", "1212/12/12 12:12:12", "Lugar",  "Descripcion", "testigo", 1, "medios_probatorios_descripcion", "otros"
-);
-call guardaHechos(
-"1", "2112/12/12 12:12:12", "Lugar", "Descripcion", "testigo",  1, "medios_probatorios_descripcion", "otros"
-);
-select * from Descripcion_hechos;
-
-# DELETE FROM Descripcion_hechos WHERE id >0;
