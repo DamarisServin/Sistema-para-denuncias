@@ -69,7 +69,7 @@ CREATE TABLE Datos_involucrado(
 );
 CREATE TABLE Descripcion_hechos(
   id int NOT NULL AUTO_INCREMENT,
-  fechahora DATE NOT NULL,
+  fechahora DATETIME NOT NULL,
   lugar varchar(50) NOT NULL,
   descripcion varchar(500) NOT NULL,
   testigos varchar(200) ,
@@ -81,7 +81,7 @@ CREATE TABLE Descripcion_hechos(
 );
 CREATE TABLE Denuncia(
   id int NOT NULL AUTO_INCREMENT,
-  fecha DATE NOT NULL,
+  fecha DATETIME NOT NULL,
   Datos_denunciante_id int NOT NULL,
   Datos_involucrado_id int NOT NULL,
   Descripcion_hechos_id int NOT NULL, 
@@ -156,3 +156,9 @@ CREATE TABLE Tutor(
   FOREIGN KEY (genero_id) REFERENCES Genero(id),
   FOREIGN KEY (denuncia_id) REFERENCES Denuncia(id)
 );
+
+
+ 
+    
+    
+    

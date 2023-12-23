@@ -50,6 +50,7 @@
   <SubComponents>
     <Component class="com.toedter.calendar.JCalendar" name="jCalendar">
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="&#xd;&#xa;&#xd;&#xa;        HighlightEvaluator evaluator = new HighlightEvaluator();&#xd;&#xa;        evaluator.add();&#xd;&#xa;        jCalendar.getDayChooser().addDateEvaluator(evaluator);&#xd;&#xa;        jCalendar.setCalendar(jCalendar.getCalendar());&#xd;&#xa;        jCalendar.getDayChooser().addPropertyChangeListener(&quot;day&quot;, new PropertyChangeListener(){&#xd;&#xa;        @Override&#xd;&#xa;        public void propertyChange(PropertyChangeEvent evt){&#xd;&#xa;            clickedOnDay(evt);&#xd;&#xa;        }&#xd;&#xa;        });"/>
         <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
       </AuxValues>

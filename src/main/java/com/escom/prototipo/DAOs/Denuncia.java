@@ -19,7 +19,9 @@ public class Denuncia {
     private Datos_denunciante dd;
     private Datos_involucrado di;
     private Descripcion_hechos dh;
-
+    
+    public Denuncia(){
+    }
     public Denuncia(String fecha, Datos_denunciante oDenunciante, Datos_involucrado oInvolucrado, Descripcion_hechos oHechos) {
         this.fecha = fecha;
         this.dd = oDenunciante;
@@ -170,14 +172,14 @@ public class Denuncia {
         try {
             con.conectar();
             String str = "select fecha from Denuncia;";
-            System.out.println("str");
             ResultSet rsguarda = con.consulta(str);
             
             while (rsguarda.next()) {
-
-                dates.add(rsguarda.getDate("fecha"));
+                long db = rsguarda.getDate("fecha").getTime()-64800000;
+                dates.add(new Date(db));
 
             }
+//            System.out.println(dates.toString());
             con.cierraConexion();
         } 
         catch (Exception e) {

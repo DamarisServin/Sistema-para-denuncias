@@ -71,10 +71,11 @@ select * from Datos_involucrado;
 
 
 call guardaDenuncia(
-"0", "2023/12/12", 1, 1, 1, 1
+"0", "2023/12/12 00:00:00", 1, 1, 1, 1
 );
 call guardaDenuncia(
-"0", "2023/12/12", 2, 2, 2, 2
+"0", "2023/12/02 ", 2, 2, 2, 2
 );
 select * from Denuncia;
 select fecha from Denuncia;
+##DELETE FROM Denuncia WHERE id >0;

@@ -1,13 +1,21 @@
 package com.escom.prototipo;
 
 import com.escom.prototipo.DAOs.Denuncia;
+import com.toedter.calendar.IDateEvaluator;
+import java.awt.Color;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Calendario extends javax.swing.JFrame {
     
-    private Denuncia dn;
-
     public Calendario() {
         initComponents();
+    }
+    public void clickedOnDay(PropertyChangeEvent evt){
+        System.out.println(evt.getPropertyName() + ":" +evt.getNewValue());
     }
     
 
@@ -19,6 +27,17 @@ public class Calendario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(this.MAXIMIZED_BOTH);
+
+        HighlightEvaluator evaluator = new HighlightEvaluator();
+        evaluator.add();
+        jCalendar.getDayChooser().addDateEvaluator(evaluator);
+        jCalendar.setCalendar(jCalendar.getCalendar());
+        jCalendar.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener(){
+            @Override
+            public void propertyChange(PropertyChangeEvent evt){
+                clickedOnDay(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -40,7 +59,54 @@ public class Calendario extends javax.swing.JFrame {
         setBounds(0, 0, 573, 389);
     }// </editor-fold>//GEN-END:initComponents
 
+       private static class HighlightEvaluator implements IDateEvaluator {
+           
+        private Denuncia dn = new Denuncia();
+        private final List<Date> list = new ArrayList<>();
 
+        public void add(){
+            list.addAll(dn.getDates());
+        }
+        @Override
+        public boolean isSpecial(Date date) {
+            return list.contains(date);
+        }
+
+        @Override
+        public Color getSpecialForegroundColor() {
+            return Color.red.darker();
+        }
+
+        @Override
+        public Color getSpecialBackroundColor() {
+            return Color.BLUE;
+        }
+
+        @Override
+        public String getSpecialTooltip() {
+            return "Highlighted event.";
+        }
+
+        @Override
+        public boolean isInvalid(Date date) {
+            return false;
+        }
+
+        @Override
+        public Color getInvalidForegroundColor() {
+            return null;
+        }
+
+        @Override
+        public Color getInvalidBackroundColor() {
+            return null;
+        }
+
+        @Override
+        public String getInvalidTooltip() {
+            return null;
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -21,6 +21,7 @@ public class HighlightTest {
         private final List<Date> list = new ArrayList<>();
 
         public void add(Date date) {
+            System.out.println(list.toString());
             list.add(date);
         }
 
@@ -69,7 +70,9 @@ public class HighlightTest {
         JFrame f = new JFrame("Highlight Test");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+
         HighlightEvaluator evaluator = new HighlightEvaluator();
+        
         evaluator.add(createDate(14));
         evaluator.add(createDate(15));
         JCalendar jc = new JCalendar();
