@@ -105,6 +105,11 @@ public final class InicioSesion extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 0, 51));
         jButton1.setText("¿Olvidaste tu contraseña?.");
         jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout LoginPanelLayout = new javax.swing.GroupLayout(LoginPanel);
         LoginPanel.setLayout(LoginPanelLayout);
@@ -239,6 +244,12 @@ public final class InicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(WIDTH);
     }//GEN-LAST:event_SalirActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        RecuperarContraseña Rc = new RecuperarContraseña();
+        Rc.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
    /* 
    //Método para confirmar el cierre de la ventana
