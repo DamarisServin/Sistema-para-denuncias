@@ -37,6 +37,7 @@ public class Bienvenido extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         jLabel2 = new javax.swing.JLabel();
         BBSalir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bienvenido");
@@ -92,6 +93,13 @@ public class Bienvenido extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Denuncia1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout BienvenidoLayout = new javax.swing.GroupLayout(Bienvenido);
         Bienvenido.setLayout(BienvenidoLayout);
         BienvenidoLayout.setHorizontalGroup(
@@ -100,9 +108,12 @@ public class Bienvenido extends javax.swing.JFrame {
                 .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BienvenidoLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(BDenuncia, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(BReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(BienvenidoLayout.createSequentialGroup()
+                                .addComponent(BDenuncia, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(BReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton1))
                         .addGap(53, 53, 53)
                         .addComponent(jLabel2)
                         .addGap(60, 60, 60)
@@ -136,9 +147,15 @@ public class Bienvenido extends javax.swing.JFrame {
                                 .addComponent(BReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(BDenuncia, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(BCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
-                        .addComponent(BBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))))
+                        .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(BienvenidoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                                .addComponent(BBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20))
+                            .addGroup(BienvenidoLayout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(jButton1)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,6 +180,9 @@ public class Bienvenido extends javax.swing.JFrame {
 
     private void BReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BReportesActionPerformed
         // TODO add your handling code here:
+        Calendario Cl = new Calendario();
+        Cl.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BReportesActionPerformed
 
     private void BBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBSalirActionPerformed
@@ -183,6 +203,12 @@ public class Bienvenido extends javax.swing.JFrame {
         Ca.setVisible(true);
         dispose();
     }//GEN-LAST:event_BCentrosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        FormatoDenuncia df = new FormatoDenuncia();
+        df.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,6 +251,7 @@ public class Bienvenido extends javax.swing.JFrame {
     private javax.swing.JButton BDenuncia;
     private javax.swing.JButton BReportes;
     private javax.swing.JPanel Bienvenido;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPopupMenu jPopupMenu1;
