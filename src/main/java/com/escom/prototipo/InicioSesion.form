@@ -238,11 +238,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin t&#xed;tulo/src/main/java/com/escom/prototipo/log T.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>

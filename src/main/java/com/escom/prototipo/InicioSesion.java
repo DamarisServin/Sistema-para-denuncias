@@ -232,7 +232,7 @@ public final class InicioSesion extends javax.swing.JFrame {
                 }
                 else{
                     System.out.println("No se pudo iniciar sesion");
-                    JOptionPane.showMessageDialog(null, "Correo o constraseña son incorrectas", "Inicio Fallido", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Correo y/o constraseña son incorrectas", "Inicio Fallido", JOptionPane.WARNING_MESSAGE);
                     
                 }
             
