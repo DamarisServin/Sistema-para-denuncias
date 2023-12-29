@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Calendario extends javax.swing.JFrame {
         initComponents();
     }
     public void clickedOnDay(PropertyChangeEvent evt){
-        System.out.println(evt.getPropertyName() + ":" +evt.getNewValue());
+        System.out.println();
     }
     
 
@@ -35,7 +36,9 @@ public class Calendario extends javax.swing.JFrame {
         jCalendar.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener(){
             @Override
             public void propertyChange(PropertyChangeEvent evt){
+                System.out.println(jCalendar.getDate());
                 clickedOnDay(evt);
+
             }
         });
 
@@ -84,7 +87,7 @@ public class Calendario extends javax.swing.JFrame {
 
         @Override
         public String getSpecialTooltip() {
-            return "Highlighted event.";
+            return "Denuncia";
         }
 
         @Override
