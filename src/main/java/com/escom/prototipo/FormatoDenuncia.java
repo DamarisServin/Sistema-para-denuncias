@@ -861,7 +861,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
         }
         else{
-            dd = new Datos_denunciante (df.format(date),aux1, v.getEdad(), aux3, aux4, aux5, aux6, aux7, aux8, aux9, flag, aux11);
+            dd = new Datos_denunciante (aux1, v.getEdad(), aux3, aux4, aux5, aux6, aux7, aux8, aux9, flag, aux11);
             return true;     
         } 
         return false;

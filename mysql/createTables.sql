@@ -45,7 +45,6 @@ CREATE TABLE Genero (
 );
 CREATE TABLE Datos_denunciante (
   id int NOT NULL AUTO_INCREMENT,
-  fecha DATE NOT NULL,
   nombre varchar(150) NOT NULL,
   edad int NOT NULL,
   genero_id int NOT NULL,
@@ -55,6 +54,7 @@ CREATE TABLE Datos_denunciante (
   unidad_academica varchar(50) NOT NULL,
   turno varchar(50) NOT NULL,
   anonimo int(1) NOT NULL,
+  tutor varchar(150),
 
   PRIMARY KEY (id),
   FOREIGN KEY (genero_id) REFERENCES Genero(id)
@@ -157,7 +157,35 @@ CREATE TABLE Tutor(
   FOREIGN KEY (denuncia_id) REFERENCES Denuncia(id)
 );
 
-
+#DROP VIEW datosDenuncia;
+CREATE VIEW datosDenuncia AS
+		SELECT d.id as idDenuncia, 
+			   d.fecha as fechaDenuncia, 
+			  dd.nombre as nombreDenunciante,
+			  dd.edad as edadDenunciante,
+			  g.genero as generoDenunciante,
+              dd.domicilio as domicilioDenunciante,
+              dd.telefono as telefonoDenunciante,
+              dd.correo as correoDenunciante,
+              dd.unidad_academica as unidadDenunciante,
+              dd.turno as turnoDenunciante,
+              dd.anonimo as anonimoDenunciante,
+              dd.tutor as tutorDenunciante,
+              di.nombre as nombreInvolucrado,
+              di.dependencia_politecnico as dependenciaInvolucrado,
+              di.turno as turnoInvolucrado,
+              dh.fechahora as fechaHechos,
+              dh.lugar as lugarHechos,
+              dh.descripcion as descripcionHechos,
+              dh.testigos as testigosHechos,
+              dh.medios_probatorios as mediosHechos,
+              dh.medios_probatorios_descripcion as mediosDescripcionHechos,
+              dh.otros as otrosHechos
+		FROM Denuncia d 
+        INNER JOIN Datos_denunciante dd ON d.Datos_denunciante_id = dd.id
+        INNER JOIN Datos_involucrado di ON d.Datos_involucrado_id = di.id
+        INNER JOIN Descripcion_hechos dh ON d.Descripcion_hechos_id = dh.id
+        INNER JOIN Genero g ON dd.genero_id = g.id;
  
     
     

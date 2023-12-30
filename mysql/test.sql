@@ -21,13 +21,13 @@ call consultarProfesorById(2);
 ########################## spDatosDenunciante ##########################
 
 call guardaDatosDenunciante(
-"0", "12/12/12 12:12:12", "Abel Abelardo", 12, 1, "Domicilio", "1234567", "correo", "unidad", "turno", 1
+"0",  "Abel Abelardo", 12, 1, "Domicilio", "1234567", "correo", "unidad", "turno", 1, null
 );
 call guardaDatosDenunciante(
-"1", "12/12/12 12:12:12", "Bernardo Benito", 12, 1, "calle numero", "1234567", "correo", "unidad", "turno", 1
+"1", "Bernardo Benito", 12, 1, "calle numero", "1234567", "correo", "unidad", "turno", 1, "Nombre Tutor"
 );
 call guardaDatosDenunciante(
-"0", "12/12/12 12:12:12", "Carlos Calderon", 12, 1, "calle numero", "1234567", "correo", "unidad", "turno", 1
+"0", "Carlos Calderon", 12, 1, "calle numero", "1234567", "correo", "unidad", "turno", 1, "Nombre Tutor2"
 );
 select * from Datos_denunciante;
 
@@ -42,7 +42,7 @@ call guardaHechos(
 "1", "2112/12/12 12:12:12", "Lugar", "Descripcion", "testigo",  1, "medios_probatorios_descripcion", "otros"
 );
 call guardaHechos(
-"0", "2023/12/12 12:12:12", "Lugar", "Descripcion", "testigo",  1, "medios_probatorios_descripcion", "otros"
+"0", "2023/12/12 12:12:12", "Lugar", "Descripcion", "testigo",  1, null, "otros"
 );
 select * from Descripcion_hechos;
 
@@ -76,6 +76,12 @@ call guardaDenuncia(
 call guardaDenuncia(
 "0", "2023/12/02 ", 2, 2, 2, 2
 );
-select * from Denuncia;
-select fecha from Denuncia;
+call guardaDenuncia(
+"0", "2023/12/02 ", 1, 1, 2, 2
+);
+
+call consultarDenunciaById(2);
+call consultarDenunciasByDate( "2023/12/02 ");
+#select * from datosDenuncia;
+#select fecha from Denuncia;
 ##DELETE FROM Denuncia WHERE id >0;

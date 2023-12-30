@@ -1,4 +1,6 @@
 drop procedure if exists guardaDenuncia;
+drop procedure if exists consultarDenunciaById;
+drop procedure if exists consultarDenunciasByDate;
 
 delimiter **
 	create procedure guardaDenuncia(
@@ -52,6 +54,15 @@ delimiter **
 		select msj as Resultado, 0 as id;
 	end if;
 
-end; **
+	end; **
 
+	create procedure consultarDenunciaById(in idE int)
+	begin
+		select * from datosDenuncia where idDenuncia = idE;
+	end; **
+
+	create procedure consultarDenunciasByDate(in fechaI date)
+	begin
+		select id from Denuncia where fecha = fechaI;
+	end; **
 delimiter ;

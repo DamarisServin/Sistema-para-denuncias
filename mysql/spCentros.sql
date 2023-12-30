@@ -1,5 +1,6 @@
 drop procedure if exists getCentros;
 drop procedure if exists getEspecialidadById;
+
 delimiter **
     create procedure getCentros()
 	begin

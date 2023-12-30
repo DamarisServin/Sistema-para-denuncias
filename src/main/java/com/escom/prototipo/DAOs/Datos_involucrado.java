@@ -33,7 +33,9 @@ public class Datos_involucrado {
     public String getNombre_completo() {
         return nombre_completo;
     }
-
+    public void setNombre_completo(String nombre) {
+        this.nombre_completo= nombre;
+    }
     public void setNombre_completo(String nombre, String ap_paterno, String ap_materno) {
         this.nombre_completo = nombre+ap_paterno+ap_materno;
     }

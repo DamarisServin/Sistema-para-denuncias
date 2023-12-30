@@ -1,9 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.escom.prototipo.DAOs;
 
+package com.escom.prototipo.DAOs;
 import com.escom.prototipo.conexion.Conexion;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -22,17 +18,8 @@ public class Centro_de_ayuda {
 
     public Centro_de_ayuda() {
     }
-
-    public Centro_de_ayuda(int id,String nombre, String direccion, String contacto) {
-        this.id = id;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.contacto = contacto;
-    }
-
-    
-    public ArrayList getCentros(){
-        ArrayList <Centro_de_ayuda> centers = new ArrayList <Centro_de_ayuda> ();
+            public ArrayList getCentros(){
+        ArrayList <com.escom.prototipo.DAOs.Centro_de_ayuda> centers = new ArrayList <com.escom.prototipo.DAOs.Centro_de_ayuda> ();
         Conexion con = new Conexion();
         try {
             con.conectar();
@@ -41,7 +28,7 @@ public class Centro_de_ayuda {
             
             while (rsguarda.next()) {
                 
-                centers.add(new Centro_de_ayuda(rsguarda.getInt("id"),rsguarda.getString("nombre"), rsguarda.getString("direccion"), rsguarda.getString("contacto")));
+                centers.add(new com.escom.prototipo.DAOs.Centro_de_ayuda(rsguarda.getInt("id"),rsguarda.getString("nombre"), rsguarda.getString("direccion"), rsguarda.getString("contacto")));
             }
             
             con.cierraConexion();
@@ -50,7 +37,7 @@ public class Centro_de_ayuda {
             System.out.println(e + " getCentros()");
         }
         
-        for (Centro_de_ayuda c : centers){
+        for (com.escom.prototipo.DAOs.Centro_de_ayuda c : centers){
             c.setEspecialidad(getEspecialidadById(c.getId()));
         }
         return centers;
@@ -76,7 +63,15 @@ public class Centro_de_ayuda {
         return esp;
     
     }
-            
+
+    public Centro_de_ayuda(int id,String nombre, String direccion, String contacto) {
+        this.id = id;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.contacto = contacto;
+    }
+
+    
     public String getNombre() {
         return nombre;
     }

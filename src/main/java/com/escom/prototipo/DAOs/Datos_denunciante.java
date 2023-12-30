@@ -3,7 +3,7 @@ package com.escom.prototipo.DAOs;
 public class Datos_denunciante{
 
     private int id;
-    private String fecha;
+
     private String nombre_completo;
     private int edad;
     private String genero;
@@ -21,8 +21,8 @@ public class Datos_denunciante{
     private String contrato;
     private String tutor;
 
-    public Datos_denunciante(String fecha, String nombre_completo, int edad, String genero, String domicilio, String telefono, String correo, String ocupacion, String unidad_academica, String turno, boolean anonimo, String tutor) {
-        this.fecha = fecha;
+    public Datos_denunciante( String nombre_completo, int edad, String genero, String domicilio, String telefono, String correo, String ocupacion, String unidad_academica, String turno, boolean anonimo, String tutor) {
+
         this.nombre_completo = nombre_completo;
         this.edad = edad;
         this.genero = genero;
@@ -70,14 +70,6 @@ public class Datos_denunciante{
 
     public String getContrato() {
         return contrato;
-    }
-    
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
     }
 
     public String getNombre_completo() {
@@ -158,6 +150,14 @@ public class Datos_denunciante{
 
     public void setAnonimo(boolean anonimo) {
         this.anonimo = anonimo;
+    }
+
+    public String getTutor() {
+        return tutor;
+    }
+
+    public void setTutor(String tutor) {
+        this.tutor = tutor;
     }
 
 

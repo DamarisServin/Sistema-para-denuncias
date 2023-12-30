@@ -5,7 +5,6 @@ drop procedure if exists consultarDatosDenuncianteById;
 delimiter **
 	create procedure guardaDatosDenunciante(
 	in idE int,
-	in fechaI date,
 	in nombreI nvarchar(150),
 	in edadI int,
 	in generoI int,
@@ -14,7 +13,8 @@ delimiter **
 	in correoI nvarchar(50),
 	in unidadI nvarchar(50),
 	in turnoI nvarchar(50),
-	in anonimoI int(1)
+	in anonimoI int(1),
+    in tutorI nvarchar(150)
 	)
 	begin 
 	declare newid int;
@@ -33,10 +33,10 @@ delimiter **
 			set newid = (select ifnull(max(id), 0) + 1 from Datos_denunciante);
 			
 			insert into Datos_denunciante (
-				  id, fecha, nombre, edad, genero_id, domicilio, telefono, correo, unidad_academica, turno, anonimo
+				  id, nombre, edad, genero_id, domicilio, telefono, correo, unidad_academica, turno, anonimo, tutor
 			)
 				values(
-					  newid, fechaI, nombreI, edadI, generoI, domicilioI, telefonoI, correoI, unidadI, turnoI, anonimoI
+					  newid, nombreI, edadI, generoI, domicilioI, telefonoI, correoI, unidadI, turnoI, anonimoI, tutorI
 			);            
 			set msj =  'Datos del denunciante guardados con exito';
 		else
@@ -51,7 +51,7 @@ delimiter **
 			set msj =  'Datos del denunciante Actualizado';
 			
 			update Datos_denunciante set 
-				 fecha = fechaI, edad = edadI, genero_id = generoI, domicilio = domicilioI, telefono = telefonoI, unidad_academica = unidadI, turno = turnoI, anonimo = anonimoI
+				  edad = edadI, genero_id = generoI, domicilio = domicilioI, telefono = telefonoI, unidad_academica = unidadI, turno = turnoI, anonimo = anonimoI, tutor = tutorI
 				where id=newid;
 			
 		else
@@ -67,6 +67,7 @@ delimiter **
 	end if;
 
 	end; **
+    
 	create procedure consultarDatosDenuncianteById(in idE int)
 	begin
 		select * from Datos_denunciante where id = idE;
