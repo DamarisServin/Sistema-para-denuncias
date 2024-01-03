@@ -19,9 +19,12 @@ public class Datos_denunciante{
     private String carrera;
     private String funcion;
     private String contrato;
-    private String tutor;
 
-    public Datos_denunciante( String nombre_completo, int edad, String genero, String domicilio, String telefono, String correo, String ocupacion, String unidad_academica, String turno, boolean anonimo, String tutor) {
+    public Datos_denunciante() {
+    }
+
+    
+    public Datos_denunciante( String nombre_completo, int edad, String genero, String domicilio, String telefono, String correo, String ocupacion, String unidad_academica, String turno, boolean anonimo) {
 
         this.nombre_completo = nombre_completo;
         this.edad = edad;
@@ -33,7 +36,7 @@ public class Datos_denunciante{
         this.unidad_academica = unidad_academica;
         this.turno = turno;
         this.anonimo = anonimo;
-        this.tutor = tutor;
+
     }
     public void setAlumnoDenunciante(String sm, String gp, String cr){
         this.semestre = sm;
@@ -151,17 +154,5 @@ public class Datos_denunciante{
     public void setAnonimo(boolean anonimo) {
         this.anonimo = anonimo;
     }
-
-    public String getTutor() {
-        return tutor;
-    }
-
-    public void setTutor(String tutor) {
-        this.tutor = tutor;
-    }
-
-
-
-
     
 }

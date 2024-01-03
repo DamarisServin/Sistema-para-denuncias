@@ -15,6 +15,10 @@ public class Datos_involucrado {
      private String dependencia_politecnico;
      private String turno;
 
+    public Datos_involucrado() {
+    }
+
+     
     public Datos_involucrado(String nombre_completo, String dependencia_politecnico, String turno) {
         this.nombre_completo = nombre_completo;
         this.dependencia_politecnico = dependencia_politecnico;

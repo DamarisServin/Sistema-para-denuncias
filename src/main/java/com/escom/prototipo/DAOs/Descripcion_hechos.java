@@ -18,6 +18,10 @@ public class Descripcion_hechos {
     private String mediosDescripcion;
     private String otros;
 
+    public Descripcion_hechos() {
+    }
+
+    
     public Descripcion_hechos(String fecha, String lugar, String descripcion, String testigos, boolean medios, String mediosDescripcion, String otros) {
         this.fecha = fecha;
         this.lugar = lugar;

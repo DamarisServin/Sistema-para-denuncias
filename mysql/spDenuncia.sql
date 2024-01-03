@@ -9,7 +9,8 @@ delimiter **
 	in denuncianteI int,
 	in involucradoI int,
 	in profesorI int,
-	in hechosI int
+	in hechosI int,
+    in tutorI int
 	)
 	begin 
 	declare newid int;
@@ -24,10 +25,10 @@ delimiter **
 		set newid = (select ifnull(max(id), 0) + 1 from Denuncia);
 		
 		insert into Denuncia (
-			  id, fecha, Datos_denunciante_id, Datos_involucrado_id, Descripcion_hechos_id, Profesor_id
+			  id, fecha, Datos_denunciante_id, Datos_involucrado_id, Descripcion_hechos_id, Profesor_id, Tutor_id
 		)
 			values(
-				  newid, fechaI, denuncianteI, involucradoI, hechosI, profesorI
+				  newid, fechaI, denuncianteI, involucradoI, hechosI, profesorI, tutorI
 		);            
 		set msj =  'Denuncia guardada con exito';
 
@@ -39,7 +40,7 @@ delimiter **
 			set msj =  'Datos Actualizados';
 			
 			update Denuncia set 
-				 fecha=fechaI, Datos_denunciante_id=denuncianteI, Datos_involucrado_id=involucradoI, Descripcion_hechos_id=hechosI, Profesor_id = profesorI
+				 fecha=fechaI, Datos_denunciante_id=denuncianteI, Datos_involucrado_id=involucradoI, Descripcion_hechos_id=hechosI, Profesor_id = profesorI, Tutor_id = tutorI
 				where id=newid;
 			
 		else

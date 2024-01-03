@@ -13,8 +13,8 @@ delimiter **
 	in correoI nvarchar(50),
 	in unidadI nvarchar(50),
 	in turnoI nvarchar(50),
-	in anonimoI int(1),
-    in tutorI nvarchar(150)
+	in anonimoI int(1)
+
 	)
 	begin 
 	declare newid int;
@@ -33,10 +33,10 @@ delimiter **
 			set newid = (select ifnull(max(id), 0) + 1 from Datos_denunciante);
 			
 			insert into Datos_denunciante (
-				  id, nombre, edad, genero_id, domicilio, telefono, correo, unidad_academica, turno, anonimo, tutor
+				  id, nombre, edad, genero_id, domicilio, telefono, correo, unidad_academica, turno, anonimo
 			)
 				values(
-					  newid, nombreI, edadI, generoI, domicilioI, telefonoI, correoI, unidadI, turnoI, anonimoI, tutorI
+					  newid, nombreI, edadI, generoI, domicilioI, telefonoI, correoI, unidadI, turnoI, anonimoI
 			);            
 			set msj =  'Datos del denunciante guardados con exito';
 		else
@@ -51,7 +51,7 @@ delimiter **
 			set msj =  'Datos del denunciante Actualizado';
 			
 			update Datos_denunciante set 
-				  edad = edadI, genero_id = generoI, domicilio = domicilioI, telefono = telefonoI, unidad_academica = unidadI, turno = turnoI, anonimo = anonimoI, tutor = tutorI
+				  edad = edadI, genero_id = generoI, domicilio = domicilioI, telefono = telefonoI, unidad_academica = unidadI, turno = turnoI, anonimo = anonimoI
 				where id=newid;
 			
 		else

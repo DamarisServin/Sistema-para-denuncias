@@ -19,17 +19,26 @@ public class Denuncia {
     private Datos_denunciante dd;
     private Datos_involucrado di;
     private Descripcion_hechos dh;
+    private Tutor tt;
     
     public Denuncia(){
+        dd = new Datos_denunciante();
+        di = new Datos_involucrado();
+        dh  = new Descripcion_hechos();
+        tt = new Tutor();
     }
-    public Denuncia(String fecha, Datos_denunciante oDenunciante, Datos_involucrado oInvolucrado, Descripcion_hechos oHechos) {
+
+    public Denuncia(String fecha, Datos_denunciante oDenunciante, Datos_involucrado oInvolucrado, Descripcion_hechos oHechos, Tutor oTutor) {
         this.fecha = fecha;
         this.dd = oDenunciante;
         this.di = oInvolucrado;
         this.dh = oHechos;
+        this.tt = oTutor;
     }
-    
     public boolean saveDenuncia(){
+        if (tt != null)
+                saveDatosTutor();
+        
         saveDatosDenunciante();
         saveDatosInvolucrado();
         saveDescripcionHechos();
@@ -41,7 +50,8 @@ public class Denuncia {
                     + fecha + "', '" 
                     + dd.getId() + "', '" 
                     + di.getId() + "', '" 
-                    + dh.getId()+ "');";
+                    + dh.getId() + "', '" 
+                    + tt.getId()+ "');";
             System.out.println("str");
             ResultSet rsguarda = con.consulta(str);
             
@@ -65,6 +75,7 @@ public class Denuncia {
         
         
     private boolean saveDatosDenunciante(){
+        
         Conexion con = new Conexion();
         try {
             con.conectar();
@@ -78,7 +89,7 @@ public class Denuncia {
                     + dd.getUnidad_academica()+ "', '" 
                     + dd.getTurno()+ "', '" 
                     + dd.isAnonimo()+ "', '" 
-                    + dd.getTutor()+ "');";
+                    + tt.getId()+ "');";
             System.out.println("str");
             ResultSet rsguarda = con.consulta(str);
             
@@ -100,7 +111,39 @@ public class Denuncia {
         return false;
 
     }    
-    
+    private boolean saveDatosTutor(){
+        
+        Conexion con = new Conexion();
+        try {
+            con.conectar();
+            String str = "call guardaDatosTutor(0, '" 
+                    + tt.getNombre_completo() + "', '" 
+                    + tt.getEdad() + "', '" 
+                    + tt.getGenero()+ "', '" 
+                    + tt.getDomicilio()+ "', '" 
+                    + tt.getTelefono()+ "', '" 
+                    + tt.getCorreo()+ "');";
+            System.out.println("str");
+            ResultSet rsguarda = con.consulta(str);
+            
+            if (rsguarda.next()) {
+                if (rsguarda.getString("Resultado").equals("Datos del tutor guardados con exito")) {
+                    System.out.println("Datos del tutor guardados con exito");
+                    tt.setId(Integer.parseInt(rsguarda.getString("id")));
+                    
+                    return true;
+                }else{
+                    System.out.println("Ocurrio un error: saveDatosTutor() ");
+                }
+            }
+            con.cierraConexion();
+        } 
+        catch (Exception e) {
+            System.out.println(e + " saveDatosTutor()");
+        }
+        return false;
+
+    }     
      
     private boolean saveDatosInvolucrado(){
         Conexion con = new Conexion();
@@ -215,37 +258,44 @@ public class Denuncia {
             ResultSet rsguarda = con.consulta(str);
 
             while (rsguarda.next()) {     
-                    dd.setNombre_completo(rsguarda.getString("id"));
-                    dd.setEdad(rsguarda.getString("id"));
-                    dd.setGenero(rsguarda.getString("id"));
-                    dd.setDomicilio(rsguarda.getString("id"));
-                    dd.setTelefono(rsguarda.getString("id"));
-                    dd.setCorreo(rsguarda.getString("id"));
-                    dd.setUnidad_academica(rsguarda.getString("id"));
-                    dd.setTurno(rsguarda.getString("id"));
-                    dd.setAnonimo(rsguarda.getString("id"))
-                    dd.setTutor(rsguarda.getString("id"));
+                    dd.setNombre_completo(rsguarda.getString("nombreDenunciante"));
+                    dd.setEdad(rsguarda.getInt("edadDenunciante"));
+                    dd.setGenero(rsguarda.getString("generoDenunciante"));
+                    dd.setDomicilio(rsguarda.getString("domicilioDenunciante"));
+                    dd.setTelefono(rsguarda.getString("telefonoDenunciante"));
+                    dd.setCorreo(rsguarda.getString("correoDenunciante"));
+                    dd.setUnidad_academica(rsguarda.getString("unidadDenunciante"));
+                    dd.setTurno(rsguarda.getString("turnoDenunciante"));
+                    dd.setAnonimo(rsguarda.getBoolean("anonimoDenunciante"));
+                    
+//                    tt.setNombre_completo(rsguarda.getString("nombreTutor"));
+//                    tt.setEdad(rsguarda.getInt("edadTutor"));
+//                    tt.setGenero(rsguarda.getString("generoTutor"));
+//                    tt.setDomicilio(rsguarda.getString("domicilioTutor"));
+//                    tt.setCorreo(rsguarda.getString("correoTutor"));
+//                    tt.setTelefono(rsguarda.getString("telefonoTutor"));
+                    
+                    di.setNombre_completo(rsguarda.getString("nombreInvolucrado"));
+                    di.setDependencia_politecnico(rsguarda.getString("dependenciaInvolucrado"));
+                    di.setTurno(rsguarda.getString("turnoInvolucrado"));
                     
                     
-                    di.setNombre_completo(rsguarda.getString("id"));
-                    di.setDependencia_politecnico(rsguarda.getString("id"));
-                    di.setTurno(rsguarda.getString("id"));
-                    
-                    
-                    dh.setFecha(rsguarda.getString("id"));
-                    dh.setLugar(rsguarda.getString("id"));
-                    dh.setDescripcion(rsguarda.getString("id"));
-                    dh.setTestigos(rsguarda.getString("id"));
-                    dh.setMedios(rsguarda.getString("id"));
-                    dh.setMediosDescripcion(rsguarda.getString("id"));
-                    dh.setOtros(rsguarda.getString("id"));
+                    dh.setFecha(rsguarda.getString("fechaHechos"));
+                    dh.setLugar(rsguarda.getString("lugarHechos"));
+                    dh.setDescripcion(rsguarda.getString("descripcionHechos"));
+                    dh.setTestigos(rsguarda.getString("testigosHechos"));
+                    dh.setMedios(rsguarda.getBoolean("mediosHechos"));
+                    dh.setMediosDescripcion(rsguarda.getString("mediosDescripcionHechos"));
+                    dh.setOtros(rsguarda.getString("otrosHechos"));
             }
             
             
             con.cierraConexion();
+            return true;
         } 
         catch (Exception e) {
             System.out.println(e + " getDenunciasByDate()");
         }
+        return false;
     }
 }

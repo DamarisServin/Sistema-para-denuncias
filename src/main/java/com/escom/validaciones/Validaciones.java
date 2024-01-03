@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  * @author damar
  */
 public class Validaciones {
-    int edad;
+
     
     public boolean isLettersNumbers(String str){
         String regex = "^[a-zA-Z0-9 ]*$";
@@ -40,11 +40,10 @@ public class Validaciones {
 
         return matcher.matches();
     }
-    public int getEdad(){
-        return edad;
-    }
+
     public boolean isEdad(String str){
         boolean flag = false;
+        int edad;
         if (!str.isEmpty())
             try {
                 edad= Integer.parseInt(str);
