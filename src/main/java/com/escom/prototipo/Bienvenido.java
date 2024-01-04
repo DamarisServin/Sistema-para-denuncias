@@ -57,7 +57,7 @@ public class Bienvenido extends javax.swing.JFrame {
 
         BReportes.setBackground(new java.awt.Color(206, 226, 240));
         BReportes.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        BReportes.setText("Reportres");
+        BReportes.setText("Reportes");
         BReportes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +76,7 @@ public class Bienvenido extends javax.swing.JFrame {
         });
 
         label1.setFont(new java.awt.Font("Bodoni 72 Oldstyle", 1, 24)); // NOI18N
-        label1.setForeground(new java.awt.Color(204, 204, 204));
+        label1.setForeground(new java.awt.Color(255, 51, 102));
         label1.setText("<html>PROTOTIPO PARA LA COORDINACIÓN Y EL SEGUIMIENTO DE DENUNCIAS POR VIOLENCIA DE GÉNERO EN LA ESCOM<html>");
 
         jLabel2.setIcon(new javax.swing.ImageIcon("/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/logi.png")); // NOI18N

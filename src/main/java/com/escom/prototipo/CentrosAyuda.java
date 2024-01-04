@@ -22,8 +22,7 @@ public class CentrosAyuda extends javax.swing.JFrame {
         }
 //        model.addRow(new Object[]{"hola","hola","hola","hola"});
         initComponents();
-        //this.setLocationRelativeTo(null);
-        //this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }// fin public centrosayuda
 
     @SuppressWarnings("unchecked")

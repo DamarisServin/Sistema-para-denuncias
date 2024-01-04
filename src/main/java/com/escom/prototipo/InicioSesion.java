@@ -249,6 +249,8 @@ public final class InicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         RecuperarContraseña Rc = new RecuperarContraseña();
         Rc.setVisible(true);
+        
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
    /* 
