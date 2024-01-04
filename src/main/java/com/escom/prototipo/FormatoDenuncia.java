@@ -143,6 +143,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         CorreoTutor = new javax.swing.JTextField();
         CorreoTutor.setVisible(false);
         jLabel53 = new javax.swing.JLabel();
+        BIFDD = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(this.MAXIMIZED_BOTH);
@@ -465,6 +466,15 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel53.setText("Datos de la persona involucrada");
 
+        BIFDD.setBackground(new java.awt.Color(206, 226, 240));
+        BIFDD.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        BIFDD.setText("Inicio");
+        BIFDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BIFDDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -666,7 +676,9 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                                 .addGap(43, 43, 43)
                                 .addComponent(DomicilioTutor, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(OtrosField, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(ElementoProbatorioField, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -686,9 +698,13 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(LugarHechosField))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(EnviarButton)
-                    .addComponent(jLabel37))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(EnviarButton)
+                        .addComponent(jLabel37))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(BIFDD)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -696,7 +712,9 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jLabel1)
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BIFDD)
+                .addGap(2, 2, 2)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -943,7 +961,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setBounds(0, 0, 904, 2123);
+        setBounds(0, 0, 884, 2123);
     }// </editor-fold>//GEN-END:initComponents
 
     private void EnviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarButtonActionPerformed
@@ -1251,6 +1269,13 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         if (!v.isEmail(CorreoDenuncianteField.getText()))
             JOptionPane.showMessageDialog(null, "El correo proporcionado no cumple con el formato correcto", "Campo vacío", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_CorreoTutorFocusLost
+
+    private void BIFDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BIFDDActionPerformed
+        // TODO add your handling code here:
+        Bienvenido Ifdd = new Bienvenido();
+        Ifdd.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BIFDDActionPerformed
     
 
  
@@ -1298,6 +1323,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> AnonimatoCombo;
     private javax.swing.JTextField AñoHechosField;
     private javax.swing.JTextField AñoPresentField;
+    private javax.swing.JButton BIFDD;
     private javax.swing.JTextField CarreraField;
     private javax.swing.JTextField ContratoField;
     private javax.swing.JTextField CorreoDenuncianteField;

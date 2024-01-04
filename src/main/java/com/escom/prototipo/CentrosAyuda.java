@@ -22,7 +22,8 @@ public class CentrosAyuda extends javax.swing.JFrame {
         }
 //        model.addRow(new Object[]{"hola","hola","hola","hola"});
         initComponents();
-        this.setLocationRelativeTo(null);
+        //this.setLocationRelativeTo(null);
+        //this.setLocationRelativeTo(null);
     }// fin public centrosayuda
 
     @SuppressWarnings("unchecked")
@@ -36,7 +37,6 @@ public class CentrosAyuda extends javax.swing.JFrame {
         BCASalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TCA = new javax.swing.JTable();
-        BCAMostrar = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
@@ -71,16 +71,6 @@ public class CentrosAyuda extends javax.swing.JFrame {
         TCA.setModel(model);
         jScrollPane1.setViewportView(TCA);
 
-        BCAMostrar.setBackground(new java.awt.Color(206, 226, 240));
-        BCAMostrar.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        BCAMostrar.setForeground(new java.awt.Color(216, 102, 20));
-        BCAMostrar.setText("Mostrar");
-        BCAMostrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BCAMostrarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -91,9 +81,7 @@ public class CentrosAyuda extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(BCAMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 304, Short.MAX_VALUE)
+                        .addContainerGap(460, Short.MAX_VALUE)
                         .addComponent(BCASalir)))
                 .addGap(23, 23, 23))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -114,10 +102,8 @@ public class CentrosAyuda extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BCAMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BCASalir))
-                .addGap(29, 29, 29))
+                .addComponent(BCASalir)
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,10 +137,6 @@ public class CentrosAyuda extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(WIDTH);
     }//GEN-LAST:event_BCASalirActionPerformed
-
-    private void BCAMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCAMostrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BCAMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,7 +174,6 @@ public class CentrosAyuda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BCAMostrar;
     private javax.swing.JButton BCASalir;
     private javax.swing.JButton Inicio;
     public javax.swing.JTable TCA;

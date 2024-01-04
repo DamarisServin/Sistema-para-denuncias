@@ -24,7 +24,11 @@ public class Calendario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         com.toedter.calendar.JCalendar jCalendar = new com.toedter.calendar.JCalendar();
+        Bic = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(this.MAXIMIZED_BOTH);
@@ -42,6 +46,15 @@ public class Calendario extends javax.swing.JFrame {
             }
         });
 
+        Bic.setBackground(new java.awt.Color(206, 226, 240));
+        Bic.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        Bic.setText("Inicio");
+        Bic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BicActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -49,18 +62,31 @@ public class Calendario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Bic)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Bic)
+                .addGap(22, 22, 22))
         );
 
-        setBounds(0, 0, 573, 389);
+        setBounds(0, 0, 636, 389);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BicActionPerformed
+        // TODO add your handling code here:
+        Bienvenido bI = new Bienvenido();
+        bI.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BicActionPerformed
 
        private static class HighlightEvaluator implements IDateEvaluator {
            
@@ -143,5 +169,7 @@ public class Calendario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Bic;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
