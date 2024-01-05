@@ -4,6 +4,8 @@
  */
 package com.escom.prototipo;
 
+import com.escom.prototipo.DAOs.Profesor;
+import com.escom.prototipo.email.EmailSender;
 import com.escom.validaciones.Validaciones;
 import javax.swing.JOptionPane;
 
@@ -147,9 +149,15 @@ public class RecuperarContraseña extends javax.swing.JFrame {
 
     private void RecuperarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecuperarBtnActionPerformed
        Validaciones v = new Validaciones();
-       if(v.isEmail(CorreoField.getText())){
-           //JOptionPane.showMessageDialog(null, "Se envio un mensaje al correo proporcionado!", "Correo Enviado", JOptionPane.WARNING_MESSAGE);
-
+        Profesor p = new Profesor();
+       String aux = CorreoField.getText();
+       if(v.isEmail(aux)){
+           p.cambiarContrasena(aux);
+           EmailSender es = new EmailSender();
+           es.setTo(aux);
+           es.setNewPasMsg(p.getContrasena());
+           if (es.sendMail())
+                JOptionPane.showMessageDialog(null, "Se envio un mensaje al correo proporcionado!", "Correo Enviado", JOptionPane.WARNING_MESSAGE);
        }else{
             JOptionPane.showMessageDialog(null, "El correo proporcionado no cumple con el formato correcto", "Campo vacío", JOptionPane.WARNING_MESSAGE);
        }

@@ -4,6 +4,7 @@
  */
 package com.escom.validaciones;
 
+import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -104,5 +105,19 @@ public class Validaciones {
             flag = true;
         return flag;
     }
+    
+    public String generateRandomString() {
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder randomString = new StringBuilder(16);
+        SecureRandom random = new SecureRandom();
+
+        for (int i = 0; i < 16; i++) {
+            int randomIndex = random.nextInt(characters.length());
+            randomString.append(characters.charAt(randomIndex));
+        }
+
+        return randomString.toString();
+    }
+
         
 }

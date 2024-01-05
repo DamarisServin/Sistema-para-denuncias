@@ -66,12 +66,20 @@ select * from Datos_involucrado;
 
 #DELETE FROM Datos_involucrado WHERE id >0;
 
+########################## spTutor ##########################
+
+call guardaDatosTutor(
+"0",  "Abel Abelardo", 21, 1, "Domicilio", "1234567", "correo"
+);
+call guardaDatosTutor(
+"0", "Bernardo Benito", 21, 1, "calle numero", "1234567", "correo"
+);
 
 ########################## spDenuncia ##########################
 
 
 call guardaDenuncia(
-"0", "2023/12/12 00:00:00", 1, 1, 1, 1, null
+"0", "2023/11/12 00:00:00", 1, 1, 1, 1, 1
 );
 call guardaDenuncia(
 "0", "2023/12/02 ", 2, 2, 2, 2, null
@@ -82,6 +90,7 @@ call guardaDenuncia(
 select * from datosDenuncia;
 call consultarDenunciaById(4);
 call consultarDenunciasByDate( "2023/12/02 ");
+call consultarDatosTutorByDenunciaId(5);
 #select * from datosDenuncia;
 #select fecha from Denuncia;
 ##DELETE FROM Denuncia WHERE id >0;

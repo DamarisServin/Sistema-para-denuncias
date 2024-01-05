@@ -190,18 +190,27 @@
         </Component>
         <Component class="javax.swing.JTextField" name="NombreField">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NombreFieldActionPerformed"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="NombreFieldFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="PaternoField">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="PaternoFieldFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="MaternoField">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="MaternoFieldFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="CorreoField">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="CorreoFieldFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="NoEmpleadoField">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NoEmpleadoFieldActionPerformed"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="NoEmpleadoFieldFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="EscuelaBox">
@@ -272,6 +281,9 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JPasswordField" name="ContrasenaField">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="ContrasenaFieldFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="ContrasenaField2">
         </Component>

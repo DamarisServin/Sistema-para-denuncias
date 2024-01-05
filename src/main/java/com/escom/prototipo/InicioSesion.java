@@ -5,6 +5,7 @@
 package com.escom.prototipo;
 
 import com.escom.prototipo.DAOs.Profesor;
+import static com.escom.prototipo.FormatoDenuncia.v;
 import com.escom.validaciones.Validaciones;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
@@ -58,6 +59,11 @@ public final class InicioSesion extends javax.swing.JFrame {
 
         Contrasena.setText("jPasswordField1");
         Contrasena.setName("contraseñal"); // NOI18N
+        Contrasena.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ContrasenaFocusLost(evt);
+            }
+        });
 
         LoginLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         LoginLabel.setForeground(new java.awt.Color(51, 51, 255));
@@ -75,6 +81,11 @@ public final class InicioSesion extends javax.swing.JFrame {
         });
 
         Email.setName("user"); // NOI18N
+        Email.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                EmailFocusLost(evt);
+            }
+        });
         Email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EmailActionPerformed(evt);
@@ -97,8 +108,6 @@ public final class InicioSesion extends javax.swing.JFrame {
                 SalirActionPerformed(evt);
             }
         });
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/log T.png")); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(245, 245, 245));
         jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
@@ -252,6 +261,16 @@ public final class InicioSesion extends javax.swing.JFrame {
         
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void EmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmailFocusLost
+       if (!v.isEmail(Email.getText()))
+            JOptionPane.showMessageDialog(null, "El correo no es un formato valido", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_EmailFocusLost
+
+    private void ContrasenaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ContrasenaFocusLost
+       if (!v.isLettersNumbers(new String (Contrasena.getPassword())))
+            JOptionPane.showMessageDialog(null, "Alguno de los campos tiene caracteres invalidos", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_ContrasenaFocusLost
 
    /* 
    //Método para confirmar el cierre de la ventana

@@ -1,6 +1,7 @@
 package com.escom.prototipo.DAOs;
 
 import com.escom.prototipo.conexion.Conexion;
+import com.escom.validaciones.Validaciones;
 import java.sql.ResultSet;
 
 
@@ -14,6 +15,9 @@ public class Profesor{
     private String nombre;
 //    private String ap_paterno;
 //    private String ap_materno;
+
+    public Profesor() {
+    }
 
     public Profesor(String contrasena, String correo) {
         this.contrasena = contrasena;
@@ -97,7 +101,25 @@ public class Profesor{
         }
         return false;
     }
-
+    public boolean cambiarContrasena(String str){
+        Conexion con = new Conexion();
+        Validaciones v = new Validaciones();
+        contrasena = v.generateRandomString();
+        try {
+            con.conectar();
+            ResultSet rsguarda = con.consulta("call cambiarContrasena(" + id + ", '" +contrasena+ "');");
+            
+            if (rsguarda.next()) {
+                System.out.println("Usuario Actualizado");
+                con.cierraConexion();
+                return true;
+            }
+        } 
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
     public boolean logIn(){
         Conexion con = new Conexion();
         boolean flag = false;

@@ -1,17 +1,18 @@
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/DAOs/Profesor.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/RecuperarContraseña.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/InicioSesion.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/DAOs/Descripcion_hechos.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/Bienvenido.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/DAOs/Datos_involucrado.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/Calendario.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/FormatoDenuncia.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/CentrosAyuda.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/validaciones/Validaciones.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/DAOs/Tutor.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/DAOs/Denuncia.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/test/EmailSender.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/DAOs/Datos_denunciante.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/Registro.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/DAOs/Centro_de_ayuda.java
-/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/conexion/Conexion.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Datos_involucrado.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\email\EmailSender.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\CentrosAyuda.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\FormatoDenuncia.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\Bienvenido.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Descripcion_hechos.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Tutor.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\RecuperarContraseña.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Denuncia.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Centro_de_ayuda.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\validaciones\Validaciones.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Datos_denunciante.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\Registro.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\conexion\Conexion.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Profesor.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\Calendario.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\InicioSesion.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\test\EmailSender.java

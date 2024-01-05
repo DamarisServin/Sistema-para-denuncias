@@ -1,4 +1,5 @@
-package com.escom.prototipo.test;
+package com.escom.prototipo.email;
+
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -7,15 +8,36 @@ import java.util.Properties;
 
 public class EmailSender {
 
-    public static void main(String[] args) {
+    private String to;
+    private String msg;
+
+    public EmailSender() {
+    }
+
+    public EmailSender(String to, String msg) {
+        this.to = to;
+        this.msg = msg;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public void setNewPasMsg(String str) {
+        msg = "Recibimos una solicitud de contraseña de este correo. Tu nueva contraseña es "+
+                str+
+                "Si tu no solicitaste este cambio, haz caso omiso de este mensaje.";
+        
+    }
+    
+
+    
+    public boolean sendMail() {
         // Sender's email address
         String from = "sistemadenuncias56@gmail.com";
 
         // Sender's password (use an application-specific password for security)
         String password = "yzir klov mbez vfhd";
-
-        // Recipient's email address
-        String to = "dama25prin@hotmail.com";
 
         // SMTP server details for Gmail
         String host = "smtp.gmail.com";
@@ -46,16 +68,19 @@ public class EmailSender {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
             // Set email subject and body
-            message.setSubject("Test Email");
-            message.setText("This is a test email sent from Java.");
+            message.setSubject("Sistema de Denuncias Email");
+            message.setText(msg);
 
             // Send the email
             Transport.send(message);
 
             System.out.println("Email sent successfully.");
 
+            return true;
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+        return false;
     }
+
 }

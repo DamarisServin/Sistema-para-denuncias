@@ -252,6 +252,7 @@ public class Denuncia {
     
     public boolean getDenunciaById(String id){
         Conexion con = new Conexion();
+        boolean flg = false;
         try {
             con.conectar();
             String str = "call consultarDenunciaById('" + id+ "');";
@@ -268,18 +269,10 @@ public class Denuncia {
                     dd.setTurno(rsguarda.getString("turnoDenunciante"));
                     dd.setAnonimo(rsguarda.getBoolean("anonimoDenunciante"));
                     
-//                    tt.setNombre_completo(rsguarda.getString("nombreTutor"));
-//                    tt.setEdad(rsguarda.getInt("edadTutor"));
-//                    tt.setGenero(rsguarda.getString("generoTutor"));
-//                    tt.setDomicilio(rsguarda.getString("domicilioTutor"));
-//                    tt.setCorreo(rsguarda.getString("correoTutor"));
-//                    tt.setTelefono(rsguarda.getString("telefonoTutor"));
-                    
                     di.setNombre_completo(rsguarda.getString("nombreInvolucrado"));
                     di.setDependencia_politecnico(rsguarda.getString("dependenciaInvolucrado"));
                     di.setTurno(rsguarda.getString("turnoInvolucrado"));
-                    
-                    
+                                       
                     dh.setFecha(rsguarda.getString("fechaHechos"));
                     dh.setLugar(rsguarda.getString("lugarHechos"));
                     dh.setDescripcion(rsguarda.getString("descripcionHechos"));
@@ -291,10 +284,40 @@ public class Denuncia {
             
             
             con.cierraConexion();
-            return true;
+            
+            if(dd.getEdad()<18)
+                flg = getTutorByDenunciaId(id);
+
         } 
         catch (Exception e) {
             System.out.println(e + " getDenunciasByDate()");
+        }
+        return flg;
+    }
+    
+    private boolean getTutorByDenunciaId(String id){
+        Conexion con = new Conexion();
+        try {
+            con.conectar();
+            String str = "call getTutorByDenunciaId('" + id+ "');";
+            ResultSet rsguarda = con.consulta(str);
+
+            while (rsguarda.next()) {     
+
+                tt.setNombre_completo(rsguarda.getString("nombreTutor"));
+                tt.setEdad(rsguarda.getInt("edadTutor"));
+                tt.setGenero(rsguarda.getString("generoTutor"));
+                tt.setDomicilio(rsguarda.getString("domicilioTutor"));
+                tt.setCorreo(rsguarda.getString("correoTutor"));
+                tt.setTelefono(rsguarda.getString("telefonoTutor"));
+ 
+            }
+ 
+            con.cierraConexion();
+            return true;
+        } 
+        catch (Exception e) {
+            System.out.println(e + " getTutorByDenunciaId()");
         }
         return false;
     }

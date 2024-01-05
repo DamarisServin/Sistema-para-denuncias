@@ -1,6 +1,7 @@
 
 drop procedure if exists guardaDatosTutor;
 drop procedure if exists consultarDatosTutorById;
+drop procedure if exists consultarDatosTutorByDenunciaId;
 
 delimiter **
 	create procedure guardaDatosTutor(
@@ -68,6 +69,20 @@ delimiter **
 	create procedure consultarDatosTutorById(in idE int)
 	begin
 		select * from Tutor where id = idE;
+	end; **
+    
+    create procedure consultarDatosTutorByDenunciaId(in idE int)
+	begin
+		select 
+              tt.nombre as nombreTutor,
+              tt.edad as edadTutor,
+              g.genero as generoTutor,
+              tt.telefono as telefonoTutor,
+              tt.correo as correoTutor
+		from Denuncia d
+		inner join Tutor tt on d.tutor_id = tt.id
+        inner join Genero g on tt.genero_id = g.id
+        where d.id = idE;
 	end; **
 delimiter ;
 

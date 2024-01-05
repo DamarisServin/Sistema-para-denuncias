@@ -1,7 +1,7 @@
 drop procedure if exists guardaProfesor;
 drop procedure if exists consultarProfesorById;
 drop procedure if exists sesionProfesor;
-
+drop procedure if exists cambiarConstrasena;
 
 delimiter **
 	create procedure guardaProfesor(
@@ -83,6 +83,12 @@ delimiter **
 	end if;
 	end; **
     
+    
+    create procedure cambiarContrasena(in email nvarchar(150), in psw nvarchar(50) )
+	begin
+		update Profesor set 
+				contrasena=md5(psw) where correo=email;
+	end; **
 delimiter ;
 
 

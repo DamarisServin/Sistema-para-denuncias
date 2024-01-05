@@ -1,6 +1,7 @@
 package com.escom.prototipo;
 
 import com.escom.prototipo.DAOs.Profesor;
+import static com.escom.prototipo.FormatoDenuncia.v;
 import com.escom.validaciones.Validaciones;
 
 import javax.swing.JOptionPane;
@@ -65,15 +66,33 @@ public class Registro extends javax.swing.JFrame {
         Registro.setForeground(new java.awt.Color(255, 0, 0));
         Registro.setText("Registro");
 
-        NombreField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreFieldActionPerformed(evt);
+        NombreField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                NombreFieldFocusLost(evt);
             }
         });
 
-        NoEmpleadoField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NoEmpleadoFieldActionPerformed(evt);
+        PaternoField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PaternoFieldFocusLost(evt);
+            }
+        });
+
+        MaternoField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                MaternoFieldFocusLost(evt);
+            }
+        });
+
+        CorreoField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                CorreoFieldFocusLost(evt);
+            }
+        });
+
+        NoEmpleadoField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                NoEmpleadoFieldFocusLost(evt);
             }
         });
 
@@ -81,6 +100,12 @@ public class Registro extends javax.swing.JFrame {
         EscuelaBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EscuelaBoxActionPerformed(evt);
+            }
+        });
+
+        ContrasenaField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ContrasenaFieldFocusLost(evt);
             }
         });
 
@@ -228,14 +253,6 @@ public class Registro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NombreFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreFieldActionPerformed
-
-    private void NoEmpleadoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoEmpleadoFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NoEmpleadoFieldActionPerformed
-
     private void EscuelaBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EscuelaBoxActionPerformed
         // TODO add your handling code here:
         
@@ -282,6 +299,39 @@ public class Registro extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_RegistrarseBtnActionPerformed
+
+    private void NombreFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreFieldFocusLost
+        if (!v.isLetters(NombreField.getText()))
+            JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+
+    }//GEN-LAST:event_NombreFieldFocusLost
+
+    private void PaternoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PaternoFieldFocusLost
+        if (!v.isLetters(PaternoField.getText()))
+            JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_PaternoFieldFocusLost
+
+    private void MaternoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MaternoFieldFocusLost
+        if (!v.isLetters(MaternoField.getText()))
+            JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_MaternoFieldFocusLost
+
+    private void CorreoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CorreoFieldFocusLost
+        if (!v.isEmail(CorreoField.getText()))
+            JOptionPane.showMessageDialog(null, "Correo invalido", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_CorreoFieldFocusLost
+
+    private void NoEmpleadoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NoEmpleadoFieldFocusLost
+        if (!v.isLettersNumbers(NoEmpleadoField.getText()))
+            JOptionPane.showMessageDialog(null, "El numero de empleado es invalido", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_NoEmpleadoFieldFocusLost
+
+    private void ContrasenaFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ContrasenaFieldFocusLost
+        if (!v.isLettersNumbers(new String (ContrasenaField.getPassword())))
+            JOptionPane.showMessageDialog(null, "La contraseña tiene caracteres invalidos", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+        if (ContrasenaField.getPassword().length<8)
+            JOptionPane.showMessageDialog(null, "La contraseña tiene que tener al menos 8 caracteres", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+    }//GEN-LAST:event_ContrasenaFieldFocusLost
 
     /**
      * @param args the command line arguments
