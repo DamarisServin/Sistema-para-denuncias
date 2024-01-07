@@ -25,7 +25,7 @@ public class Denuncia {
         dd = new Datos_denunciante();
         di = new Datos_involucrado();
         dh  = new Descripcion_hechos();
-        tt = new Tutor();
+        tt = null;
     }
 
     public Denuncia(String fecha, Datos_denunciante oDenunciante, Datos_involucrado oInvolucrado, Descripcion_hechos oHechos, Tutor oTutor) {
