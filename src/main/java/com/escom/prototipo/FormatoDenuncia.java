@@ -15,14 +15,14 @@ import javax.swing.JOptionPane;
 public class FormatoDenuncia extends javax.swing.JFrame {
 
     static DateFormat df;
-    static Date date; 
+    static Date date;
     static Datos_denunciante dd;
     static Datos_involucrado di;
     static Descripcion_hechos dh;
     static Denuncia dnc;
     static Tutor tt;
     static Validaciones v = new Validaciones();
-    
+
     public FormatoDenuncia() {
         df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         date = new Date();
@@ -961,92 +961,108 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EnviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarButtonActionPerformed
-       if( crearDatosDenuncia() && crearDatosInvolucrado() && crearDescripcionHechos()){
-           
-           
-           
-           if (dd.getOcupacion().contains("Alumno")){
-               dd.setAlumnoDenunciante(SemestreField.getText(), GrupoField.getText(), CarreraField.getText());
-           }
-           if (dd.getOcupacion().contains("Trabajador")){
-               dd.setTrabajadorDenunciante(FuncionField.getText(), ContratoField.getText());
-           }
-           if (dd.getEdad()<18 )
-                crearDatosTutor();
-           else
-               tt = null;
+        if (crearDatosDenuncia()) {
+            if (crearDatosInvolucrado()) {
+                if (crearDescripcionHechos()) {
 
-                
-           dnc =new Denuncia (df.format(date), dd, di, dh, tt);
-           dnc.saveDenuncia();
-       }
-        
+                    if (dd.getOcupacion().contains("Alumno")) {
+                        dd.setAlumnoDenunciante(SemestreField.getText(), GrupoField.getText(), CarreraField.getText());
+                    }
+                    if (dd.getOcupacion().contains("Trabajador")) {
+                        dd.setTrabajadorDenunciante(FuncionField.getText(), ContratoField.getText());
+                    }
+                    if (dd.getEdad() < 18 && crearDatosTutor()) {
+                        System.out.println("Guardado con tutor");
+                    } else {
+                        tt = null;
+                        System.out.println("Guardado sin tutor");
+                    }
+                    JOptionPane.showMessageDialog(null, "Denuncia guerdada con exito", "Submit", JOptionPane.WARNING_MESSAGE);
+                    dnc = new Denuncia(df.format(date), dd, di, dh, tt);
+                    dnc.saveDenuncia();
+                    Bienvenido Ifdd = new Bienvenido();
+                    Ifdd.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Por favor, que la descripcion de los hechos sean correctos", "Campo invalido", JOptionPane.WARNING_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor, que los datos del involucrado sean correctos", "Campo invalido", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, que los datos del denunciante sean correctos", "Campo invalido", JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_EnviarButtonActionPerformed
 
-    private void crearDatosTutor(){
+    private boolean crearDatosTutor() {
         String aux1 = NombreTutor.getText();
         String aux2 = EdadTutor.getText();
         String aux3 = GeneroTutor.getSelectedItem().toString();
         String aux4 = DomicilioTutor.getText();
         String aux5 = TelefonoTutor.getText();
         String aux6 = CorreoTutor.getText();
-        
-        if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux5.isEmpty() || aux6.isEmpty()){
+
+        boolean rtrn = false;
+
+        if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux5.isEmpty() || aux6.isEmpty()) {
             System.out.println("Alguno de los espacios esta vacio");
-            JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);        
-        }else{
+            JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+
+        } else if (v.isLetters(aux1) && v.isEdad(aux2) && v.isLetters(aux3) && v.isLetters(aux4) && v.isPhone(aux5) && v.isEmail(aux6)) {
             tt = new Tutor(aux1, Integer.parseInt(aux2), aux3, aux4, aux5, aux6);
+            rtrn = true;
         }
+        return rtrn;
     }
-    
-    private boolean crearDatosDenuncia(){
-        
+
+    private boolean crearDatosDenuncia() {
+
         String aux1 = NombreDenuncianteField.getText();
         String aux2 = EdadDenuncianteField.getText();
-        String aux3 = (String)GeneroDenuncianteCombo.getSelectedItem();
+        String aux3 = (String) GeneroDenuncianteCombo.getSelectedItem();
         String aux4 = DomicilioDenuncianteField.getText();
         String aux5 = TelefonoDenuncianteField.getText();
         String aux6 = CorreoDenuncianteField.getText();
-        String aux7 = (String)OcupacionDenuncianteCombo.getSelectedItem();
+        String aux7 = (String) OcupacionDenuncianteCombo.getSelectedItem();
         String aux8 = UADenuncianteField.getText();
-        String aux9 = (String)TurnoDenuncianteCombo.getSelectedItem();
+        String aux9 = (String) TurnoDenuncianteCombo.getSelectedItem();
         String aux10 = (String) AnonimatoCombo.getSelectedItem();
-        String aux11 = NombreTutor.getText();
 
         boolean flag = false;
-        
-        if (aux10.startsWith("S"))
-            flag = true;
+        boolean rtrn = false;
 
-        if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux5.isEmpty() || aux6.isEmpty() || aux7.isEmpty() || aux8.isEmpty() || aux9.isEmpty() || aux10.isEmpty()){
-            System.out.println("Alguno de los espacios esta vacio");
-            JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+        if (aux10.startsWith("S")) {
+            flag = true;
         }
-        else{
-            dd = new Datos_denunciante (aux1, Integer.parseInt(aux2), aux3, aux4, aux5, aux6, aux7, aux8, aux9, flag);
-            return true;     
-        } 
-        return false;
+
+        if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux5.isEmpty() || aux6.isEmpty() || aux7.isEmpty() || aux8.isEmpty() || aux9.isEmpty() || aux10.isEmpty()) {
+            System.out.println("Alguno de los campos obligatorios del denunciante esta vacío");
+        } else if (v.isLetters(aux1) && v.isEdad(aux2)  && v.isLettersNumbers(aux4) && v.isPhone(aux5) && v.isEmail(aux6)  && v.isLetters(aux8) ) {
+            dd = new Datos_denunciante(aux1, Integer.parseInt(aux2), aux3, aux4, aux5, aux6, aux7, aux8, aux9, flag);
+            rtrn = true;
+        }
+        return rtrn;
     }
-    
-    private boolean crearDatosInvolucrado(){
+
+    private boolean crearDatosInvolucrado() {
         String aux1 = NombreInvolucradoField.getText();
         String aux2 = DependenciaInvolucradoField.getText();
         String aux3 = (String) TurnoInvolucradoCombo.getSelectedItem();
         String aux4 = (String) TipoInvolucradoCombo.getSelectedItem();
-        
-        if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux4.isEmpty()){
-            System.out.println("Alguno de los espacios esta vacio");
-            JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
-        }
-        else{
+
+        boolean rtrn = false;
+        if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux4.isEmpty()) {
+            System.out.println("Alguno de los campos obligatorios del involucrado esta vacío");
+        } else if (v.isLetters(aux1) && v.isLetters(aux2) ) {
             di = new Datos_involucrado(aux1, aux2, aux3);
-            return true;
+            rtrn = true;
         }
-        return false;
+        return rtrn;
     }
-    private boolean crearDescripcionHechos(){
-    
+
+    private boolean crearDescripcionHechos() {
+
         String aux1 = DiaHechosField.getText();
         String aux2 = MesHechosField.getText();
         String aux3 = AñoHechosField.getText();
@@ -1058,42 +1074,40 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         String aux9 = ElementoProbatorioField.getText();
         String aux10 = OtrosField.getText();
         boolean flag = false;
-        
-        if (aux8.startsWith("S"))
-            flag = true;
+        boolean rtrn = false;
 
-        if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux4.isEmpty()|| aux5.isEmpty() || aux6.isEmpty() ){
-            System.out.println("Alguno de los espacios esta vacio");
-            JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+        if (aux8.startsWith("S")) {
+            flag = true;
         }
-        else {
-            if(v.isNumber(aux1) && v.isNumber(aux2) && v.isNumber(aux3)){
-                if (v.isHour(aux4)){
-                    dh = new Descripcion_hechos ( v.getDate(aux1, aux2, aux3, aux4), aux5, aux6, aux7, flag, aux9, aux10);
-                    return true;
-                }
-                else{
+
+        if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux4.isEmpty() || aux5.isEmpty() || aux6.isEmpty()) {
+            System.out.println("Alguno de los campos obligatorios en la descripcion de los hechos esta vacío");
+        } else if (v.isLetters(aux5) && v.isLetters(aux6) && v.isLetters(aux7) && v.isLetters(aux9) && v.isLetters(aux10)) {
+            if (v.isNumber(aux1) && v.isNumber(aux2) && v.isNumber(aux3)) {
+                if (v.isHour(aux4)) {
+                    dh = new Descripcion_hechos(v.getDate(aux1, aux2, aux3, aux4), aux5, aux6, aux7, flag, aux9, aux10);
+                    rtrn = true;
+                } else {
                     JOptionPane.showMessageDialog(null, "Asegurate que la fecha tenga el siguiente formato:  HH:MM", "Campo inválido", JOptionPane.WARNING_MESSAGE);
                 }
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Verifica que la fecha sea correcta", "Campo inválido", JOptionPane.WARNING_MESSAGE);
-                }
+            }
         }
-        return false;
+        return rtrn;
     }
-    
-    
+
+
     private void EdadDenuncianteFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EdadDenuncianteFieldFocusLost
-        if(v.isEdad(EdadDenuncianteField.getText())){
-            if (Integer.parseInt(EdadDenuncianteField.getText()) <18){
+        if (v.isEdad(EdadDenuncianteField.getText())) {
+            if (Integer.parseInt(EdadDenuncianteField.getText()) < 18) {
                 jLabel20.setVisible(true);
                 jLabel47.setVisible(true);
                 jLabel48.setVisible(true);
                 jLabel49.setVisible(true);
                 jLabel50.setVisible(true);
-                jLabel51.setVisible(true);       
-                jLabel52.setVisible(true);       
+                jLabel51.setVisible(true);
+                jLabel52.setVisible(true);
                 NombreTutor.setVisible(true);
                 EdadTutor.setVisible(true);
                 GeneroTutor.setVisible(true);
@@ -1101,69 +1115,69 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                 DomicilioTutor.setVisible(true);
                 CorreoTutor.setVisible(true);
 
-            }else{
+            } else {
                 jLabel20.setVisible(false);
                 jLabel47.setVisible(false);
                 jLabel48.setVisible(false);
                 jLabel49.setVisible(false);
                 jLabel50.setVisible(false);
-                jLabel51.setVisible(false);       
-                jLabel52.setVisible(false);       
+                jLabel51.setVisible(false);
+                jLabel52.setVisible(false);
                 NombreTutor.setVisible(false);
                 EdadTutor.setVisible(false);
                 GeneroTutor.setVisible(false);
                 TelefonoTutor.setVisible(false);
                 DomicilioTutor.setVisible(false);
                 CorreoTutor.setVisible(false);
-            }               
-        }else{
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Verifica que la edad ingresada sea correcta", "Campo inválido", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_EdadDenuncianteFieldFocusLost
 
     private void OcupacionDenuncianteComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_OcupacionDenuncianteComboFocusLost
-      if (OcupacionDenuncianteCombo.getSelectedIndex() == 0){
-          GrupoField.setVisible(true);
-          SemestreField.setVisible(true);
-          CarreraField.setVisible(true);
-          jLabel38.setVisible(true);
-          jLabel39.setVisible(true);
-          jLabel40.setVisible(true);
-          
-          ContratoField.setVisible(false);
-          FuncionField.setVisible(false);
-          jLabel41.setVisible(false);
-          jLabel42.setVisible(false); 
-      }else{
-          GrupoField.setVisible(false);
-          SemestreField.setVisible(false);
-          CarreraField.setVisible(false);
-          jLabel38.setVisible(false);
-          jLabel39.setVisible(false);
-          jLabel40.setVisible(false);
-          
-          ContratoField.setVisible(true);
-          FuncionField.setVisible(true);
-          jLabel41.setVisible(true);
-          jLabel42.setVisible(true);
-          
-      }
-        
+        if (OcupacionDenuncianteCombo.getSelectedIndex() == 0) {
+            GrupoField.setVisible(true);
+            SemestreField.setVisible(true);
+            CarreraField.setVisible(true);
+            jLabel38.setVisible(true);
+            jLabel39.setVisible(true);
+            jLabel40.setVisible(true);
+
+            ContratoField.setVisible(false);
+            FuncionField.setVisible(false);
+            jLabel41.setVisible(false);
+            jLabel42.setVisible(false);
+        } else {
+            GrupoField.setVisible(false);
+            SemestreField.setVisible(false);
+            CarreraField.setVisible(false);
+            jLabel38.setVisible(false);
+            jLabel39.setVisible(false);
+            jLabel40.setVisible(false);
+
+            ContratoField.setVisible(true);
+            FuncionField.setVisible(true);
+            jLabel41.setVisible(true);
+            jLabel42.setVisible(true);
+
+        }
+
     }//GEN-LAST:event_OcupacionDenuncianteComboFocusLost
 
     private void NombreDenuncianteFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreDenuncianteFieldFocusLost
         if (!v.isLetters(NombreDenuncianteField.getText()))
-            JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_NombreDenuncianteFieldFocusLost
 
     private void DomicilioDenuncianteFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DomicilioDenuncianteFieldFocusLost
         if (!v.isLettersNumbers(DomicilioDenuncianteField.getText()))
-            JOptionPane.showMessageDialog(null, "El formato del domicio no es valido", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "El formato del domicio no es valido", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_DomicilioDenuncianteFieldFocusLost
 
     private void TelefonoDenuncianteFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TelefonoDenuncianteFieldFocusLost
         if (!v.isPhone(TelefonoDenuncianteField.getText()))
-            JOptionPane.showMessageDialog(null, "El formato del telefono no es valido", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "El formato del telefono no es valido", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_TelefonoDenuncianteFieldFocusLost
 
     private void CorreoDenuncianteFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CorreoDenuncianteFieldFocusLost
@@ -1178,87 +1192,87 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
     private void GrupoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_GrupoFieldFocusLost
         if (!v.isLettersNumbers(GrupoField.getText()))
-            JOptionPane.showMessageDialog(null, "El grupo no puede contener carecteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "El grupo no puede contener carecteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_GrupoFieldFocusLost
 
     private void CarreraFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CarreraFieldFocusLost
         if (!v.isLetters(CarreraField.getText()))
-            JOptionPane.showMessageDialog(null, "La carrera solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "La carrera solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_CarreraFieldFocusLost
 
     private void FuncionFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FuncionFieldFocusLost
         if (!v.isLetters(FuncionField.getText()))
-            JOptionPane.showMessageDialog(null, "La funcion solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "La funcion solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_FuncionFieldFocusLost
 
     private void ContratoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ContratoFieldFocusLost
         if (!v.isLetters(ContratoField.getText()))
-            JOptionPane.showMessageDialog(null, "El contrato solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "El contrato solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_ContratoFieldFocusLost
 
     private void UADenuncianteFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UADenuncianteFieldFocusLost
         if (!v.isLetters(UADenuncianteField.getText()))
-            JOptionPane.showMessageDialog(null, "La unidad academica solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "La unidad academica solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_UADenuncianteFieldFocusLost
 
     private void NombreTutorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreTutorFocusLost
         if (!v.isLetters(NombreTutor.getText()))
-            JOptionPane.showMessageDialog(null, "El nombre del tutor solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "El nombre del tutor solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_NombreTutorFocusLost
 
     private void NombreInvolucradoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreInvolucradoFieldFocusLost
         if (!v.isLetters(NombreInvolucradoField.getText()))
-            JOptionPane.showMessageDialog(null, "El nombre del involucrado solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "El nombre del involucrado solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_NombreInvolucradoFieldFocusLost
 
     private void DependenciaInvolucradoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DependenciaInvolucradoFieldFocusLost
         if (!v.isLettersNumbers(DependenciaInvolucradoField.getText()))
-            JOptionPane.showMessageDialog(null, "La dependencia no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "La dependencia no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_DependenciaInvolucradoFieldFocusLost
 
     private void LugarHechosFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_LugarHechosFieldFocusLost
         if (!v.isLettersNumbers(LugarHechosField.getText()))
-            JOptionPane.showMessageDialog(null, "El lugar no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "El lugar no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_LugarHechosFieldFocusLost
 
     private void DescripcionHechosFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DescripcionHechosFieldFocusLost
         if (!v.isLettersNumbers(DescripcionHechosField.getText()))
-            JOptionPane.showMessageDialog(null, "La descripcion no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "La descripcion no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_DescripcionHechosFieldFocusLost
 
     private void ElementoProbatorioComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ElementoProbatorioComboFocusLost
-        if (ElementoProbatorioCombo.getSelectedIndex()== 0){
+        if (ElementoProbatorioCombo.getSelectedIndex() == 0) {
             jLabel46.setVisible(true);
             ElementoProbatorioField.setVisible(true);
-        }else{
+        } else {
             jLabel46.setVisible(false);
-            ElementoProbatorioField.setVisible(false);            
-        }               
+            ElementoProbatorioField.setVisible(false);
+        }
     }//GEN-LAST:event_ElementoProbatorioComboFocusLost
 
     private void ElementoProbatorioFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ElementoProbatorioFieldFocusLost
         if (!v.isLettersNumbers(ElementoProbatorioField.getText()))
-            JOptionPane.showMessageDialog(null, "La descripcion no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "La descripcion no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_ElementoProbatorioFieldFocusLost
 
     private void OtrosFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_OtrosFieldFocusLost
         if (!v.isLettersNumbers(OtrosField.getText()))
-            JOptionPane.showMessageDialog(null, "La descripcion no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "La descripcion no puede tener caracteres especiales", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_OtrosFieldFocusLost
 
     private void EdadTutorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EdadTutorFocusLost
-    if(!v.isEdad(EdadTutor.getText()))
-        JOptionPane.showMessageDialog(null, "Verifica que la edad del tutor ingresada sea correcta", "Campo inválido", JOptionPane.WARNING_MESSAGE);
+        if (!v.isEdad(EdadTutor.getText()))
+            JOptionPane.showMessageDialog(null, "Verifica que la edad del tutor ingresada sea correcta", "Campo inválido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_EdadTutorFocusLost
 
     private void DomicilioTutorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DomicilioTutorFocusLost
-       if (!v.isLettersNumbers(DomicilioDenuncianteField.getText()))
-            JOptionPane.showMessageDialog(null, "El formato del domicio no es valido", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+        if (!v.isLettersNumbers(DomicilioDenuncianteField.getText()))
+            JOptionPane.showMessageDialog(null, "El formato del domicio no es valido", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_DomicilioTutorFocusLost
 
     private void TelefonoTutorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TelefonoTutorFocusLost
         if (!v.isPhone(TelefonoDenuncianteField.getText()))
-            JOptionPane.showMessageDialog(null, "El formato del telefono no es valido", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "El formato del telefono no es valido", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_TelefonoTutorFocusLost
 
     private void CorreoTutorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CorreoTutorFocusLost
@@ -1272,9 +1286,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         Ifdd.setVisible(true);
         dispose();
     }//GEN-LAST:event_BIFDDActionPerformed
-    
 
- 
     /**
      * @param args the command line arguments
      */
@@ -1284,11 +1296,9 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
-        //Get Date
 
+        //Get Date
 //        System.out.println(df.format(date));
- 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

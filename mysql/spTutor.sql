@@ -59,7 +59,7 @@ delimiter **
 	end if;
 
 	if(msj='Tutor guardado con exito') then
-		select msj as Resultado, id as id from Tutor where nombre = nombreI and correo = correoI;
+		select msj as Resultado, id as id from Tutor where id = newid;
 	else
 		select msj as Resultado, 0 as id;
 	end if;

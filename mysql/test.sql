@@ -29,6 +29,7 @@ call guardaDatosDenunciante(
 call guardaDatosDenunciante(
 "0", "Carlos Calderon", 12, 1, "calle numero", "1234567", "correo", "unidad", "turno", 1
 );
+
 select * from Datos_denunciante;
 
 call consultarDatosDenuncianteById("1");
@@ -47,7 +48,6 @@ call guardaHechos(
 select * from Descripcion_hechos;
 
 # DELETE FROM Descripcion_hechos WHERE id >0;
-
 
 
 ########################## spDatosInvolucrado ##########################
@@ -94,3 +94,4 @@ call consultarDatosTutorByDenunciaId(5);
 #select * from datosDenuncia;
 #select fecha from Denuncia;
 ##DELETE FROM Denuncia WHERE id >0;
+call guardaDenuncia(0, '2024/01/07 02:56:29', 0, 0, 1, 4, null);

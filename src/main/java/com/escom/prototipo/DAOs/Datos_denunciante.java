@@ -94,7 +94,12 @@ public class Datos_denunciante{
     public String getGenero() {
         return genero;
     }
-
+    public int getGeneroIndex() {
+        if (genero.contentEquals("Masculino"))
+            return 1;
+        else
+            return 2;
+    }
     public void setGenero(String genero) {
         this.genero = genero;
     }
@@ -153,6 +158,12 @@ public class Datos_denunciante{
 
     public void setAnonimo(boolean anonimo) {
         this.anonimo = anonimo;
+    }
+    public int getAnonimoIndex() {
+    if (anonimo)
+        return 1;
+    else
+        return 0;
     }
     
 }

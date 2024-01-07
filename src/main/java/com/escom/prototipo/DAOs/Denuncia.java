@@ -22,10 +22,6 @@ public class Denuncia {
     private Tutor tt;
     
     public Denuncia(){
-        dd = new Datos_denunciante();
-        di = new Datos_involucrado();
-        dh  = new Descripcion_hechos();
-        tt = null;
     }
 
     public Denuncia(String fecha, Datos_denunciante oDenunciante, Datos_involucrado oInvolucrado, Descripcion_hechos oHechos, Tutor oTutor) {
@@ -36,8 +32,12 @@ public class Denuncia {
         this.tt = oTutor;
     }
     public boolean saveDenuncia(){
-        if (tt != null)
-                saveDatosTutor();
+        String tt_id = "null";
+        if (tt != null){
+            saveDatosTutor();
+            tt_id = tt.getId()+"";
+        }
+
         
         saveDatosDenunciante();
         saveDatosInvolucrado();
@@ -47,12 +47,13 @@ public class Denuncia {
         try {
             con.conectar();
             String str = "call guardaDenuncia(0, '" 
-                    + fecha + "', '" 
-                    + dd.getId() + "', '" 
-                    + di.getId() + "', '" 
-                    + dh.getId() + "', '" 
-                    + tt.getId()+ "');";
-            System.out.println("str");
+                    + fecha + "', " 
+                    + dd.getId() + ", " 
+                    + di.getId() + ", " 
+                    + 1 + ", " 
+                    + dh.getId() + ", " 
+                    + tt_id+ ");";
+            System.out.println(str);
             ResultSet rsguarda = con.consulta(str);
             
             if (rsguarda.next()) {
@@ -67,7 +68,7 @@ public class Denuncia {
             con.cierraConexion();
         } 
         catch (Exception e) {
-            System.out.println(e + " saveDatosDenunciante()");
+            System.out.println(e + " guardaDenuncia()");
         }
         return false;
 
@@ -82,22 +83,21 @@ public class Denuncia {
             String str = "call guardaDatosDenunciante(0, '" 
                     + dd.getNombre_completo() + "', '" 
                     + dd.getEdad() + "', '" 
-                    + dd.getGenero()+ "', '" 
+                    + dd.getGeneroIndex()+ "', '" 
                     + dd.getDomicilio()+ "', '" 
                     + dd.getTelefono()+ "', '" 
                     + dd.getCorreo()+ "', '" 
                     + dd.getUnidad_academica()+ "', '" 
                     + dd.getTurno()+ "', '" 
-                    + dd.isAnonimo()+ "', '" 
-                    + tt.getId()+ "');";
-            System.out.println("str");
+                    + dd.getAnonimoIndex()+ "');";
+            System.out.println(str);
             ResultSet rsguarda = con.consulta(str);
             
             if (rsguarda.next()) {
                 if (rsguarda.getString("Resultado").equals("Datos del denunciante guardados con exito")) {
-                    System.out.println("Datos del denunciante guardados con exito");
+                   
                     dd.setId(Integer.parseInt(rsguarda.getString("id")));
-                    
+                     System.out.println("Datos del denunciante guardados con exito " + dd.getId() );
                     return true;
                 }else{
                     System.out.println("Ocurrio un error: saveDatosDenunciante() ");
@@ -119,18 +119,18 @@ public class Denuncia {
             String str = "call guardaDatosTutor(0, '" 
                     + tt.getNombre_completo() + "', '" 
                     + tt.getEdad() + "', '" 
-                    + tt.getGenero()+ "', '" 
+                    + tt.getGeneroIndex()+ "', '" 
                     + tt.getDomicilio()+ "', '" 
                     + tt.getTelefono()+ "', '" 
                     + tt.getCorreo()+ "');";
-            System.out.println("str");
+            System.out.println(str);
             ResultSet rsguarda = con.consulta(str);
             
             if (rsguarda.next()) {
                 if (rsguarda.getString("Resultado").equals("Datos del tutor guardados con exito")) {
-                    System.out.println("Datos del tutor guardados con exito");
-                    tt.setId(Integer.parseInt(rsguarda.getString("id")));
                     
+                    tt.setId(Integer.parseInt(rsguarda.getString("id")));
+                    System.out.println("Datos del tutor guardados con exito "+tt.getId());
                     return true;
                 }else{
                     System.out.println("Ocurrio un error: saveDatosTutor() ");
@@ -153,13 +153,14 @@ public class Denuncia {
                     + di.getNombre_completo() + "', '" 
                     + di.getDependencia_politecnico()+ "', '" 
                     + di.getTurno()+ "');";
-            System.out.println("str");
+            System.out.println(str);
             ResultSet rsguarda = con.consulta(str);
 
             if (rsguarda.next()) {
                 if (rsguarda.getString("Resultado").equals("Datos del involucrado guardados con exito")) {
-                    System.out.println("Datos del involucrado guardados con exito");
+                    
                     di.setId(Integer.parseInt(rsguarda.getString("id")));
+                    System.out.println("Datos del involucrado guardados con exito "+di.getId());
                     return true; 
                 }else{
                     System.out.println("Ocurrio un error: saveDatosInvolucrado() ");
@@ -188,13 +189,14 @@ public class Denuncia {
                     + dh.getOtros()+ "');";
             
 
-            System.out.println("str");
+            System.out.println(str);
             ResultSet rsguarda = con.consulta(str);
 
             if (rsguarda.next()) {
                 if (rsguarda.getString("Resultado").equals("Hechos guardados con exito")) {
-                    System.out.println("Hechos guardados con exito");
+                    
                     dh.setId( Integer.parseInt(rsguarda.getString("id")));
+                    System.out.println("Hechos guardados con exito "+dh.getId());
                     return true;
                 }else{
                     System.out.println("Ocurrio un error: saveDescripcionHechos() ");

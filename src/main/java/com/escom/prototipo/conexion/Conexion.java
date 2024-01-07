@@ -55,7 +55,6 @@ public class Conexion {
         try { 
             this.conn = DriverManager.getConnection(urlBD, usrBD, passBD); 
             
-            System.out.println("Connected to the database!");
         } catch (Exception err) {
             System.out.println("Error " + err.getMessage());
         }

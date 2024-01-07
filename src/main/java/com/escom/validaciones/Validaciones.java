@@ -21,7 +21,7 @@ public class Validaciones {
 
     
     public boolean isLettersNumbers(String str){
-        String regex = "^[a-zA-Z0-9 ]*$";
+        String regex = "^[a-zA-Z0-9\\s]*$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(str);
 
@@ -35,7 +35,7 @@ public class Validaciones {
         return matcher.matches();
     }
     public boolean isLetters(String str){
-        String regex = "^[a-zA-Z]*$";
+        String regex = "^[a-zA-Z\\s]*$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(str);
 
@@ -69,15 +69,15 @@ public class Validaciones {
     }
     public String getDate(String dd, String mm, String aa, String hh){
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date newDate=null;
+        Date newDate = null;
         try {
             newDate = df.parse(aa +"/"+ mm +"/"+dd+" "+hh+":00");
         } catch (ParseException ex) {
             System.out.println("Error" +ex);
         }
         System.out.println("Fecha convertida: " + newDate);
-        System.out.println("Fecha convertida: " + newDate.toString());
-        return newDate.toString();
+
+        return df.format(newDate);
     }
     public boolean isNumber(String str){
         boolean flag = false;

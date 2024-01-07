@@ -60,8 +60,8 @@ delimiter **
 		
 	end if;
 
-	if(msj='Denunciante guardado con exito') then
-		select msj as Resultado, id as id from Datos_denunciante where nombre = nombreI and correo = correoI;
+	if(msj='Datos del denunciante guardados con exito') then
+		select msj as Resultado, id as id from Datos_denunciante where id = newid;
 	else
 		select msj as Resultado, 0 as id;
 	end if;

@@ -52,8 +52,8 @@ delimiter **
 		
 	end if;
 
-	if(msj='Involucrado guardado con exito') then
-		select msj as Resultado, id as id from Datos_involucrado where nombre = nombreI;
+	if(msj='Datos del involucrado guardados con exito') then
+		select msj as Resultado, id as id from Datos_involucrado where id = newid;
 	else
 		select msj as Resultado, 0 as id;
 	end if;

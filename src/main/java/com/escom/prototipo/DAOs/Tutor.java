@@ -60,7 +60,12 @@ public class Tutor {
     public String getGenero() {
         return genero;
     }
-
+    public int getGeneroIndex() {
+        if (genero.contentEquals("Masculino"))
+            return 1;
+        else
+            return 2;
+    }
     public void setGenero(String genero) {
         this.genero = genero;
     }
