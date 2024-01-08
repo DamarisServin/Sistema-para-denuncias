@@ -78,7 +78,8 @@ delimiter **
               tt.edad as edadTutor,
               g.genero as generoTutor,
               tt.telefono as telefonoTutor,
-              tt.correo as correoTutor
+              tt.correo as correoTutor,
+              tt.domicilio as domicilioTutor
 		from Denuncia d
 		inner join Tutor tt on d.tutor_id = tt.id
         inner join Genero g on tt.genero_id = g.id

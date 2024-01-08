@@ -20,6 +20,54 @@ public class Denuncia {
     private Datos_involucrado di;
     private Descripcion_hechos dh;
     private Tutor tt;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public Datos_denunciante getDd() {
+        return dd;
+    }
+
+    public void setDd(Datos_denunciante dd) {
+        this.dd = dd;
+    }
+
+    public Datos_involucrado getDi() {
+        return di;
+    }
+
+    public void setDi(Datos_involucrado di) {
+        this.di = di;
+    }
+
+    public Descripcion_hechos getDh() {
+        return dh;
+    }
+
+    public void setDh(Descripcion_hechos dh) {
+        this.dh = dh;
+    }
+
+    public Tutor getTt() {
+        return tt;
+    }
+
+    public void setTt(Tutor tt) {
+        this.tt = tt;
+    }
     
     public Denuncia(){
     }
@@ -232,6 +280,86 @@ public class Denuncia {
         }
         return dates;
     }
+    public ArrayList getDatesDenuncia(){
+        ArrayList <Date> dates = new ArrayList <Date> ();
+        Conexion con = new Conexion();
+        try {
+            con.conectar();
+            String str = "select fecha from Denuncia;";
+            ResultSet rsguarda = con.consulta(str);
+            
+            while (rsguarda.next()) {
+                
+                dates.add(rsguarda.getDate("fecha"));
+
+            }
+//            System.out.println(dates.toString());
+            con.cierraConexion();
+        } 
+        catch (Exception e) {
+            System.out.println(e + " getDates()");
+        }
+        return dates;
+    }
+    public ArrayList getDatesHechos(){
+        ArrayList <Date> dates = new ArrayList <Date> ();
+        Conexion con = new Conexion();
+        try {
+            con.conectar();
+            String str = "select fechahora from Descripcion_hechos;";
+            ResultSet rsguarda = con.consulta(str);
+            
+            while (rsguarda.next()) {
+                
+                dates.add(rsguarda.getDate("fechahora"));
+
+            }
+//            System.out.println(dates.toString());
+            con.cierraConexion();
+        } 
+        catch (Exception e) {
+            System.out.println(e + " getDatesHechos()");
+        }
+        return dates;
+    }
+    public ArrayList getAnonimos(){
+        ArrayList <String> an = new ArrayList <String> ();
+        Conexion con = new Conexion();
+        try {
+            con.conectar();
+            String str = "select anonimo from Datos_denunciante;";
+            ResultSet rsguarda = con.consulta(str);
+            
+            while (rsguarda.next()) {
+                an.add(rsguarda.getString("anonimo"));
+            }
+            con.cierraConexion();
+        } 
+        catch (Exception e) {
+            System.out.println(e + " getAnonimos()");
+        }
+        return an;
+    }
+    public ArrayList getIds(){
+        ArrayList <String> ids = new ArrayList <String> ();
+        Conexion con = new Conexion();
+        try {
+            con.conectar();
+            String str = "select id from Denuncia;";
+            ResultSet rsguarda = con.consulta(str);
+            
+            while (rsguarda.next()) {
+                
+                ids.add(rsguarda.getString("id"));
+
+            }
+            con.cierraConexion();
+        } 
+        catch (Exception e) {
+            System.out.println(e + " getIds()");
+        }
+        return ids;
+    }
 
     public ArrayList getDenunciasByDate(String date){
         ArrayList <Integer> ids = new ArrayList <Integer> ();
@@ -261,6 +389,9 @@ public class Denuncia {
             ResultSet rsguarda = con.consulta(str);
 
             while (rsguarda.next()) {     
+                    fecha = rsguarda.getString("fechaDenuncia");
+                    
+                    dd = new Datos_denunciante();
                     dd.setNombre_completo(rsguarda.getString("nombreDenunciante"));
                     dd.setEdad(rsguarda.getInt("edadDenunciante"));
                     dd.setGenero(rsguarda.getString("generoDenunciante"));
@@ -271,10 +402,12 @@ public class Denuncia {
                     dd.setTurno(rsguarda.getString("turnoDenunciante"));
                     dd.setAnonimo(rsguarda.getBoolean("anonimoDenunciante"));
                     
+                    di= new Datos_involucrado();
                     di.setNombre_completo(rsguarda.getString("nombreInvolucrado"));
                     di.setDependencia_politecnico(rsguarda.getString("dependenciaInvolucrado"));
                     di.setTurno(rsguarda.getString("turnoInvolucrado"));
                                        
+                    dh = new Descripcion_hechos();
                     dh.setFecha(rsguarda.getString("fechaHechos"));
                     dh.setLugar(rsguarda.getString("lugarHechos"));
                     dh.setDescripcion(rsguarda.getString("descripcionHechos"));
@@ -301,11 +434,11 @@ public class Denuncia {
         Conexion con = new Conexion();
         try {
             con.conectar();
-            String str = "call getTutorByDenunciaId('" + id+ "');";
+            String str = "call consultarDatosTutorByDenunciaId('" + id+ "');";
             ResultSet rsguarda = con.consulta(str);
 
             while (rsguarda.next()) {     
-
+                tt = new Tutor();
                 tt.setNombre_completo(rsguarda.getString("nombreTutor"));
                 tt.setEdad(rsguarda.getInt("edadTutor"));
                 tt.setGenero(rsguarda.getString("generoTutor"));

@@ -88,7 +88,7 @@ call guardaDenuncia(
 "0", "2023/12/02 ", 1, 1, 2, 2, null
 );
 select * from datosDenuncia;
-call consultarDenunciaById(4);
+call consultarDenunciaById(2);
 call consultarDenunciasByDate( "2023/12/02 ");
 call consultarDatosTutorByDenunciaId(5);
 #select * from datosDenuncia;
