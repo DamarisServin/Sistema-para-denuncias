@@ -1,7 +1,7 @@
 ########################## spProfesor ##########################
 
 call guardaProfesor(
-"0", "ejemplo@correo.com", "Abelardo",  "ESCOM", "1234567", "contrasena"
+"0", "emjlo@correo.com", "Abelardo",  "ESCOM", "1234567", "9OJqX4d7npVn7V3q"
 );
 call guardaProfesor(
 "0", "ab@ab.com", "Bernardo",  "ESCOM", "1234567", "contrasena"

@@ -105,10 +105,12 @@ public class Profesor{
         Conexion con = new Conexion();
         Validaciones v = new Validaciones();
         contrasena = v.generateRandomString();
+        System.out.println(contrasena);
         try {
             con.conectar();
-            ResultSet rsguarda = con.consulta("call cambiarContrasena(" + id + ", '" +contrasena+ "');");
-            
+            String str1 = "call cambiarContrasena(" + str + ", '" +contrasena+ "');";
+            ResultSet rsguarda = con.consulta(str1);
+            System.out.println(str1);
             if (rsguarda.next()) {
                 System.out.println("Usuario Actualizado");
                 con.cierraConexion();

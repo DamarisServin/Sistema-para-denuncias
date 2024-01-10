@@ -144,6 +144,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         CorreoTutor.setVisible(false);
         jLabel53 = new javax.swing.JLabel();
         BIFDD = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(this.MAXIMIZED_BOTH);
@@ -475,6 +476,8 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Elegir Archivo...");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -599,7 +602,9 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                         .addComponent(jLabel45))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(ElementoProbatorioCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ElementoProbatorioCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel46))
@@ -923,8 +928,10 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel45)
                 .addGap(12, 12, 12)
-                .addComponent(ElementoProbatorioCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ElementoProbatorioCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(17, 17, 17)
                 .addComponent(jLabel46)
                 .addGap(12, 12, 12)
                 .addComponent(ElementoProbatorioField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1368,6 +1375,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> TurnoDenuncianteCombo;
     private javax.swing.JComboBox<String> TurnoInvolucradoCombo;
     private javax.swing.JTextField UADenuncianteField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

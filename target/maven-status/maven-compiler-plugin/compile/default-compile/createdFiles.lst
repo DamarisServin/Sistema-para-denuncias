@@ -6,9 +6,11 @@ com\escom\prototipo\Registro$9.class
 com\escom\prototipo\FormatoConsulta.class
 com\escom\prototipo\FormatoConsulta$1.class
 com\escom\prototipo\Reportes$2.class
+com\escom\prototipo\test\PdfGenerator.class
 com\escom\prototipo\email\EmailSender$1.class
 com\escom\prototipo\Reportes$1.class
 com\escom\prototipo\Registro$6.class
+com\escom\prototipo\test\JTableToExcel.class
 com\escom\prototipo\email\EmailSender.class
 com\escom\prototipo\Reportes.class
 com\escom\prototipo\Registro$7.class

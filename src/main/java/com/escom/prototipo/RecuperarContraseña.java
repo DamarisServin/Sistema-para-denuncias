@@ -156,6 +156,7 @@ public class RecuperarContraseña extends javax.swing.JFrame {
            EmailSender es = new EmailSender();
            es.setTo(aux);
            es.setNewPasMsg(p.getContrasena());
+           System.out.println(p.getContrasena());
            if (es.sendMail())
                 JOptionPane.showMessageDialog(null, "Se envio un mensaje al correo proporcionado!", "Correo Enviado", JOptionPane.WARNING_MESSAGE);
        }else{
