@@ -1,5 +1,5 @@
 drop procedure if exists guardaHechos;
-
+drop procedure if exists guardaArcivos;
 delimiter **
 	create procedure guardaHechos(
 	in idE int,
@@ -56,4 +56,13 @@ delimiter **
 
 end; **
 
+create procedure guardaHechos(
+	in idI int,
+	in nombreI varchar(500),
+	in archivoI longblob,
+	in id_hechosI int
+	)
+	begin 
+		INSERT INTO Archivos (nombre_archivo, archivo, id_hechos) VALUES (nombreI, archivoI, id_hechosI);
+	end; **
 delimiter ;

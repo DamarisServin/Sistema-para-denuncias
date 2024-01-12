@@ -304,13 +304,29 @@ public class DenunciaDto {
                 }
             }
             con.cierraConexion();
+            if(dh.getMedios() && dh.getArchivo()!=null){
+                System.out.println("Existen archivos para guardar");
+                saveFiles(dh);
+            }
         } catch (NumberFormatException | SQLException e) {
             System.out.println(e + " saveDescripcionHechos()");
         }
         return false;
 
     }
+    private void saveFiles(Descripcion_hechos dh){
+         Conexion con = new Conexion();
+        try {
+            con.conectar();
+            System.out.println("saveFiles () en proceso");
+            con.archivo(dh.getArchivo(), dh.getId());
 
+            con.cierraConexion();
+        } catch (NumberFormatException | SQLException e) {
+            System.out.println(e + " saveFiles()");
+        }
+    }
+            
     public ArrayList getDates() {
         ArrayList<Date> dates = new ArrayList<>();
         Conexion con = new Conexion();
@@ -484,7 +500,6 @@ public class DenunciaDto {
 
             if (d.getDd().getEdad() < 18) {
                 d.getDd().setTt(getTutorByDenuncianteId(d.getDd().getId()));
-                System.out.println("Buscando Tutor");
             }
             if (d.getDd().getOcupacion().contains("Alumno")) {
                 setAlumnoInfo(d.getDd());
@@ -533,7 +548,6 @@ public class DenunciaDto {
             con.conectar();
             String str = "select * from Alumno_denunciante where denunciante_id = " + dd.getId() + ";";
             ResultSet rsguarda = con.consulta(str);
-            System.out.println(str+"set Alumno");
             while (rsguarda.next()) {
                 sm = rsguarda.getString("semestre");
                 gp = rsguarda.getString("grupo");

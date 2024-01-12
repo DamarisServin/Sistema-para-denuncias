@@ -100,6 +100,11 @@ public class Reportes extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
 
         jTable1.setModel(model);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         Buscar.setText("Buscar");
@@ -195,6 +200,12 @@ public class Reportes extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_ExportActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int row = jTable1.rowAtPoint(evt.getPoint());
+        int col = jTable1.columnAtPoint(evt.getPoint());
+        System.out.println("Row: " + row + ", Column: " + col);
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

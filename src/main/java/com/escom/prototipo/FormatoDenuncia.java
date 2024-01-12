@@ -8,15 +8,11 @@ import com.escom.prototipo.DAOs.Tutor;
 import com.escom.prototipo.DTOs.DenunciaDto;
 import com.escom.validaciones.Validaciones;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -29,9 +25,11 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     static Descripcion_hechos dh;
     static Denuncia dnc;
     static DenunciaDto dto;
+    static String file;
     static Validaciones v = new Validaciones();
 
     public FormatoDenuncia() {
+        dto = new DenunciaDto();
         df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         date = new Date();
         initComponents();
@@ -994,6 +992,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                     if (dd.getEdad() < 18 && crearDatosTutor()) {
                         System.out.println("Guardado con tutor");
                     }
+
                     dnc = new Denuncia(df.format(date), dd, di, dh);
 
                     if (dto.saveDenuncia(dnc)) {
@@ -1108,6 +1107,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             if (v.isNumber(aux1) && v.isNumber(aux2) && v.isNumber(aux3)) {
                 if (v.isHour(aux4)) {
                     dh = new Descripcion_hechos(v.getDate(aux1, aux2, aux3, aux4), aux5, aux6, aux7, flag, aux9, aux10);
+                    dh.setArchivo(file);
                     rtrn = true;
                 } else {
                     JOptionPane.showMessageDialog(null, "Asegurate que la fecha tenga el siguiente formato:  HH:MM", "Campo inválido", JOptionPane.WARNING_MESSAGE);
@@ -1318,17 +1318,10 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         // Muestra el file chooser y captura la respuesta del usuario
         int returnValue = fileChooser.showOpenDialog(null);
 
-        // Si el usuario selecciona un archivo, imprime la ruta del archivo
+
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             System.out.println("Archivo seleccionado: " + fileChooser.getSelectedFile().getAbsolutePath());
-            File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-            try (FileInputStream fis = new FileInputStream(file)) {
-
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(FormatoDenuncia.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(FormatoDenuncia.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            file = fileChooser.getSelectedFile().getAbsolutePath();
         }
     }//GEN-LAST:event_ArchivoButtonActionPerformed
 

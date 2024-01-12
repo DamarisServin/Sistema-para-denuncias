@@ -2,6 +2,9 @@ package com.escom.prototipo.conexion;
 
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Conexion {
@@ -55,7 +60,7 @@ public class Conexion {
         try { 
             this.conn = DriverManager.getConnection(urlBD, usrBD, passBD); 
             
-        } catch (Exception err) {
+        } catch (SQLException err) {
             System.out.println("Error " + err.getMessage());
         }
     }
@@ -66,12 +71,27 @@ public class Conexion {
     }
     
     //Metodos para ejecutar sentencias SQL
-     public int archivos(String sta, InputStream archivo) throws SQLException {
-        PreparedStatement statement = this.conn.prepareStatement(sta);
-        if (archivo != null) {
-            statement.setBlob(1, archivo);
+     public boolean archivo(String ruta, int id) {
+
+        FileInputStream fis;
+        File file = new File(ruta);
+
+        try {
+            fis = new FileInputStream(file);
+        
+            PreparedStatement preparedStatement = this.conn.prepareStatement("INSERT INTO Archivos (nombre_archivo, archivo, id_hechos) VALUES (?, ?, ?)");
+            preparedStatement.setString(1, file.getName());
+            preparedStatement.setBinaryStream(2, fis, (int) file.length());
+            preparedStatement.setInt(3, id);
+
+            preparedStatement.executeUpdate();
+            System.out.println("Archivo PDF guardado en la base de datos.");
+            return true;
+        } catch (FileNotFoundException | SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return statement.executeUpdate();
+        return false;
+
     }
     
     public ResultSet consulta(String consulta) throws SQLException {

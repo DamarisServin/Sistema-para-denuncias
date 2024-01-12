@@ -14,6 +14,7 @@ public class Descripcion_hechos {
     private boolean medios;
     private String mediosDescripcion;
     private String otros;
+    private String archivo;
 
     public Descripcion_hechos() {
     }
@@ -116,6 +117,14 @@ public class Descripcion_hechos {
 
     public void setTestigos(String testigos) {
         this.testigos = testigos;
+    }
+
+    public String getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(String archivo) {
+        this.archivo = archivo;
     }
 
 }

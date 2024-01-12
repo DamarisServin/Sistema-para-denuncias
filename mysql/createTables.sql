@@ -99,8 +99,8 @@ CREATE TABLE Descripcion_hechos(
 CREATE TABLE Archivos(
   id int NOT NULL AUTO_INCREMENT,
   nombre_archivo varchar(500) NOT NULL,
-  archivo longblob,
-  id_hechos int,
+  archivo longblob NOT NULL,
+  id_hechos int NOT NULL,
 
   PRIMARY KEY (id),
   FOREIGN KEY (id_hechos) REFERENCES Descripcion_hechos(id)
