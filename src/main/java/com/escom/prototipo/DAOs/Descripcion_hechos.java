@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.escom.prototipo.DAOs;
 
 /**
@@ -9,6 +5,7 @@ package com.escom.prototipo.DAOs;
  * @author damar
  */
 public class Descripcion_hechos {
+
     private int id;
     private String fecha;
     private String lugar;
@@ -21,7 +18,6 @@ public class Descripcion_hechos {
     public Descripcion_hechos() {
     }
 
-    
     public Descripcion_hechos(String fecha, String lugar, String descripcion, String testigos, boolean medios, String mediosDescripcion, String otros) {
         this.fecha = fecha;
         this.lugar = lugar;
@@ -31,7 +27,17 @@ public class Descripcion_hechos {
         this.mediosDescripcion = mediosDescripcion;
         this.otros = otros;
     }
-
+    
+    public Descripcion_hechos(int id, String fecha, String lugar, String descripcion, String testigos, boolean medios, String mediosDescripcion, String otros) {
+        this.id = id;
+        this.fecha = fecha;
+        this.lugar = lugar;
+        this.descripcion = descripcion;
+        this.testigos = testigos;
+        this.medios = medios;
+        this.mediosDescripcion = mediosDescripcion;
+        this.otros = otros;
+    }
     public int getId() {
         return id;
     }
@@ -48,11 +54,24 @@ public class Descripcion_hechos {
         this.mediosDescripcion = mediosDescripcion;
     }
 
-    public int getMedios() {
-        if(medios)
+    public boolean getMedios() {
+        return medios;
+    }
+
+    public int getMediosIndex() {
+        if (medios) {
             return 1;
-        else 
+        } else {
             return 0;
+        }
+    }
+
+    public String getMediosString() {
+        if (medios) {
+            return "Si";
+        } else {
+            return "No";
+        }
     }
 
     public void setMedios(boolean medios) {
@@ -66,7 +85,6 @@ public class Descripcion_hechos {
     public void setOtros(String otros) {
         this.otros = otros;
     }
-
 
     public String getFecha() {
         return fecha;
@@ -99,7 +117,5 @@ public class Descripcion_hechos {
     public void setTestigos(String testigos) {
         this.testigos = testigos;
     }
-    
-    
-    
+
 }

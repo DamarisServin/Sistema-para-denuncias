@@ -18,21 +18,53 @@ call consultarProfesorById(2);
 
 # DELETE FROM Profesor WHERE id >0;
 
+########################## spTutor ##########################
+
+call guardaDatosTutor(
+"0",  "Daniel Dominguez", 21, 1, "Domicilio", "1234567", "correo@ejemplo.com"
+);
+call guardaDatosTutor(
+"0", "Estefania Estrada", 21, 2, "calle numero", "1234567", "correo"
+);
+
+# DELETE FROM Tutor WHERE id >0;
+
 ########################## spDatosDenunciante ##########################
 
 call guardaDatosDenunciante(
-"0",  "Abel Abelardo", 12, 1, "Domicilio", "1234567", "correo", "unidad", "turno", 1
+"0",  "Abel Abelardo", 21, 1, "Domicilio", "1234567", "correo","Alumno", "unidad", "turno", 1, null
 );
 call guardaDatosDenunciante(
-"1", "Bernardo Benito", 12, 1, "calle numero", "1234567", "correo", "unidad", "turno", 1
+"0", "Bernardo Benito", 12, 1, "calle numero", "1234567", "correo","Alumno", "unidad", "turno", 1, 1
 );
 call guardaDatosDenunciante(
-"0", "Carlos Calderon", 12, 1, "calle numero", "1234567", "correo", "unidad", "turno", 1
+"0", "Carlos Calderon", 23, 1, "numero calle", "1234567", "correo","Alumno", "unidad", "turno", 1, null
 );
 
 select * from Datos_denunciante;
 
 call consultarDatosDenuncianteById("1");
+
+
+call guardaAlumnoDenunciante(0, 6, "grupo", "carrera", 1);
+call guardaAlumnoDenunciante(0, 5, "2IM3", "Ing IA", 2);
+call guardaTrabajadorDenunciante(0, "Funcion", "Contrato", 3);
+
+########################## spDatosInvolucrado ##########################
+
+call guardaDatosInvolucrado(
+"0",  "Antonio Altamar", "Dependencia", "turno"
+);
+call guardaDatosInvolucrado(
+"1", "Antonio Altamar", "Dependencia", "Diferente"
+);
+call guardaDatosInvolucrado(
+"0", "Carla Celcius", "Dependencia", "Turno"
+);
+select * from Datos_involucrado;
+
+#DELETE FROM Datos_involucrado WHERE id >0;
+
 
 ########################## spHechos ##########################
 
@@ -50,48 +82,31 @@ select * from Descripcion_hechos;
 # DELETE FROM Descripcion_hechos WHERE id >0;
 
 
-########################## spDatosInvolucrado ##########################
 
-
-call guardaDatosInvolucrado(
-"0",  "Antonio Altamar", "Dependencia", "turno"
-);
-call guardaDatosInvolucrado(
-"1", "Antorio Bond", "Dependencia", "Turno"
-);
-call guardaDatosInvolucrado(
-"0", "Carla Celcius", "Dependencia", "Turno"
-);
-select * from Datos_involucrado;
-
-#DELETE FROM Datos_involucrado WHERE id >0;
-
-########################## spTutor ##########################
-
-call guardaDatosTutor(
-"0",  "Abel Abelardo", 21, 1, "Domicilio", "1234567", "correo"
-);
-call guardaDatosTutor(
-"0", "Bernardo Benito", 21, 1, "calle numero", "1234567", "correo"
-);
 
 ########################## spDenuncia ##########################
 
 
 call guardaDenuncia(
-"0", "2023/11/12 00:00:00", 1, 1, 1, 1, 1
+"0", "2023/11/12 00:00:00", 1, 1, 1, 1
 );
 call guardaDenuncia(
-"0", "2023/12/02 ", 2, 2, 2, 2, null
+"0", "2023/12/02 ", 2, 2, 2, 2
 );
 call guardaDenuncia(
-"0", "2023/12/02 ", 1, 1, 2, 2, null
+"0", "2023/12/02 ", 1, 1, 2, 2
 );
+call guardaDenuncia(
+"0", "2024/01/01 ", 1, 1, 2, 2
+);
+call guardaDenuncia(0, '2024/01/07 02:56:29', 2, 2, 1, 1);
+
+
+select * from Denuncia;
 select * from datosDenuncia;
 call consultarDenunciaById(2);
 call consultarDenunciasByDate( "2023/12/02 ");
-call consultarDatosTutorByDenunciaId(5);
-#select * from datosDenuncia;
-#select fecha from Denuncia;
+
+
 ##DELETE FROM Denuncia WHERE id >0;
-call guardaDenuncia(0, '2024/01/07 02:56:29', 0, 0, 1, 4, null);
+select * from Alumno_denunciante ;

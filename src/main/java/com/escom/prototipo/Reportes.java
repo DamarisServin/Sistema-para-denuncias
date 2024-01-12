@@ -5,12 +5,21 @@
 package com.escom.prototipo;
 
 import com.escom.prototipo.DAOs.Denuncia;
+import com.escom.prototipo.DTOs.DenunciaDto;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -30,25 +39,33 @@ public class Reportes extends javax.swing.JFrame {
         date = new Date(); 
         df.format(date);
         
-        Denuncia dn = new Denuncia();
+        DenunciaDto dto = new DenunciaDto();
         model = new DefaultTableModel();
         model.addColumn("Id");
         model.addColumn("Fecha Denuncia");
-        model.addColumn("Fecha Hechos");
-        model.addColumn("Anonimo");
+        model.addColumn("Nombre Denunciante");
+        model.addColumn("Edad Denunciante");
+        model.addColumn("Genero Denunciante");
+        model.addColumn("Correo Denunciante");
         
-        ArrayList<Date> date1 = dn.getDatesDenuncia();
-        ArrayList<Date> date2 = dn.getDatesHechos();
-        ArrayList<String> ids = dn.getIds();
-        ArrayList<String> anonimo = dn.getAnonimos();
-        String aux;
+        ArrayList<Denuncia> list = dto.getAllDenuncians();
+//        ArrayList<Date> date1 = dn.getDatesDenuncia();
+//        ArrayList<Date> date2 = dn.getDatesHechos();
+//        ArrayList<String> ids = dn.getIds();
+//        ArrayList<String> anonimo = dn.getAnonimos();
+//        String aux;
    
-        for(int i = 0; i<ids.size(); i++){
-            aux = "No";
-            if(anonimo.get(i).contentEquals("1")){
-                aux = "Si";
-            }
-            model.addRow(new Object[] {ids.get(i),date1.get(i),date2.get(i),aux });
+        for(Denuncia d : list){
+
+      //      model.addRow(new Object[] {ids.get(i),date1.get(i),date2.get(i),aux });
+            model.addRow(new Object[] {
+                d.getId(),
+                d.getFecha(),
+                d.getDd().getNombre_completo(),
+                d.getDd().getEdad(),
+                d.getDd().getGenero(),
+                d.getDd().getCorreo()
+            }); 
         }
 
         initComponents();
@@ -71,6 +88,7 @@ public class Reportes extends javax.swing.JFrame {
         Buscar = new javax.swing.JButton();
         idFind = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        Export = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(this.MAXIMIZED_BOTH);
@@ -93,24 +111,32 @@ public class Reportes extends javax.swing.JFrame {
 
         jLabel2.setText("Ingrese el id de la denuncia que desea consultar");
 
+        Export.setText("Exportar a Excel");
+        Export.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(idFind, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Buscar)
-                .addGap(195, 195, 195))
+                .addGap(41, 41, 41)
+                .addComponent(Export)
+                .addGap(79, 79, 79))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +149,8 @@ public class Reportes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Buscar)
                     .addComponent(idFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(Export))
                 .addGap(42, 42, 42))
         );
 
@@ -135,6 +162,39 @@ public class Reportes extends javax.swing.JFrame {
         new FormatoConsulta(idFind.getText()).setVisible(true);    
         dispose();
     }//GEN-LAST:event_BuscarActionPerformed
+
+    private void ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportActionPerformed
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Datos");
+
+        // Obtener el modelo de la tabla
+        TableModel tm = this.model;
+
+        // Crear la fila de encabezado
+        Row headerRow = sheet.createRow(0);
+        for (int col = 0; col < tm.getColumnCount(); col++) {
+            Cell cell = headerRow.createCell(col);
+            cell.setCellValue(tm.getColumnName(col));
+        }
+
+        // Llenar el contenido de la tabla
+        for (int row = 0; row < tm.getRowCount(); row++) {
+            Row excelRow = sheet.createRow(row + 1);
+            for (int col = 0; col < tm.getColumnCount(); col++) {
+                Cell cell = excelRow.createCell(col);
+                cell.setCellValue(tm.getValueAt(row, col).toString());
+            }
+        }
+
+        // Escribir el libro de trabajo a un archivo Excel
+        try (FileOutputStream outputStream = new FileOutputStream("output.xlsx")) {
+            workbook.write(outputStream);
+            System.out.println("Archivo Excel creado exitosamente en: " + "output.xlsx");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_ExportActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,6 +233,7 @@ public class Reportes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
+    private javax.swing.JButton Export;
     private javax.swing.JTextField idFind;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

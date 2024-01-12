@@ -2,6 +2,7 @@
 package com.escom.prototipo;
 
 import com.escom.prototipo.DAOs.Centro_de_ayuda;
+import com.escom.prototipo.DTOs.CentrosDto;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -11,7 +12,7 @@ public class CentrosAyuda extends javax.swing.JFrame {
     DefaultTableModel model;
             
     public CentrosAyuda() {
-        ArrayList<Centro_de_ayuda> list = (new Centro_de_ayuda()).getCentros();
+        ArrayList<Centro_de_ayuda> list = (new CentrosDto()).getCentros();
         model = new DefaultTableModel();
         model.addColumn("Nombre");
         model.addColumn("Direccion");

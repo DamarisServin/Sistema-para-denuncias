@@ -5,11 +5,19 @@ import com.escom.prototipo.DAOs.Datos_involucrado;
 import com.escom.prototipo.DAOs.Denuncia;
 import com.escom.prototipo.DAOs.Descripcion_hechos;
 import com.escom.prototipo.DAOs.Tutor;
+import com.escom.prototipo.DTOs.DenunciaDto;
 import com.escom.validaciones.Validaciones;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class FormatoDenuncia extends javax.swing.JFrame {
@@ -20,7 +28,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     static Datos_involucrado di;
     static Descripcion_hechos dh;
     static Denuncia dnc;
-    static Tutor tt;
+    static DenunciaDto dto;
     static Validaciones v = new Validaciones();
 
     public FormatoDenuncia() {
@@ -144,7 +152,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         CorreoTutor.setVisible(false);
         jLabel53 = new javax.swing.JLabel();
         BIFDD = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        ArchivoButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(this.MAXIMIZED_BOTH);
@@ -476,7 +484,12 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Elegir Archivo...");
+        ArchivoButton.setText("Elegir Archivo...");
+        ArchivoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ArchivoButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -604,7 +617,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(ElementoProbatorioCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
-                        .addComponent(jButton1))
+                        .addComponent(ArchivoButton))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel46))
@@ -930,7 +943,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ElementoProbatorioCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(ArchivoButton))
                 .addGap(17, 17, 17)
                 .addComponent(jLabel46)
                 .addGap(12, 12, 12)
@@ -980,16 +993,18 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                     }
                     if (dd.getEdad() < 18 && crearDatosTutor()) {
                         System.out.println("Guardado con tutor");
-                    } else {
-                        tt = null;
-                        System.out.println("Guardado sin tutor");
                     }
-                    JOptionPane.showMessageDialog(null, "Denuncia guerdada con exito", "Submit", JOptionPane.WARNING_MESSAGE);
-                    dnc = new Denuncia(df.format(date), dd, di, dh, tt);
-                    dnc.saveDenuncia();
-                    Bienvenido Ifdd = new Bienvenido();
-                    Ifdd.setVisible(true);
-                    dispose();
+                    dnc = new Denuncia(df.format(date), dd, di, dh);
+
+                    if (dto.saveDenuncia(dnc)) {
+                        JOptionPane.showMessageDialog(null, "Denuncia guerdada con exito", "Submit", JOptionPane.WARNING_MESSAGE);
+                        Bienvenido Ifdd = new Bienvenido();
+                        Ifdd.setVisible(true);
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo guardar la denuncia, por favor intentelo nuevamente", "Submit", JOptionPane.WARNING_MESSAGE);
+                    }
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Por favor, que la descripcion de los hechos sean correctos", "Campo invalido", JOptionPane.WARNING_MESSAGE);
                 }
@@ -1017,7 +1032,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
 
         } else if (v.isLetters(aux1) && v.isEdad(aux2) && v.isLetters(aux3) && v.isLetters(aux4) && v.isPhone(aux5) && v.isEmail(aux6)) {
-            tt = new Tutor(aux1, Integer.parseInt(aux2), aux3, aux4, aux5, aux6);
+            dd.setTt(new Tutor(aux1, Integer.parseInt(aux2), aux3, aux4, aux5, aux6));
             rtrn = true;
         }
         return rtrn;
@@ -1045,7 +1060,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
         if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux5.isEmpty() || aux6.isEmpty() || aux7.isEmpty() || aux8.isEmpty() || aux9.isEmpty() || aux10.isEmpty()) {
             System.out.println("Alguno de los campos obligatorios del denunciante esta vacío");
-        } else if (v.isLetters(aux1) && v.isEdad(aux2)  && v.isLettersNumbers(aux4) && v.isPhone(aux5) && v.isEmail(aux6)  && v.isLetters(aux8) ) {
+        } else if (v.isLetters(aux1) && v.isEdad(aux2) && v.isLettersNumbers(aux4) && v.isPhone(aux5) && v.isEmail(aux6) && v.isLetters(aux8)) {
             dd = new Datos_denunciante(aux1, Integer.parseInt(aux2), aux3, aux4, aux5, aux6, aux7, aux8, aux9, flag);
             rtrn = true;
         }
@@ -1061,7 +1076,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         boolean rtrn = false;
         if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux4.isEmpty()) {
             System.out.println("Alguno de los campos obligatorios del involucrado esta vacío");
-        } else if (v.isLetters(aux1) && v.isLetters(aux2) ) {
+        } else if (v.isLetters(aux1) && v.isLetters(aux2)) {
             di = new Datos_involucrado(aux1, aux2, aux3);
             rtrn = true;
         }
@@ -1109,6 +1124,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         if (v.isEdad(EdadDenuncianteField.getText())) {
             if (Integer.parseInt(EdadDenuncianteField.getText()) < 18) {
                 jLabel20.setVisible(true);
+                jLabel22.setVisible(true);
                 jLabel47.setVisible(true);
                 jLabel48.setVisible(true);
                 jLabel49.setVisible(true);
@@ -1124,6 +1140,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
             } else {
                 jLabel20.setVisible(false);
+                jLabel22.setVisible(false);
                 jLabel47.setVisible(false);
                 jLabel48.setVisible(false);
                 jLabel49.setVisible(false);
@@ -1251,9 +1268,11 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         if (ElementoProbatorioCombo.getSelectedIndex() == 0) {
             jLabel46.setVisible(true);
             ElementoProbatorioField.setVisible(true);
+            ArchivoButton.setVisible(true);
         } else {
             jLabel46.setVisible(false);
             ElementoProbatorioField.setVisible(false);
+            ArchivoButton.setVisible(false);
         }
     }//GEN-LAST:event_ElementoProbatorioComboFocusLost
 
@@ -1293,6 +1312,25 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         Ifdd.setVisible(true);
         dispose();
     }//GEN-LAST:event_BIFDDActionPerformed
+
+    private void ArchivoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArchivoButtonActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        // Muestra el file chooser y captura la respuesta del usuario
+        int returnValue = fileChooser.showOpenDialog(null);
+
+        // Si el usuario selecciona un archivo, imprime la ruta del archivo
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            System.out.println("Archivo seleccionado: " + fileChooser.getSelectedFile().getAbsolutePath());
+            File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+            try (FileInputStream fis = new FileInputStream(file)) {
+
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(FormatoDenuncia.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(FormatoDenuncia.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_ArchivoButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1334,6 +1372,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> AnonimatoCombo;
+    private javax.swing.JButton ArchivoButton;
     private javax.swing.JTextField AñoHechosField;
     private javax.swing.JTextField AñoPresentField;
     private javax.swing.JButton BIFDD;
@@ -1375,7 +1414,6 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> TurnoDenuncianteCombo;
     private javax.swing.JComboBox<String> TurnoInvolucradoCombo;
     private javax.swing.JTextField UADenuncianteField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

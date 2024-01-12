@@ -1,15 +1,11 @@
 package com.escom.prototipo;
 
 import com.escom.prototipo.DAOs.Profesor;
+import com.escom.prototipo.DTOs.ProfesorDto;
 import static com.escom.prototipo.FormatoDenuncia.v;
 import com.escom.validaciones.Validaciones;
 
 import javax.swing.JOptionPane;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 /**
  *
@@ -255,7 +251,7 @@ public class Registro extends javax.swing.JFrame {
 
     private void EscuelaBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EscuelaBoxActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_EscuelaBoxActionPerformed
 
     private void RegistrarseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseBtnActionPerformed
@@ -266,29 +262,28 @@ public class Registro extends javax.swing.JFrame {
         String aux4 = CorreoField.getText();
         String aux5 = NoEmpleadoField.getText();
         String aux6 = (String) EscuelaBox.getSelectedItem();
-        String aux7 = new String( ContrasenaField.getPassword());
-        String aux8 = new String (ContrasenaField2.getPassword());
-        
-        if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux4.isEmpty() || aux5.isEmpty() || aux6.isEmpty() || aux7.isEmpty() || aux8.isEmpty() ){
+        String aux7 = new String(ContrasenaField.getPassword());
+        String aux8 = new String(ContrasenaField2.getPassword());
+
+        if (aux1.isEmpty() || aux2.isEmpty() || aux3.isEmpty() || aux4.isEmpty() || aux5.isEmpty() || aux6.isEmpty() || aux7.isEmpty() || aux8.isEmpty()) {
             System.out.println("Alguno de los espacios esta vacio");
             JOptionPane.showMessageDialog(null, "Alguno de los campos obligatorios esta vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
-        }else{             
+        } else {
 
-            if(!v.isEmail(aux4)){
+            if (!v.isEmail(aux4)) {
                 JOptionPane.showMessageDialog(null, "Verifica que el correo ingresado cumpla con los requisitos necesarios", "Campo inválido", JOptionPane.WARNING_MESSAGE);
 
-            }else
-            if (!aux7.equals(aux8)){
+            } else if (!aux7.equals(aux8)) {
                 System.out.println("Las contraseñas no coinciden");
                 JOptionPane.showMessageDialog(null, "Los campos de las contraseñas no coinciden", "Campo incorrecto", JOptionPane.WARNING_MESSAGE);
-            }else{
-                Profesor pf = new Profesor(aux1, aux2, aux3, aux7, aux4, aux6, aux5);
-                if(pf.saveProfesor()){
+            } else {
+
+                ProfesorDto dto = new ProfesorDto();
+                if (dto.saveProfesor(new Profesor(aux1, aux2, aux3, aux7, aux4, aux6, aux5))) {
                     InicioSesion in = new InicioSesion();
                     in.setVisible(true);
                     dispose();
-                }
-                else {
+                } else {
                     System.out.println("No se guardo al profesor");
                     JOptionPane.showMessageDialog(null, "Algo ocurrio el profesor no fue dado de alta", "Error", JOptionPane.WARNING_MESSAGE);
 
@@ -296,41 +291,43 @@ public class Registro extends javax.swing.JFrame {
 
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_RegistrarseBtnActionPerformed
 
     private void NombreFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreFieldFocusLost
-        if (!v.isLetters(NombreField.getText()))
-            JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+        if (!v.isLetters(NombreField.getText())) {
+            JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);
+        }
 
     }//GEN-LAST:event_NombreFieldFocusLost
 
     private void PaternoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PaternoFieldFocusLost
         if (!v.isLetters(PaternoField.getText()))
-            JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_PaternoFieldFocusLost
 
     private void MaternoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MaternoFieldFocusLost
         if (!v.isLetters(MaternoField.getText()))
-            JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "El nombre solo puede contener letras", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_MaternoFieldFocusLost
 
     private void CorreoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CorreoFieldFocusLost
         if (!v.isEmail(CorreoField.getText()))
-            JOptionPane.showMessageDialog(null, "Correo invalido", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "Correo invalido", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_CorreoFieldFocusLost
 
     private void NoEmpleadoFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NoEmpleadoFieldFocusLost
         if (!v.isLettersNumbers(NoEmpleadoField.getText()))
-            JOptionPane.showMessageDialog(null, "El numero de empleado es invalido", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "El numero de empleado es invalido", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_NoEmpleadoFieldFocusLost
 
     private void ContrasenaFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ContrasenaFieldFocusLost
-        if (!v.isLettersNumbers(new String (ContrasenaField.getPassword())))
-            JOptionPane.showMessageDialog(null, "La contraseña tiene caracteres invalidos", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
-        if (ContrasenaField.getPassword().length<8)
-            JOptionPane.showMessageDialog(null, "La contraseña tiene que tener al menos 8 caracteres", "Campo invalido", JOptionPane.WARNING_MESSAGE);           
+        if (!v.isLettersNumbers(new String(ContrasenaField.getPassword()))) {
+            JOptionPane.showMessageDialog(null, "La contraseña tiene caracteres invalidos", "Campo invalido", JOptionPane.WARNING_MESSAGE);
+        }
+        if (ContrasenaField.getPassword().length < 8)
+            JOptionPane.showMessageDialog(null, "La contraseña tiene que tener al menos 8 caracteres", "Campo invalido", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_ContrasenaFieldFocusLost
 
     /**
@@ -361,10 +358,8 @@ public class Registro extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Registro().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Registro().setVisible(true);
         });
     }
 

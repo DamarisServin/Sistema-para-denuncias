@@ -1,63 +1,86 @@
 package com.escom.prototipo;
 
-import com.escom.prototipo.DAOs.Datos_denunciante;
-import com.escom.prototipo.DAOs.Datos_involucrado;
 import com.escom.prototipo.DAOs.Denuncia;
-import com.escom.prototipo.DAOs.Descripcion_hechos;
-
-
-import java.text.DateFormat;
-
-import java.util.Date;
-
+import com.escom.prototipo.DAOs.Tutor;
+import com.escom.prototipo.DTOs.DenunciaDto;
 
 public class FormatoConsulta extends javax.swing.JFrame {
 
-    static DateFormat df;
-    static Date date;
-    static Datos_denunciante dd;
-    static Datos_involucrado di;
-    static Descripcion_hechos dh;
+    static DenunciaDto dto;
     static Denuncia dnc;
- 
 
     public FormatoConsulta(String id) {
-        dnc = new Denuncia();
-                
-        if(dnc.getDenunciaById(id)){
-            initComponents();
-             setTexts();
-        }
-        
-    }
-    public void setTexts(){
+        dto= new DenunciaDto();
+        dnc = dto.getDatosDenunciaById(id);
+        initComponents();
+
         DiaPresentField.setText(dnc.getFecha());
         NombreDenuncianteField.setText(dnc.getDd().getNombre_completo());
-        EdadDenuncianteField.setText(dnc.getDd().getEdad()+"");
+        EdadDenuncianteField.setText(dnc.getDd().getEdad() + "");
+        if(dnc.getDd().getEdad()<18){
+            Tutor tt = dto.getTutorByDenuncianteId(dnc.getDd().getId());
+            jLabel20.setVisible(true);
+            jLabel22.setVisible(true);
+            jLabel47.setVisible(true);
+            jLabel48.setVisible(true);
+            jLabel49.setVisible(true);
+            jLabel50.setVisible(true);
+            jLabel51.setVisible(true);
+            jLabel52.setVisible(true);
+            NombreTutor.setVisible(true);
+            EdadTutor.setVisible(true);
+            GeneroTutor.setVisible(true);
+            TelefonoTutor.setVisible(true);
+            DomicilioTutor.setVisible(true);
+            CorreoTutor.setVisible(true);
+            
+            NombreTutor.setText(tt.getNombre_completo());
+            EdadTutor.setText(tt.getEdad()+"");
+            GeneroTutor.setText(tt.getGenero());
+            TelefonoTutor.setText(tt.getTelefono());
+            DomicilioTutor.setText(tt.getDomicilio());
+            CorreoTutor.setText(tt.getCorreo());
+        
+        }
         GeneroDenuncianteField.setText(dnc.getDd().getGenero());
         DomicilioDenuncianteField.setText(dnc.getDd().getDomicilio());
         TelefonoDenuncianteField.setText(dnc.getDd().getTelefono());
         CorreoDenuncianteField.setText(dnc.getDd().getCorreo());
         UADenuncianteField.setText(dnc.getDd().getUnidad_academica());
-   //     OcupacionDenuncianteField.setText(dnc.getDd().getOcupacion());
+        OcupacionDenuncianteField.setText(dnc.getDd().getOcupacion());
+        if (dnc.getDd().getOcupacion().contains("Alumno")) {
+            GrupoField.setVisible(true);
+            SemestreField.setVisible(true);
+            CarreraField.setVisible(true);
+            jLabel38.setVisible(true);
+            jLabel39.setVisible(true);
+            jLabel40.setVisible(true);
+
+            SemestreField.setText(dnc.getDd().getSemestre());
+            GrupoField.setText(dnc.getDd().getGrupo());
+            CarreraField.setText(dnc.getDd().getCarrera());
+        } else {
+            ContratoField.setVisible(true);
+            FuncionField.setVisible(true);
+            jLabel41.setVisible(true);
+            jLabel42.setVisible(true);
+
+            ContratoField.setText(dnc.getDd().getContrato());
+            FuncionField.setText(dnc.getDd().getFuncion());
+        }
+
         TurnoDenuncianteField.setText(dnc.getDd().getTurno());
-        String aux = "No";
-        if (dnc.getDd().isAnonimo())
-            aux="Si";
-        AnonimoField.setText(aux);
-        
+        AnonimoField.setText(dnc.getDd().getAnonimoString());
+
         NombreInvolucradoField.setText(dnc.getDi().getNombre_completo());
         DependenciaInvolucradoField.setText(dnc.getDi().getDependencia_politecnico());
         TurnoInvolucradoField.setText(dnc.getDi().getTurno());
-        
+
         DiaHechosField.setText(dnc.getDh().getFecha());
         DescripcionHechosField.setText(dnc.getDh().getDescripcion());
         LugarHechosField.setText(dnc.getDh().getLugar());
         TestigosHechosField.setText(dnc.getDh().getTestigos());
-        aux = "No";
-        if (dnc.getDh().getMedios()==0)
-            aux="Si";
-        MediosField.setText(aux);
+        MediosField.setText(dnc.getDh().getMediosString());
         ElementoProbatorioField.setText(dnc.getDh().getMediosDescripcion());
         OtrosField.setText(dnc.getDh().getOtros());
     }
@@ -95,7 +118,6 @@ public class FormatoConsulta extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         DependenciaInvolucradoField = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         DiaHechosField = new javax.swing.JTextField();
@@ -150,11 +172,13 @@ public class FormatoConsulta extends javax.swing.JFrame {
         BIFDD = new javax.swing.JButton();
         GeneroDenuncianteField = new javax.swing.JTextField();
         GeneroTutor = new javax.swing.JTextField();
+        GeneroTutor.setVisible(false);
         TurnoDenuncianteField = new javax.swing.JTextField();
         AnonimoField = new javax.swing.JTextField();
         TurnoInvolucradoField = new javax.swing.JTextField();
-        TipoInvolucradoField = new javax.swing.JTextField();
         MediosField = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        OcupacionDenuncianteField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(this.MAXIMIZED_BOTH);
@@ -221,8 +245,6 @@ public class FormatoConsulta extends javax.swing.JFrame {
         DependenciaInvolucradoField.setEnabled(false);
 
         jLabel25.setText("Turno:");
-
-        jLabel26.setText("Tipo de persona involucrada:");
 
         jLabel27.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 51, 51));
@@ -343,9 +365,11 @@ public class FormatoConsulta extends javax.swing.JFrame {
 
         TurnoInvolucradoField.setEnabled(false);
 
-        TipoInvolucradoField.setEnabled(false);
-
         MediosField.setEnabled(false);
+
+        jLabel17.setText("Ocupación");
+
+        OcupacionDenuncianteField.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -398,11 +422,6 @@ public class FormatoConsulta extends javax.swing.JFrame {
                         .addComponent(jLabel25)
                         .addGap(18, 18, 18)
                         .addComponent(TurnoInvolucradoField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel26)
-                        .addGap(26, 26, 26)
-                        .addComponent(TipoInvolucradoField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 815, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -497,7 +516,7 @@ public class FormatoConsulta extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel19)
-                                .addGap(18, 18, 18)
+                                .addGap(82, 82, 82)
                                 .addComponent(TurnoDenuncianteField))
                             .addComponent(jLabel18))
                         .addGap(18, 18, 18)
@@ -531,8 +550,13 @@ public class FormatoConsulta extends javax.swing.JFrame {
                         .addComponent(BIFDD))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(MediosField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(MediosField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel17)
+                        .addGap(18, 18, 18)
+                        .addComponent(OcupacionDenuncianteField)))
+                .addGap(574, 574, 574))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -583,7 +607,11 @@ public class FormatoConsulta extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addComponent(jLabel16))
                     .addComponent(CorreoDenuncianteField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(OcupacionDenuncianteField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SemestreField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel38))
@@ -671,11 +699,7 @@ public class FormatoConsulta extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
                     .addComponent(TurnoInvolucradoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(TipoInvolucradoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel27)
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -737,8 +761,6 @@ public class FormatoConsulta extends javax.swing.JFrame {
         setBounds(0, 0, 884, 2123);
     }// </editor-fold>//GEN-END:initComponents
 
-    
-
 
     private void BIFDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BIFDDActionPerformed
         // TODO add your handling code here:
@@ -766,23 +788,12 @@ public class FormatoConsulta extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormatoConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormatoConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormatoConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FormatoConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormatoConsulta("2").setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new FormatoConsulta("2").setVisible(true);
         });
     }
 
@@ -811,12 +822,12 @@ public class FormatoConsulta extends javax.swing.JFrame {
     private javax.swing.JTextField NombreDenuncianteField;
     private javax.swing.JTextField NombreInvolucradoField;
     private javax.swing.JTextField NombreTutor;
+    private javax.swing.JTextField OcupacionDenuncianteField;
     private javax.swing.JTextField OtrosField;
     private javax.swing.JTextField SemestreField;
     private javax.swing.JTextField TelefonoDenuncianteField;
     private javax.swing.JTextField TelefonoTutor;
     private javax.swing.JTextField TestigosHechosField;
-    private javax.swing.JTextField TipoInvolucradoField;
     private javax.swing.JTextField TurnoDenuncianteField;
     private javax.swing.JTextField TurnoInvolucradoField;
     private javax.swing.JTextField UADenuncianteField;
@@ -828,6 +839,7 @@ public class FormatoConsulta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -837,7 +849,6 @@ public class FormatoConsulta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;

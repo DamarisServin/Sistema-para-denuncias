@@ -66,13 +66,15 @@ CREATE TABLE Datos_denunciante (
   domicilio varchar(150) NOT NULL,
   telefono varchar(15) NOT NULL,
   correo varchar(50) NOT NULL,
+  ocupacion varchar(50) NOT NULL,
   unidad_academica varchar(50) NOT NULL,
   turno varchar(50) NOT NULL,
   anonimo int(1) NOT NULL,
-
+  tutor_id int,
 
   PRIMARY KEY (id),
-  FOREIGN KEY (genero_id) REFERENCES Genero(id)
+  FOREIGN KEY (genero_id) REFERENCES Genero(id),
+  FOREIGN KEY (Tutor_id ) REFERENCES Tutor(id)
 );
 CREATE TABLE Datos_involucrado(
   id int NOT NULL AUTO_INCREMENT,
@@ -94,6 +96,15 @@ CREATE TABLE Descripcion_hechos(
 
   PRIMARY KEY (id)
 );
+CREATE TABLE Archivos(
+  id int NOT NULL AUTO_INCREMENT,
+  nombre_archivo varchar(500) NOT NULL,
+  archivo longblob,
+  id_hechos int,
+
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_hechos) REFERENCES Descripcion_hechos(id)
+);
 CREATE TABLE Denuncia(
   id int NOT NULL AUTO_INCREMENT,
   fecha DATETIME NOT NULL,
@@ -101,14 +112,12 @@ CREATE TABLE Denuncia(
   Datos_involucrado_id int NOT NULL,
   Descripcion_hechos_id int NOT NULL, 
   Profesor_id int NOT NULL,
-  Tutor_id int,
-
+  
   PRIMARY KEY (id),
   FOREIGN KEY (Datos_denunciante_id ) REFERENCES Datos_denunciante(id),
   FOREIGN KEY (Datos_involucrado_id ) REFERENCES Datos_involucrado(id),
   FOREIGN KEY (Descripcion_hechos_id ) REFERENCES Descripcion_hechos(id),
-  FOREIGN KEY (Profesor_id ) REFERENCES Profesor(id),
-  FOREIGN KEY (Tutor_id ) REFERENCES Tutor(id)
+  FOREIGN KEY (Profesor_id ) REFERENCES Profesor(id)
 
 );
 CREATE TABLE Denunciante (
@@ -124,55 +133,60 @@ CREATE TABLE Alumno_denunciante(
   semestre int NOT NULL,
   grupo varchar(50) NOT NULL,
   carrera varchar(50) NOT NULL,
-  denuncia_id int NOT NULL,
+  denunciante_id int NOT NULL,
 
   PRIMARY KEY (id),
-  FOREIGN KEY (denuncia_id) REFERENCES Datos_denunciante(id)
+  FOREIGN KEY (denunciante_id) REFERENCES Datos_denunciante(id)
 );
 CREATE TABLE Trabajador_denunciante(
   id int NOT NULL AUTO_INCREMENT,
   funcion_actual varchar(50) NOT NULL,
   tipo_contrato varchar(50) NOT NULL,
-  denuncia_id int NOT NULL,
+  denunciante_id int NOT NULL,
 
   PRIMARY KEY (id),
-  FOREIGN KEY (denuncia_id) REFERENCES Datos_denunciante(id)
+  FOREIGN KEY (denunciante_id) REFERENCES Datos_denunciante(id)
 );
 CREATE TABLE Alumno_involucrado(
   id int NOT NULL AUTO_INCREMENT,
   semestre int NOT NULL,
   grupo varchar(50) NOT NULL,
-  denuncia_id int NOT NULL,
+  involucrado_id int NOT NULL,
 
   PRIMARY KEY (id),
-  FOREIGN KEY (denuncia_id) REFERENCES Datos_involucrado(id)
+  FOREIGN KEY (involucrado_id) REFERENCES Datos_involucrado(id)
 );
 CREATE TABLE Trabajador_involucrado(
   id int NOT NULL AUTO_INCREMENT,
   puesto varchar(50) NOT NULL, ##Preguntar por diferencia ¿será mejor cambiarlo por area/departamento?
   nombre_jefe varchar(50) NOT NULL,
-  denuncia_id int NOT NULL,
+  involucrado_id int NOT NULL,
 
   PRIMARY KEY (id),
-  FOREIGN KEY (denuncia_id) REFERENCES Datos_involucrado(id)
+  FOREIGN KEY (involucrado_id) REFERENCES Datos_involucrado(id)
 );
 
 #DROP VIEW datosDenuncia;
 CREATE VIEW datosDenuncia AS
 		SELECT d.id as idDenuncia, 
 			   d.fecha as fechaDenuncia, 
+              dd.id as idDenunciante, 
 			  dd.nombre as nombreDenunciante,
 			  dd.edad as edadDenunciante,
 			  gd.genero as generoDenunciante,
               dd.domicilio as domicilioDenunciante,
               dd.telefono as telefonoDenunciante,
               dd.correo as correoDenunciante,
+              dd.ocupacion as ocupacionDenunciante,
               dd.unidad_academica as unidadDenunciante,
               dd.turno as turnoDenunciante,
               dd.anonimo as anonimoDenunciante,
+              dd.tutor_id as tutorDenunciante,
+              di.id as idInvolucrado, 
               di.nombre as nombreInvolucrado,
               di.dependencia_politecnico as dependenciaInvolucrado,
               di.turno as turnoInvolucrado,
+              dh.id as idHechos, 
               dh.fechahora as fechaHechos,
               dh.lugar as lugarHechos,
               dh.descripcion as descripcionHechos,
@@ -184,11 +198,7 @@ CREATE VIEW datosDenuncia AS
         INNER JOIN Datos_denunciante dd ON d.Datos_denunciante_id = dd.id
         INNER JOIN Datos_involucrado di ON d.Datos_involucrado_id = di.id
         INNER JOIN Descripcion_hechos dh ON d.Descripcion_hechos_id = dh.id
---         INNER JOIN Tutor tt ON d.tutor_id = tt.id
-        INNER JOIN Genero AS gd ON dd.genero_id = gd.id
---        INNER JOIN Genero AS gt ON tt.genero_id = gt.id
-        ;
+        INNER JOIN Genero AS gd ON dd.genero_id = gd.id;
  
-    
-    
+
     

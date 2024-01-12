@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.escom.prototipo;
 
 import com.escom.prototipo.DAOs.Profesor;
+import com.escom.prototipo.DTOs.ProfesorDto;
 import static com.escom.prototipo.FormatoDenuncia.v;
 import com.escom.validaciones.Validaciones;
 import java.awt.Toolkit;
@@ -17,9 +15,8 @@ import javax.swing.JOptionPane;
  */
 public final class InicioSesion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InicioSesion
-     */
+    static Profesor p;
+    
     public InicioSesion() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -224,17 +221,17 @@ public final class InicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         //codigo botón ingresar
         String email = Email.getText();
-        String pasw = new String (Contrasena.getPassword());
+        String psw = new String (Contrasena.getPassword());
         Validaciones v= new Validaciones();
-        if( email.isEmpty() || pasw.isEmpty() ) {
+        if( email.isEmpty() || psw.isEmpty() ) {
              JOptionPane.showMessageDialog(null, "Algún campo está vacío");
         }else  {
             if(!v.isEmail(email)){
                 JOptionPane.showMessageDialog(null, "Verifica que el correo ingresado cumpla con los requisitos necesarios", "Campo inválido", JOptionPane.WARNING_MESSAGE);
             }else{
-                Profesor pf = new Profesor(pasw, email);
-                
-                if(pf.logIn()){
+                ProfesorDto dto = new ProfesorDto();
+                if(dto.logIn(email, psw)){
+                    
                     Bienvenido bv = new Bienvenido();
                     bv.setVisible(true);
                     dispose();

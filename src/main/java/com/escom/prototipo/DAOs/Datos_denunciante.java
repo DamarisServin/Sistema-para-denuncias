@@ -1,6 +1,6 @@
 package com.escom.prototipo.DAOs;
 
-public class Datos_denunciante{
+public class Datos_denunciante {
 
     private int id;
 
@@ -19,12 +19,12 @@ public class Datos_denunciante{
     private String carrera;
     private String funcion;
     private String contrato;
+    private Tutor tt;
 
     public Datos_denunciante() {
     }
 
-    
-    public Datos_denunciante( String nombre_completo, int edad, String genero, String domicilio, String telefono, String correo, String ocupacion, String unidad_academica, String turno, boolean anonimo) {
+    public Datos_denunciante(String nombre_completo, int edad, String genero, String domicilio, String telefono, String correo, String ocupacion, String unidad_academica, String turno, boolean anonimo) {
 
         this.nombre_completo = nombre_completo;
         this.edad = edad;
@@ -38,16 +38,31 @@ public class Datos_denunciante{
         this.anonimo = anonimo;
 
     }
-    public void setAlumnoDenunciante(String sm, String gp, String cr){
+    public Datos_denunciante(int id, String nombre_completo, int edad, String genero, String domicilio, String telefono, String correo, String ocupacion, String unidad_academica, String turno, boolean anonimo) {
+        this.id = id;
+        this.nombre_completo = nombre_completo;
+        this.edad = edad;
+        this.genero = genero;
+        this.domicilio = domicilio;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.ocupacion = ocupacion;
+        this.unidad_academica = unidad_academica;
+        this.turno = turno;
+        this.anonimo = anonimo;
+
+    }
+    public void setAlumnoDenunciante(String sm, String gp, String cr) {
         this.semestre = sm;
-        this.grupo= gp;
+        this.grupo = gp;
         this.carrera = cr;
     }
-    public void setTrabajadorDenunciante(String fn, String ct){
+
+    public void setTrabajadorDenunciante(String fn, String ct) {
         this.contrato = ct;
-        this.funcion= fn;
+        this.funcion = fn;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -55,6 +70,7 @@ public class Datos_denunciante{
     public void setId(int id) {
         this.id = id;
     }
+
     public String getSemestre() {
         return semestre;
     }
@@ -94,12 +110,15 @@ public class Datos_denunciante{
     public String getGenero() {
         return genero;
     }
+
     public int getGeneroIndex() {
-        if (genero.contentEquals("Masculino"))
+        if (genero.contentEquals("Masculino")) {
             return 1;
-        else
+        } else {
             return 2;
+        }
     }
+
     public void setGenero(String genero) {
         this.genero = genero;
     }
@@ -159,11 +178,29 @@ public class Datos_denunciante{
     public void setAnonimo(boolean anonimo) {
         this.anonimo = anonimo;
     }
+
     public int getAnonimoIndex() {
-    if (anonimo)
-        return 1;
-    else
-        return 0;
+        if (anonimo) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
-    
+
+    public String getAnonimoString() {
+        if (anonimo) {
+            return "Si";
+        } else {
+            return "No";
+        }
+    }
+
+    public Tutor getTt() {
+        return tt;
+    }
+
+    public void setTt(Tutor tt) {
+        this.tt = tt;
+    }
+
 }

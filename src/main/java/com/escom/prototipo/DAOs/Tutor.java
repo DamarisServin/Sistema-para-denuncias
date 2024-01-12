@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.escom.prototipo.DAOs;
 
 /**
@@ -21,9 +17,8 @@ public class Tutor {
 
     public Tutor() {
     }
-    
-    
-     public Tutor(String nombre_completo, int edad, String genero, String domicilio, String telefono, String correo) {
+
+    public Tutor(String nombre_completo, int edad, String genero, String domicilio, String telefono, String correo) {
 
         this.nombre_completo = nombre_completo;
         this.edad = edad;
@@ -31,7 +26,7 @@ public class Tutor {
         this.domicilio = domicilio;
         this.telefono = telefono;
         this.correo = correo;
-    }   
+    }
 
     public int getId() {
         return id;
@@ -60,12 +55,15 @@ public class Tutor {
     public String getGenero() {
         return genero;
     }
+
     public int getGeneroIndex() {
-        if (genero.contentEquals("Masculino"))
+        if (genero.contentEquals("Masculino")) {
             return 1;
-        else
+        } else {
             return 2;
+        }
     }
+
     public void setGenero(String genero) {
         this.genero = genero;
     }
@@ -93,6 +91,5 @@ public class Tutor {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
- 
-    
+
 }

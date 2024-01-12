@@ -1,6 +1,8 @@
 
 drop procedure if exists guardaDatosInvolucrado;
 
+
+
 delimiter **
 	create procedure guardaDatosInvolucrado(
 	in idE int,

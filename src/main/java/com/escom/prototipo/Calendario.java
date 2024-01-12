@@ -1,6 +1,6 @@
 package com.escom.prototipo;
 
-import com.escom.prototipo.DAOs.Denuncia;
+import com.escom.prototipo.DTOs.DenunciaDto;
 import com.toedter.calendar.IDateEvaluator;
 import java.awt.Color;
 import java.beans.PropertyChangeEvent;
@@ -11,14 +11,14 @@ import java.util.Date;
 import java.util.List;
 
 public class Calendario extends javax.swing.JFrame {
-    
+
     public Calendario() {
         initComponents();
     }
-    public void clickedOnDay(PropertyChangeEvent evt){
+
+    public void clickedOnDay(PropertyChangeEvent evt) {
         System.out.println();
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -88,14 +88,15 @@ public class Calendario extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BicActionPerformed
 
-       private static class HighlightEvaluator implements IDateEvaluator {
-           
-        private Denuncia dn = new Denuncia();
+    private static class HighlightEvaluator implements IDateEvaluator {
+
+        private DenunciaDto dto=new DenunciaDto();
         private final List<Date> list = new ArrayList<>();
 
-        public void add(){
-            list.addAll(dn.getDates());
+        public void add() {
+            list.addAll(dto.getDates());
         }
+
         @Override
         public boolean isSpecial(Date date) {
             return list.contains(date);
@@ -136,6 +137,7 @@ public class Calendario extends javax.swing.JFrame {
             return null;
         }
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

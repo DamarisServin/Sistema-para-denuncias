@@ -1,7 +1,7 @@
 
 drop procedure if exists guardaDatosTutor;
 drop procedure if exists consultarDatosTutorById;
-drop procedure if exists consultarDatosTutorByDenunciaId;
+drop procedure if exists consultarDatosTutorByDenuncianteId;
 
 delimiter **
 	create procedure guardaDatosTutor(
@@ -58,7 +58,7 @@ delimiter **
 		
 	end if;
 
-	if(msj='Tutor guardado con exito') then
+	if(msj='Datos del tutor guardados con exito') then
 		select msj as Resultado, id as id from Tutor where id = newid;
 	else
 		select msj as Resultado, 0 as id;
@@ -71,7 +71,7 @@ delimiter **
 		select * from Tutor where id = idE;
 	end; **
     
-    create procedure consultarDatosTutorByDenunciaId(in idE int)
+    create procedure consultarDatosTutorByDenuncianteId(in idE int)
 	begin
 		select 
               tt.nombre as nombreTutor,
@@ -80,10 +80,10 @@ delimiter **
               tt.telefono as telefonoTutor,
               tt.correo as correoTutor,
               tt.domicilio as domicilioTutor
-		from Denuncia d
-		inner join Tutor tt on d.tutor_id = tt.id
+		from Tutor tt
+		inner join Datos_denunciante dd on dd.tutor_id = tt.id
         inner join Genero g on tt.genero_id = g.id
-        where d.id = idE;
+        where dd.id = idE;
 	end; **
 delimiter ;
 
