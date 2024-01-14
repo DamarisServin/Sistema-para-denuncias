@@ -8,6 +8,7 @@ import com.escom.prototipo.DAOs.Datos_denunciante;
 import com.escom.prototipo.DAOs.Datos_involucrado;
 import com.escom.prototipo.DAOs.Denuncia;
 import com.escom.prototipo.DAOs.Descripcion_hechos;
+import com.escom.prototipo.DAOs.Estadisticas;
 import com.escom.prototipo.DAOs.Tutor;
 import com.escom.prototipo.conexion.Conexion;
 import java.sql.ResultSet;
@@ -142,13 +143,13 @@ public class DenunciaDto {
                 }
             }
             con.cierraConexion();
-            if (dd.getOcupacion().contains("Alumno")){
+            if (dd.getOcupacion().contains("Alumno")) {
                 saveAlumnoDenunciante(dd);
-            
+
             }
-            if (dd.getOcupacion().contains("Trabajador")){
+            if (dd.getOcupacion().contains("Trabajador")) {
                 saveTrabajadorDenunciante(dd);
-            
+
             }
         } catch (NumberFormatException | SQLException e) {
             System.out.println(e + " saveDatosDenunciante()");
@@ -156,13 +157,14 @@ public class DenunciaDto {
         return false;
 
     }
+
     private boolean saveAlumnoDenunciante(Datos_denunciante dd) {
 
         Conexion con = new Conexion();
         try {
             con.conectar();
             String str = "call guardaAlumnoDenunciante(0, '"
-                    + dd.getSemestre()+ "', '"
+                    + dd.getSemestre() + "', '"
                     + dd.getGrupo() + "', '"
                     + dd.getCarrera() + "', '"
                     + dd.getId() + "');";
@@ -172,8 +174,7 @@ public class DenunciaDto {
             if (rsguarda.next()) {
                 if (rsguarda.getString("Resultado").equals("Alumno denunciante guardado con exito")) {
 
-                    
-                    System.out.println("Alumno denunciante guardado con exito " );
+                    System.out.println("Alumno denunciante guardado con exito ");
                     return true;
                 } else {
                     System.out.println("Ocurrio un error: saveAlumnoDenunciante() ");
@@ -186,14 +187,15 @@ public class DenunciaDto {
         return false;
 
     }
+
     private boolean saveTrabajadorDenunciante(Datos_denunciante dd) {
 
         Conexion con = new Conexion();
         try {
             con.conectar();
             String str = "call guardaTrabajadorDenunciante(0, '"
-                    + dd.getContrato()+ "', '"
-                    + dd.getFuncion()+ "', '"
+                    + dd.getContrato() + "', '"
+                    + dd.getFuncion() + "', '"
                     + dd.getId() + "');";
             System.out.println(str);
             ResultSet rsguarda = con.consulta(str);
@@ -201,8 +203,7 @@ public class DenunciaDto {
             if (rsguarda.next()) {
                 if (rsguarda.getString("Resultado").equals("Trabajador denunciante guardado con exito")) {
 
-                    
-                    System.out.println("Trabajador denunciante guardado con exito " );
+                    System.out.println("Trabajador denunciante guardado con exito ");
                     return true;
                 } else {
                     System.out.println("Ocurrio un error: saveTrabajadorDenunciante() ");
@@ -215,6 +216,7 @@ public class DenunciaDto {
         return false;
 
     }
+
     private boolean saveDatosTutor(Tutor tt) {
 
         Conexion con = new Conexion();
@@ -304,7 +306,7 @@ public class DenunciaDto {
                 }
             }
             con.cierraConexion();
-            if(dh.getMedios() && dh.getArchivo()!=null){
+            if (dh.getMedios() && dh.getArchivo() != null) {
                 System.out.println("Existen archivos para guardar");
                 saveFiles(dh);
             }
@@ -314,8 +316,9 @@ public class DenunciaDto {
         return false;
 
     }
-    private void saveFiles(Descripcion_hechos dh){
-         Conexion con = new Conexion();
+
+    private void saveFiles(Descripcion_hechos dh) {
+        Conexion con = new Conexion();
         try {
             con.conectar();
             System.out.println("saveFiles () en proceso");
@@ -326,7 +329,7 @@ public class DenunciaDto {
             System.out.println(e + " saveFiles()");
         }
     }
-            
+
     public ArrayList getDates() {
         ArrayList<Date> dates = new ArrayList<>();
         Conexion con = new Conexion();
@@ -507,7 +510,7 @@ public class DenunciaDto {
             if (d.getDd().getOcupacion().contains("Trabajador")) {
                 setTrabajadorInfo(d.getDd());
             }
-            
+
         } catch (SQLException e) {
             System.out.println(e + " getDenunciasByDate()");
         }
@@ -584,4 +587,102 @@ public class DenunciaDto {
         return flg;
     }
 
+    public Estadisticas getEstadisticaAll() {
+        Estadisticas es = null;
+        Conexion con = new Conexion();
+        try {
+            con.conectar();
+
+            String str = "call datosTotales();";
+            ResultSet rsguarda = con.consulta(str);
+
+            while (rsguarda.next()) {
+                es = new Estadisticas(
+                        rsguarda.getInt("total"),
+                        rsguarda.getInt("menores"),
+                        rsguarda.getInt("femenino"),
+                        rsguarda.getInt("masculino"),
+                        rsguarda.getInt("anonimos"),
+                        rsguarda.getInt("alumno"),
+                        rsguarda.getInt("trabajador"),
+                        rsguarda.getInt("medios"),
+                        rsguarda.getInt("testigos"),
+                        rsguarda.getInt("unidades")
+                );
+            }
+
+            con.cierraConexion();
+
+        } catch (SQLException e) {
+            System.out.println(e + " getEstadisticaAll()");
+        }
+
+        return es;
+    }
+
+    public Estadisticas getEstadisticaSemestral() {
+        Estadisticas es = null;
+        Conexion con = new Conexion();
+        try {
+            con.conectar();
+
+            String str = "call datosSemestrales();";
+            ResultSet rsguarda = con.consulta(str);
+
+            while (rsguarda.next()) {
+                es = new Estadisticas(
+                        rsguarda.getInt("total"),
+                        rsguarda.getInt("menores"),
+                        rsguarda.getInt("femenino"),
+                        rsguarda.getInt("masculino"),
+                        rsguarda.getInt("anonimos"),
+                        rsguarda.getInt("alumno"),
+                        rsguarda.getInt("trabajador"),
+                        rsguarda.getInt("medios"),
+                        rsguarda.getInt("testigos"),
+                        rsguarda.getInt("unidades")
+                );
+            }
+
+            con.cierraConexion();
+
+        } catch (SQLException e) {
+            System.out.println(e + " getEstadisticaSemestral()");
+        }
+
+        return es;
+    }
+
+    public Estadisticas getEstadisticaBimestral() {
+        Estadisticas es = null;
+        Conexion con = new Conexion();
+        try {
+            con.conectar();
+
+            String str = "call datosBimestrales();";
+            ResultSet rsguarda = con.consulta(str);
+
+            while (rsguarda.next()) {
+                es = new Estadisticas(
+                        rsguarda.getInt("total"),
+                        rsguarda.getInt("menores"),
+                        rsguarda.getInt("femenino"),
+                        rsguarda.getInt("masculino"),
+                        rsguarda.getInt("anonimos"),
+                        rsguarda.getInt("alumno"),
+                        rsguarda.getInt("trabajador"),
+                        rsguarda.getInt("medios"),
+                        rsguarda.getInt("testigos"),
+                        rsguarda.getInt("unidades")
+                );
+            }
+
+            con.cierraConexion();
+
+        } catch (SQLException e) {
+            System.out.println(e + " getEstadisticaBimestral()");
+        }
+
+        return es;
+    }
 }

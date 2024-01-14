@@ -1,11 +1,13 @@
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Datos_involucrado.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\email\EmailSender.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\pdf\PdfGenerator.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\Bienvenido.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\Reportes.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\test\FileChooserExample.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\test\PdfGenerator.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Tutor.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\RecuperarContraseña.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\test\table.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\validaciones\Validaciones.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Datos_denunciante.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Profesor.java
@@ -14,6 +16,7 @@ C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\esco
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\CentrosAyuda.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\FormatoDenuncia.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Descripcion_hechos.java
+C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Estadisticas.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DTOs\CentrosDto.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\test\JTableToExcel.java
 C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Denuncia.java

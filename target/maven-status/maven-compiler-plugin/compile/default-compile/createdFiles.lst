@@ -1,11 +1,15 @@
+com\escom\prototipo\DAOs\Estadisticas.class
 com\escom\prototipo\test\FileChooserExample.class
 com\escom\prototipo\InicioSesion$7.class
 com\escom\prototipo\FormatoDenuncia$28.class
 com\escom\prototipo\DTOs\CentrosDto.class
+com\escom\prototipo\test\table.class
 com\escom\prototipo\Registro$8.class
 com\escom\prototipo\InicioSesion$6.class
 com\escom\prototipo\DTOs\ProfesorDto.class
+com\escom\prototipo\pdf\PdfGenerator.class
 com\escom\prototipo\Reportes$3.class
+com\escom\prototipo\test\table$1.class
 com\escom\prototipo\FormatoConsulta.class
 com\escom\prototipo\FormatoConsulta$1.class
 com\escom\prototipo\Reportes$2.class

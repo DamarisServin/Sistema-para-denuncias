@@ -6,6 +6,7 @@ package com.escom.prototipo;
 
 import com.escom.prototipo.DAOs.Denuncia;
 import com.escom.prototipo.DTOs.DenunciaDto;
+import com.escom.prototipo.pdf.PdfGenerator;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -48,7 +49,7 @@ public class Reportes extends javax.swing.JFrame {
         model.addColumn("Edad Denunciante");
         model.addColumn("Genero Denunciante");
         model.addColumn("Correo Denunciante");
-        model.addColumn("Visualizar");
+        model.addColumn("Archivo PDF");
 
         ArrayList<Denuncia> list = dto.getAllDenuncians();
 //        ArrayList<Date> date1 = dn.getDatesDenuncia();
@@ -67,7 +68,7 @@ public class Reportes extends javax.swing.JFrame {
                 d.getDd().getEdad(),
                 d.getDd().getGenero(),
                 d.getDd().getCorreo(),
-                "Ver"
+                "Descargar"
             });
         }
 
@@ -205,8 +206,13 @@ public class Reportes extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int row = jTable1.rowAtPoint(evt.getPoint());
         int col = jTable1.columnAtPoint(evt.getPoint());
+        String str = jTable1.getModel().getValueAt(row, 0).toString();
+        System.out.println(str);
         if (col == 6) {
-
+            DenunciaDto dto = new DenunciaDto();
+            
+            PdfGenerator pdf = new PdfGenerator();
+            pdf.createPDF("Denuncia"+str+".pdf", dto.getDatosDenunciaById(str));
         }
         System.out.println("Row: " + row + ", Column: " + col);
     }//GEN-LAST:event_jTable1MouseClicked

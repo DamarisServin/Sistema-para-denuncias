@@ -4,6 +4,7 @@
  */
 package com.escom.prototipo.pdf;
 
+import com.escom.prototipo.DAOs.Denuncia;
 import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -22,10 +23,10 @@ import java.io.FileOutputStream;
  */
 public class PdfGenerator {
     Font blueFont = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.NORMAL, new CMYKColor(255, 0, 0, 0));
-    Font redFont = FontFactory.getFont(FontFactory.COURIER, 12, Font.BOLD, new CMYKColor(0, 255, 0, 0));
-    Font yellowFont = FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD, new CMYKColor(0, 0, 255, 0));
+    Font redFont = FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD, new CMYKColor(0, 255, 0, 0));
+    Font yellowFont = FontFactory.getFont(FontFactory.COURIER, 12, Font.BOLD, new CMYKColor(0, 0, 255, 0));
 
-    public void createPDF(String rutaPdf){
+    public void createPDF(String rutaPdf, Denuncia d){
     
             Document document = new Document();
             
@@ -39,10 +40,10 @@ public class PdfGenerator {
                 // Agregar el texto al documento como un párrafo
                 document.add(new Paragraph(""));
                 
-                Paragraph chapterTitle = new Paragraph("Chapter Title", yellowFont);
+                Paragraph chapterTitle = new Paragraph("DATOS DEL DENUNCIANTE", redFont);
                 Chapter chapter1 = new Chapter(chapterTitle, 1);
                 chapter1.setNumberDepth(0);
-                Paragraph sectionTitle = new Paragraph("Section Title", redFont);
+                Paragraph sectionTitle = new Paragraph("Section Title", yellowFont);
                 Section section1 = chapter1.addSection(sectionTitle);
 
                 Paragraph sectionContent = new Paragraph("Section Text content", blueFont);
