@@ -26,19 +26,20 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author damar
  */
 public class Reportes extends javax.swing.JFrame {
-    
+
     DateFormat df;
     Date date;
     DefaultTableModel model;
+
     /**
      * Creates new form Reportes
      */
     public Reportes() {
-        
+
         df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        date = new Date(); 
+        date = new Date();
         df.format(date);
-        
+
         DenunciaDto dto = new DenunciaDto();
         model = new DefaultTableModel();
         model.addColumn("Id");
@@ -47,31 +48,31 @@ public class Reportes extends javax.swing.JFrame {
         model.addColumn("Edad Denunciante");
         model.addColumn("Genero Denunciante");
         model.addColumn("Correo Denunciante");
-        
+        model.addColumn("Visualizar");
+
         ArrayList<Denuncia> list = dto.getAllDenuncians();
 //        ArrayList<Date> date1 = dn.getDatesDenuncia();
 //        ArrayList<Date> date2 = dn.getDatesHechos();
 //        ArrayList<String> ids = dn.getIds();
 //        ArrayList<String> anonimo = dn.getAnonimos();
 //        String aux;
-   
-        for(Denuncia d : list){
 
-      //      model.addRow(new Object[] {ids.get(i),date1.get(i),date2.get(i),aux });
-            model.addRow(new Object[] {
+        for (Denuncia d : list) {
+
+            //      model.addRow(new Object[] {ids.get(i),date1.get(i),date2.get(i),aux });
+            model.addRow(new Object[]{
                 d.getId(),
                 d.getFecha(),
                 d.getDd().getNombre_completo(),
                 d.getDd().getEdad(),
                 d.getDd().getGenero(),
-                d.getDd().getCorreo()
-            }); 
+                d.getDd().getCorreo(),
+                "Ver"
+            });
         }
 
         initComponents();
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -164,7 +165,7 @@ public class Reportes extends javax.swing.JFrame {
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
-        new FormatoConsulta(idFind.getText()).setVisible(true);    
+        new FormatoConsulta(idFind.getText()).setVisible(true);
         dispose();
     }//GEN-LAST:event_BuscarActionPerformed
 
@@ -204,6 +205,9 @@ public class Reportes extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int row = jTable1.rowAtPoint(evt.getPoint());
         int col = jTable1.columnAtPoint(evt.getPoint());
+        if (col == 6) {
+
+        }
         System.out.println("Row: " + row + ", Column: " + col);
     }//GEN-LAST:event_jTable1MouseClicked
 

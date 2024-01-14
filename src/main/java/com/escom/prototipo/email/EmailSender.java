@@ -26,7 +26,7 @@ public class EmailSender {
     public void setNewPasMsg(String str) {
         msg = "Recibimos una solicitud de contraseña de este correo. Tu nueva contraseña es "+
                 str+
-                "Si tu no solicitaste este cambio, haz caso omiso de este mensaje.";
+                " Si tu no solicitaste este cambio, haz caso omiso de este mensaje.";
         
     }
     
