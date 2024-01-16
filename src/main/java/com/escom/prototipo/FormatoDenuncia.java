@@ -7,7 +7,7 @@ import com.escom.prototipo.DAOs.Descripcion_hechos;
 import com.escom.prototipo.DAOs.Tutor;
 import com.escom.prototipo.DTOs.DenunciaDto;
 import com.escom.validaciones.Validaciones;
-import java.io.File;
+
 
 
 import java.text.DateFormat;
@@ -27,8 +27,10 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     static DenunciaDto dto;
     static String file;
     static Validaciones v = new Validaciones();
+    static boolean isCoordinador;
 
-    public FormatoDenuncia() {
+    public FormatoDenuncia(boolean b) {
+        isCoordinador = b;
         dto = new DenunciaDto();
         df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         date = new Date();
@@ -997,7 +999,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
                     if (dto.saveDenuncia(dnc)) {
                         JOptionPane.showMessageDialog(null, "Denuncia guerdada con exito", "Submit", JOptionPane.WARNING_MESSAGE);
-                        Bienvenido Ifdd = new Bienvenido();
+                        Bienvenido Ifdd = new Bienvenido(isCoordinador);
                         Ifdd.setVisible(true);
                         dispose();
                     } else {
@@ -1308,7 +1310,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
 
     private void BIFDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BIFDDActionPerformed
         // TODO add your handling code here:
-        Bienvenido Ifdd = new Bienvenido();
+        Bienvenido Ifdd = new Bienvenido(isCoordinador);
         Ifdd.setVisible(true);
         dispose();
     }//GEN-LAST:event_BIFDDActionPerformed
@@ -1358,7 +1360,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormatoDenuncia().setVisible(true);
+                new FormatoDenuncia(isCoordinador).setVisible(true);
             }
         });
     }

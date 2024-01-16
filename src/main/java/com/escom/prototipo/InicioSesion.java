@@ -1,8 +1,8 @@
 
 package com.escom.prototipo;
 
-import com.escom.prototipo.DAOs.Profesor;
-import com.escom.prototipo.DTOs.ProfesorDto;
+import com.escom.prototipo.DAOs.Usuario;
+import com.escom.prototipo.DTOs.UsuarioDto;
 import static com.escom.prototipo.FormatoDenuncia.v;
 import com.escom.validaciones.Validaciones;
 import java.awt.Toolkit;
@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public final class InicioSesion extends javax.swing.JFrame {
 
-    static Profesor p;
+    static Usuario p;
     
     public InicioSesion() {
         initComponents();
@@ -229,10 +229,18 @@ public final class InicioSesion extends javax.swing.JFrame {
             if(!v.isEmail(email)){
                 JOptionPane.showMessageDialog(null, "Verifica que el correo ingresado cumpla con los requisitos necesarios", "Campo inválido", JOptionPane.WARNING_MESSAGE);
             }else{
-                ProfesorDto dto = new ProfesorDto();
-                if(dto.logIn(email, psw)){
+                UsuarioDto dto = new UsuarioDto();
+                int aux = dto.logIn(email, psw);
+                if(aux!= 0){
+                    Usuario usr = dto.getUsuarioById(aux);
+                    Bienvenido bv = null ;
+                    if(usr.getRol().contains("Coordinador")){
+                        bv= new Bienvenido(true);
                     
-                    Bienvenido bv = new Bienvenido();
+                    }
+                    else if (usr.getRol().contains("PAAE")){
+                        bv= new Bienvenido(false);
+                    }
                     bv.setVisible(true);
                     dispose();
                 }

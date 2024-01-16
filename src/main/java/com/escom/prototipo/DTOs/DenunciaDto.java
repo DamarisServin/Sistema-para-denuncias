@@ -34,7 +34,7 @@ public class DenunciaDto {
             while (rsguarda.next()) {
                 list.add(new Denuncia(
                         rsguarda.getInt("idDenuncia"),
-                        rsguarda.getString("fechaDenuncia"),
+                        rsguarda.getString("fechaDenuncia").substring(0, 10),
                         new Datos_denunciante(
                                 rsguarda.getString("nombreDenunciante"),
                                 rsguarda.getInt("edadDenunciante"),
@@ -459,7 +459,7 @@ public class DenunciaDto {
             ResultSet rsguarda = con.consulta(str);
 
             while (rsguarda.next()) {
-                d.setFecha(rsguarda.getString("fechaDenuncia"));
+                d.setFecha(rsguarda.getString("fechaDenuncia").substring(0, 10));
 
                 d.setDd(
                         new Datos_denunciante(
@@ -488,7 +488,7 @@ public class DenunciaDto {
                 d.setDh(
                         new Descripcion_hechos(
                                 rsguarda.getInt("idHechos"),
-                                rsguarda.getString("fechaHechos"),
+                                rsguarda.getString("fechaHechos").substring(0, 10),
                                 rsguarda.getString("lugarHechos"),
                                 rsguarda.getString("descripcionHechos"),
                                 rsguarda.getString("testigosHechos"),

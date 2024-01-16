@@ -9,13 +9,21 @@ package com.escom.prototipo;
  * @author Damaris
  */
 public class Bienvenido extends javax.swing.JFrame {
-
+    
+    boolean isCoordinador;
+            
     /**
      * Creates new form Bienvenido
      */
-    public Bienvenido() {
+    public Bienvenido(boolean b) {
+        isCoordinador = b;
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        if(!isCoordinador){
+            BConsulta.setVisible(false);
+            BDenuncia.setVisible(false);
+        }
     }
 
     /**
@@ -27,8 +35,6 @@ public class Bienvenido extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        jPopupMenu2 = new javax.swing.JPopupMenu();
         Bienvenido = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         BDenuncia = new javax.swing.JButton();
@@ -37,6 +43,7 @@ public class Bienvenido extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         jLabel2 = new javax.swing.JLabel();
         BBSalir = new javax.swing.JButton();
+        BConsulta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bienvenido");
@@ -79,8 +86,6 @@ public class Bienvenido extends javax.swing.JFrame {
         label1.setForeground(new java.awt.Color(255, 51, 102));
         label1.setText("<html>PROTOTIPO PARA LA COORDINACIÓN Y EL SEGUIMIENTO DE DENUNCIAS POR VIOLENCIA DE GÉNERO EN LA ESCOM<html>");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("/Users/montes/Library/CloudStorage/OneDrive-InstitutoPolitecnicoNacional/TTR/2024-1/Proyecto/PROYECT 3/Sin título/src/main/java/com/escom/prototipo/logi.png")); // NOI18N
-
         BBSalir.setBackground(new java.awt.Color(249, 238, 249));
         BBSalir.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         BBSalir.setForeground(new java.awt.Color(255, 0, 0));
@@ -89,6 +94,16 @@ public class Bienvenido extends javax.swing.JFrame {
         BBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BBSalirActionPerformed(evt);
+            }
+        });
+
+        BConsulta.setBackground(new java.awt.Color(206, 226, 240));
+        BConsulta.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        BConsulta.setText("Consulta Denuncias");
+        BConsulta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BConsultaActionPerformed(evt);
             }
         });
 
@@ -105,10 +120,15 @@ public class Bienvenido extends javax.swing.JFrame {
                         .addComponent(BReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
                         .addComponent(jLabel2)
-                        .addGap(60, 60, 60)
-                        .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BBSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BCentros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(BienvenidoLayout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(BBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(BienvenidoLayout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(BCentros)
+                                .addGap(43, 43, 43)
+                                .addComponent(BConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(BienvenidoLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -128,14 +148,16 @@ public class Bienvenido extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BienvenidoLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(BienvenidoLayout.createSequentialGroup()
                         .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(BReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(BDenuncia, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(BCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(BienvenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(BCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                         .addComponent(BBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))))
@@ -163,7 +185,7 @@ public class Bienvenido extends javax.swing.JFrame {
 
     private void BReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BReportesActionPerformed
         // TODO add your handling code here:
-        Calendario Cl = new Calendario();
+        Reportes Cl = new Reportes(isCoordinador);
         Cl.setVisible(true);
         dispose();
     }//GEN-LAST:event_BReportesActionPerformed
@@ -176,16 +198,22 @@ public class Bienvenido extends javax.swing.JFrame {
     private void BDenunciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDenunciaActionPerformed
         // TODO add your handling code here:
         //this.setVisible(true);
-        FormatoDenuncia Fd = new FormatoDenuncia();
+        FormatoDenuncia Fd = new FormatoDenuncia(isCoordinador);
         Fd.setVisible(true);
     }//GEN-LAST:event_BDenunciaActionPerformed
 
     private void BCentrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCentrosActionPerformed
         // TODO add your handling code here:
-        CentrosAyuda Ca = new CentrosAyuda();
+        CentrosAyuda Ca = new CentrosAyuda(isCoordinador);
         Ca.setVisible(true);
         dispose();
     }//GEN-LAST:event_BCentrosActionPerformed
+
+    private void BConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConsultaActionPerformed
+        TablaDenuncias Cl = new TablaDenuncias(isCoordinador);
+        Cl.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BConsultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,7 +245,7 @@ public class Bienvenido extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Bienvenido().setVisible(true);
+                new Bienvenido(true).setVisible(true);
             }
         });
     }
@@ -225,13 +253,12 @@ public class Bienvenido extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BBSalir;
     private javax.swing.JButton BCentros;
+    private javax.swing.JButton BConsulta;
     private javax.swing.JButton BDenuncia;
     private javax.swing.JButton BReportes;
     private javax.swing.JPanel Bienvenido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JPopupMenu jPopupMenu2;
     private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }

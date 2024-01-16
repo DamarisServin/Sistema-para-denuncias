@@ -1,22 +1,26 @@
-########################## spProfesor ##########################
+########################## spUsuario ##########################
 
-call guardaProfesor(
-"0", "emjlo@correo.com", "Abelardo",  "ESCOM", "1234567", "9OJqX4d7npVn7V3q"
+call guardaUsuario(
+0, "emjlo@correo.com", "Abelardo",  "ESCOM", "1234567", "9OJqX4d7npVn7V3q", "PAAE"
 );
-call guardaProfesor(
-"0", "ab@ab.com", "Bernardo",  "ESCOM", "1234567", "contrasena"
+call guardaUsuario(
+0, "ab@ab.com", "Bernardo",  "ESCOM", "1234567", "contrasena", "Coordinador"
 );
-call guardaProfesor(
-"0", "qwerty@qwerty.com", "Bernardo",  "ESCOM", "1234567", "qwerty"
+call guardaUsuario(
+0, "qwerty@qwerty.com", "Bernardo",  "ESCOM", "1234567", "qwerty", "PAAE"
 );
-call sesionProfesor(
+call sesionUsuario(
 "correo@ejemplo.com",  "contrasena");
 
-select * from Profesor;
+call sesionUsuario(
+"ab@ab.com",  "contrasena");
 
-call consultarProfesorById(2);
 
-# DELETE FROM Profesor WHERE id >0;
+select * from Usuario;
+
+call consultarUsuarioById(2);
+
+# DELETE FROM Usuario WHERE id >0;
 
 ########################## spTutor ##########################
 

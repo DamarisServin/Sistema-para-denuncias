@@ -1,6 +1,6 @@
 package com.escom.prototipo.DTOs;
 
-import com.escom.prototipo.DAOs.Profesor;
+import com.escom.prototipo.DAOs.Usuario;
 import com.escom.prototipo.conexion.Conexion;
 import com.escom.validaciones.Validaciones;
 import java.sql.ResultSet;
@@ -10,14 +10,14 @@ import java.sql.SQLException;
  *
  * @author damar
  */
-public class ProfesorDto {
+public class UsuarioDto {
 
-    public Profesor getProfesorById(int id) {
+    public Usuario getUsuarioById(int id) {
         Conexion con = new Conexion();
-        Profesor p = new Profesor();
+        Usuario p = new Usuario();
         try {
             con.conectar();
-            ResultSet rsVal = con.consulta("call spDatosUsuario(" + id + ");");
+            ResultSet rsVal = con.consulta("call consultarUsuarioById(" + id + ");");
 
             while (rsVal.next()) {
                 if (Integer.parseInt(rsVal.getString("id")) > 0) {
@@ -27,26 +27,28 @@ public class ProfesorDto {
                     p.setCorreo(rsVal.getString("correo"));
                     p.setEscuela(rsVal.getString("escuela"));
                     p.setNo_poli(rsVal.getString("no_poli"));
+                    p.setRol(rsVal.getString("rol"));
                 }
             }
             con.cierraConexion();
 
         } catch (NumberFormatException | SQLException e) {
-            System.out.println(e + " getProfesorById()");
+            System.out.println(e + " getUsuarioById()");
         }
         return p;
     }
 
-    public boolean saveProfesor(Profesor p) {
+    public boolean saveUsuario(Usuario p) {
         Conexion con = new Conexion();
         try {
             con.conectar();
-            String str = "call guardaProfesor(0, '"
+            String str = "call guardaUsuario(0, '"
                     + p.getCorreo() + "', '"
                     + p.getNombre() + "', '"
                     + p.getEscuela() + "', '"
                     + p.getNo_poli() + "', '"
-                    + p.getContrasena() + "');";
+                    + p.getContrasena() + "', '"
+                    + p.getRol() + "');";
 
             ResultSet rsguarda = con.consulta(str);
 
@@ -62,22 +64,23 @@ public class ProfesorDto {
             con.cierraConexion();
             return true;
         } catch (NumberFormatException | SQLException e) {
-            System.out.println(e + " saveProfesor()");
+            System.out.println(e + " saveUsuario()");
         }
         return false;
     }
 
-    public boolean updateProfesor(Profesor p) {
+    public boolean updateUsuario(Usuario p) {
         Conexion con = new Conexion();
         try {
             con.conectar();
-            String str = "call guardaProfesor("
+            String str = "call guardaUsuario("
                     + p.getId() + ", '"
                     + p.getCorreo() + "', '"
                     + p.getNombre() + "', '"
                     + p.getEscuela() + "', '"
                     + p.getNo_poli() + "', '"
-                    + p.getContrasena() + "');";
+                    + p.getContrasena() + "', '"
+                    + p.getRol() + "');";
             ResultSet rsguarda = con.consulta(str);
 
             if (rsguarda.next()) {
@@ -86,7 +89,7 @@ public class ProfesorDto {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println(e + " updateProfesor()");
+            System.out.println(e + " updateUsuario()");
         }
         return false;
     }
@@ -112,23 +115,24 @@ public class ProfesorDto {
         return flg;
     }
 
-    public boolean logIn(String correo, String contrasena) {
+    public int logIn(String correo, String contrasena) {
         Conexion con = new Conexion();
-        boolean flg = false;
+        int aux = 0;
+
         try {
             con.conectar();
-            String str = "call sesionProfesor('" + correo + "', '" + contrasena + "');";
+            String str = "call sesionUsuario('" + correo + "', '" + contrasena + "');";
 
             ResultSet rsVal = con.consulta(str);
             if (rsVal.next()) {
                 
-                flg = true;
+                aux = rsVal.getInt("idUsur");
 
             }
             con.cierraConexion();
         } catch (NumberFormatException | SQLException e) {
             System.out.println(e + " logIn()");
         }
-        return flg;
+        return aux;
     }
 }

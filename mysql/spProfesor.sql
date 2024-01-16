@@ -7,10 +7,11 @@ delimiter **
 	create procedure guardaProfesor(
 	in idE int,
 	in email nvarchar(150),
-	in nombre nvarchar(50),
-	in escuela nvarchar(50),
-	in no_poli nvarchar(50),
-	in psw nvarchar(50)
+	in nombreI nvarchar(50),
+	in escuelaI nvarchar(50),
+	in no_poliI nvarchar(50),
+	in psw nvarchar(50),
+    in rolI nvarchar(50)
 	)
 	begin 
 	declare newid int;
@@ -29,7 +30,7 @@ delimiter **
 			insert into Profesor (
 				id, correo, nombre, escuela, no_poli, contrasena
 			)
-				values(newid, email, nombre, escuela, no_poli, md5(psw)
+				values(newid, email, nombreI, escuelaI, no_poliI, md5(psw), rolI
 			);            
 			set msj =  'Usuario guardado con exito';
 		else

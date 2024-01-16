@@ -1,7 +1,7 @@
 
 package com.escom.prototipo;
 
-import com.escom.prototipo.DTOs.ProfesorDto;
+import com.escom.prototipo.DTOs.UsuarioDto;
 import com.escom.prototipo.email.EmailSender;
 import com.escom.validaciones.Validaciones;
 import javax.swing.JOptionPane;
@@ -142,7 +142,7 @@ public class RecuperarContraseña extends javax.swing.JFrame {
 
     private void RecuperarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecuperarBtnActionPerformed
        Validaciones v = new Validaciones();
-       ProfesorDto dto = new ProfesorDto();
+       UsuarioDto dto = new UsuarioDto();
        String correo = CorreoField.getText();
        String psw = v.generateRandomString();
        if(v.isEmail(correo)){

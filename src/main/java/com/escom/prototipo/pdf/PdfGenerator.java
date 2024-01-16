@@ -22,9 +22,9 @@ import java.io.FileOutputStream;
  * @author damar
  */
 public class PdfGenerator {
-    Font blueFont = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.NORMAL, new CMYKColor(255, 0, 0, 0));
+    Font blueFont = FontFactory.getFont(FontFactory.COURIER, 12, Font.BOLD, new CMYKColor(255, 0, 0, 0));
     Font redFont = FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD, new CMYKColor(0, 255, 0, 0));
-    Font yellowFont = FontFactory.getFont(FontFactory.COURIER, 12, Font.BOLD, new CMYKColor(0, 0, 255, 0));
+    Font boldFont = FontFactory.getFont(FontFactory.COURIER_BOLD, 12, Font.BOLD, new CMYKColor(0, 0, 0, 255));
 
     public void createPDF(String rutaPdf, Denuncia d){
     
@@ -40,13 +40,71 @@ public class PdfGenerator {
                 // Agregar el texto al documento como un párrafo
                 document.add(new Paragraph(""));
                 
-                Paragraph chapterTitle = new Paragraph("DATOS DEL DENUNCIANTE", redFont);
+                Paragraph chapterTitle = new Paragraph("FORMATO DE DENUNCIA", redFont);
                 Chapter chapter1 = new Chapter(chapterTitle, 1);
                 chapter1.setNumberDepth(0);
-                Paragraph sectionTitle = new Paragraph("Section Title", yellowFont);
+                Paragraph sectionTitle = new Paragraph("Datos de la persona que presenta la denuncia", blueFont);
                 Section section1 = chapter1.addSection(sectionTitle);
 
-                Paragraph sectionContent = new Paragraph("Section Text content", blueFont);
+                Paragraph sectionContent = new Paragraph("Fecha de la denuncia: "+d.getFecha());
+                section1.add(sectionContent);
+                
+                sectionContent = new Paragraph("Nombre Completo: "+d.getDd().getNombre_completo());
+                section1.add(sectionContent);
+                sectionContent = new Paragraph("Edad: "+d.getDd().getEdad() +" años");
+                section1.add(sectionContent);
+                sectionContent = new Paragraph("Género: "+d.getDd().getGenero());
+                section1.add(sectionContent);
+                sectionContent = new Paragraph("Domicilio: "+d.getDd().getDomicilio());
+                section1.add(sectionContent);
+                sectionContent = new Paragraph("Correo Electrónico: "+d.getDd().getCorreo());
+                section1.add(sectionContent);
+                sectionContent = new Paragraph("Ocupación: "+d.getDd().getOcupacion());
+                section1.add(sectionContent);
+                sectionContent = new Paragraph("Unidad Académica de Procedencia: "+d.getDd().getUnidad_academica());
+                section1.add(sectionContent);
+                sectionContent = new Paragraph("Turno: "+d.getDd().getTurno());
+                section1.add(sectionContent);
+                
+                //Campos alumno trabajador, tutor
+                
+                sectionTitle = new Paragraph("Datos de la persona involucrada", blueFont);
+                section1 = chapter1.addSection(sectionTitle);
+                sectionContent = new Paragraph("Nombre completo de quien se presenta la denuncia: "+d.getDi().getNombre_completo());
+                section1.add(sectionContent);
+                sectionContent = new Paragraph("Dependencia politecnica de procedencia: "+d.getDi().getNombre_completo());
+                section1.add(sectionContent);
+                sectionContent = new Paragraph("Turno: "+d.getDi().getNombre_completo());
+                section1.add(sectionContent);
+
+                sectionTitle = new Paragraph("Descripcion de los Hechos", blueFont);
+                section1 = chapter1.addSection(sectionTitle);
+                sectionContent = new Paragraph("Fecha en la que ocurrieron los hechos: "+d.getDh().getFecha());
+                section1.add(sectionContent);
+                sectionContent = new Paragraph("Lugar donde ocurrieron los hechos: "+d.getDh().getLugar());
+                section1.add(sectionContent);
+                sectionContent = new Paragraph("Describa cómo ocurrieron los hechos: "+d.getDh().getDescripcion());
+                section1.add(sectionContent);
+
+                sectionTitle = new Paragraph("Testigos", blueFont);
+                section1 = chapter1.addSection(sectionTitle);
+                sectionContent = new Paragraph("Indique el nombre completo de los principales testigos en caso de tenerlos y datos de localización: "
+                        +d.getDh().getFecha());
+                section1.add(sectionContent);
+                
+                sectionTitle = new Paragraph("Medios Probatorios", blueFont);
+                section1 = chapter1.addSection(sectionTitle);
+                sectionContent = new Paragraph("¿Cuenta con documentos que sustenten su denuncia o algún elemento probatorio adicional? "
+                        +d.getDh().getMediosString());
+                section1.add(sectionContent);  
+                if(d.getDh().getMedios()){
+                sectionContent = new Paragraph("Favor de describirlos y adjuntarlos al presente: "+d.getDh().getMediosDescripcion());
+                section1.add(sectionContent);
+                
+                //VER SI SE PUEDE AÑADIR EL ARCHIVO
+                }
+                sectionContent = new Paragraph("En caso de no contar con ellos, pero que sepa de su existencia, indique dónde se localizan o a quíen le consta: "
+                        +d.getDh().getOtros());
                 section1.add(sectionContent);
 
                 document.add(chapter1);

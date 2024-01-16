@@ -9,7 +9,9 @@ public class FormatoConsulta extends javax.swing.JFrame {
     static DenunciaDto dto;
     static Denuncia dnc;
 
+
     public FormatoConsulta(String id) {
+        
         dto= new DenunciaDto();
         dnc = dto.getDatosDenunciaById(id);
         initComponents();
@@ -764,7 +766,7 @@ public class FormatoConsulta extends javax.swing.JFrame {
 
     private void BIFDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BIFDDActionPerformed
         // TODO add your handling code here:
-        Bienvenido Ifdd = new Bienvenido();
+        Bienvenido Ifdd = new Bienvenido(true);
         Ifdd.setVisible(true);
         dispose();
     }//GEN-LAST:event_BIFDDActionPerformed

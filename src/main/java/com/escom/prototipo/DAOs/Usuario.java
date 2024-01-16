@@ -1,6 +1,6 @@
 package com.escom.prototipo.DAOs;
 
-public class Profesor {
+public class Usuario {
 
     private int id;
     private String contrasena;
@@ -8,23 +8,25 @@ public class Profesor {
     private String escuela;
     private String no_poli;
     private String nombre;
+    private String rol;
 //    private String ap_paterno;
 //    private String ap_materno;
 
-    public Profesor() {
+    public Usuario() {
     }
 
-    public Profesor(String contrasena, String correo) {
+    public Usuario(String contrasena, String correo) {
         this.contrasena = contrasena;
         this.correo = correo;
     }
 
-    public Profesor(String nombre, String ap_paterno, String ap_materno, String contrasena, String correo, String escuela, String no_poli) {
+    public Usuario(String nombre, String ap_paterno, String ap_materno, String contrasena, String correo, String escuela, String no_poli, String rol) {
         this.contrasena = contrasena;
         this.correo = correo;
         this.escuela = escuela;
         this.no_poli = no_poli;
         this.nombre = nombre + " " + ap_paterno + " " + ap_materno;
+        this.rol = rol;
     }
 
     public int getId() {
@@ -73,6 +75,14 @@ public class Profesor {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
 }

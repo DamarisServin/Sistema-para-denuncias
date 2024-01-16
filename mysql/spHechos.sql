@@ -56,7 +56,7 @@ delimiter **
 
 end; **
 
-create procedure guardaHechos(
+create procedure guardaArcivos(
 	in idI int,
 	in nombreI varchar(500),
 	in archivoI longblob,

@@ -5,13 +5,14 @@ CREATE DATABASE DB1;
 
 USE DB1;
 
-CREATE TABLE Profesor (
+CREATE TABLE Usuario (
   id int NOT NULL AUTO_INCREMENT,
   correo varchar(150) NOT NULL,
   nombre varchar(150) NOT NULL,
   escuela varchar(50) NOT NULL,
   no_poli varchar(50) NOT NULL, ##Numero empleado
   contrasena varchar(50) NOT NULL,
+  rol varchar(50) NOT NULL,
   PRIMARY KEY (id)
 );
 CREATE TABLE Especialidad (
@@ -111,13 +112,13 @@ CREATE TABLE Denuncia(
   Datos_denunciante_id int NOT NULL,
   Datos_involucrado_id int NOT NULL,
   Descripcion_hechos_id int NOT NULL, 
-  Profesor_id int NOT NULL,
+  Usuario_id int NOT NULL,
   
   PRIMARY KEY (id),
   FOREIGN KEY (Datos_denunciante_id ) REFERENCES Datos_denunciante(id),
   FOREIGN KEY (Datos_involucrado_id ) REFERENCES Datos_involucrado(id),
   FOREIGN KEY (Descripcion_hechos_id ) REFERENCES Descripcion_hechos(id),
-  FOREIGN KEY (Profesor_id ) REFERENCES Profesor(id)
+  FOREIGN KEY (Usuario_id ) REFERENCES Usuario(id)
 
 );
 CREATE TABLE Denunciante (

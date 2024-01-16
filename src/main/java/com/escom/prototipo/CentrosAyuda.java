@@ -10,8 +10,10 @@ import javax.swing.table.DefaultTableModel;
 public class CentrosAyuda extends javax.swing.JFrame {
 
     DefaultTableModel model;
+    boolean isCoordinador;
             
-    public CentrosAyuda() {
+    public CentrosAyuda(boolean b) {
+        isCoordinador = b;
         ArrayList<Centro_de_ayuda> list = (new CentrosDto()).getCentros();
         model = new DefaultTableModel();
         model.addColumn("Nombre");
@@ -128,7 +130,7 @@ public class CentrosAyuda extends javax.swing.JFrame {
 
     private void InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicioActionPerformed
         // TODO add your handling code here:
-        Bienvenido Bv = new Bienvenido();
+        Bienvenido Bv = new Bienvenido(isCoordinador);
         Bv.setVisible(true);
         dispose();
     }//GEN-LAST:event_InicioActionPerformed
@@ -168,7 +170,7 @@ public class CentrosAyuda extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CentrosAyuda().setVisible(true);
+                new CentrosAyuda(true).setVisible(true);
             }
         });
     }
