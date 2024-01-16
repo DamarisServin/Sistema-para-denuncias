@@ -19,7 +19,7 @@ public class Descripcion_hechos {
     public Descripcion_hechos() {
     }
 
-    public Descripcion_hechos(String fecha, String lugar, String descripcion, String testigos, boolean medios, String mediosDescripcion, String otros) {
+    public Descripcion_hechos(String fecha, String lugar, String descripcion, String testigos, boolean medios, String mediosDescripcion, String otros, String archivo) {
         this.fecha = fecha;
         this.lugar = lugar;
         this.descripcion = descripcion;
@@ -27,6 +27,7 @@ public class Descripcion_hechos {
         this.medios = medios;
         this.mediosDescripcion = mediosDescripcion;
         this.otros = otros;
+        this.archivo = archivo;
     }
     
     public Descripcion_hechos(int id, String fecha, String lugar, String descripcion, String testigos, boolean medios, String mediosDescripcion, String otros) {
