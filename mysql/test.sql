@@ -119,7 +119,7 @@ call consultarDenunciasByDate( "2023/12/02 ");
 
 
 ##DELETE FROM Denuncia WHERE id >0;
-select * from Alumno_denunciante ;
+select * from Archivos ;
 
 
 call datosTotales();

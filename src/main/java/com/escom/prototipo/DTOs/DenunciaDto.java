@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.escom.prototipo.DTOs;
 
 import com.escom.prototipo.DAOs.Datos_denunciante;
@@ -11,15 +7,9 @@ import com.escom.prototipo.DAOs.Descripcion_hechos;
 import com.escom.prototipo.DAOs.Estadisticas;
 import com.escom.prototipo.DAOs.Tutor;
 import com.escom.prototipo.conexion.Conexion;
-import com.itextpdf.text.pdf.parser.Path;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Paths;
 import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,9 +18,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 
 /**
  *
@@ -96,6 +84,7 @@ public class DenunciaDto {
         saveDescripcionHechos(d.getDh());
 
         Conexion con = new Conexion();
+        boolean flg = false;
         try {
             con.conectar();
             String str = "call guardaDenuncia(0, '"
@@ -111,7 +100,7 @@ public class DenunciaDto {
                 if (rsguarda.getString("Resultado").equals("Denuncia guardada con exito")) {
                     System.out.println("Denuncia guardada con exito");
                     d.setId(Integer.parseInt(rsguarda.getString("id")));
-                    return true;
+                    flg = true;
                 } else {
                     System.out.println("Ocurrio un error: saveDenuncia() ");
                 }
@@ -120,7 +109,7 @@ public class DenunciaDto {
         } catch (NumberFormatException | SQLException e) {
             System.out.println(e + " saveDenuncia()");
         }
-        return false;
+        return flg;
 
     }
 
@@ -143,9 +132,9 @@ public class DenunciaDto {
                     + dd.getTurno() + "', '"
                     + dd.getAnonimoIndex() + "', '"
                     + dd.getTt().getId() + "');";
-            
-        }else{
-             str = "call guardaDatosDenunciante(0, '"
+
+        } else {
+            str = "call guardaDatosDenunciante(0, '"
                     + dd.getNombre_completo() + "', '"
                     + dd.getEdad() + "', '"
                     + dd.getGeneroIndex() + "', '"
@@ -160,7 +149,6 @@ public class DenunciaDto {
         try {
             con.conectar();
 
-
             System.out.println(str);
             ResultSet rsguarda = con.consulta(str);
 
@@ -169,7 +157,7 @@ public class DenunciaDto {
 
                     dd.setId(Integer.parseInt(rsguarda.getString("id")));
                     System.out.println("Datos del denunciante guardados con exito " + dd.getId());
-                    flg =  true;
+                    flg = true;
                 } else {
                     System.out.println("Ocurrio un error: saveDatosDenunciante() ");
                 }
@@ -193,6 +181,7 @@ public class DenunciaDto {
     private boolean saveAlumnoDenunciante(Datos_denunciante dd) {
 
         Conexion con = new Conexion();
+        boolean flg = false;
         try {
             con.conectar();
             String str = "call guardaAlumnoDenunciante(0, '"
@@ -207,7 +196,7 @@ public class DenunciaDto {
                 if (rsguarda.getString("Resultado").equals("Alumno denunciante guardado con exito")) {
 
                     System.out.println("Alumno denunciante guardado con exito ");
-                    return true;
+                    flg = true;
                 } else {
                     System.out.println("Ocurrio un error: saveAlumnoDenunciante() ");
                 }
@@ -216,13 +205,14 @@ public class DenunciaDto {
         } catch (NumberFormatException | SQLException e) {
             System.out.println(e + " saveAlumnoDenunciante()");
         }
-        return false;
+        return flg;
 
     }
 
     private boolean saveTrabajadorDenunciante(Datos_denunciante dd) {
 
         Conexion con = new Conexion();
+        boolean flg = false;
         try {
             con.conectar();
             String str = "call guardaTrabajadorDenunciante(0, '"
@@ -236,7 +226,7 @@ public class DenunciaDto {
                 if (rsguarda.getString("Resultado").equals("Trabajador denunciante guardado con exito")) {
 
                     System.out.println("Trabajador denunciante guardado con exito ");
-                    return true;
+                    flg = true;
                 } else {
                     System.out.println("Ocurrio un error: saveTrabajadorDenunciante() ");
                 }
@@ -245,13 +235,14 @@ public class DenunciaDto {
         } catch (NumberFormatException | SQLException e) {
             System.out.println(e + " saveTrabajadorDenunciante()");
         }
-        return false;
+        return flg;
 
     }
 
     private boolean saveDatosTutor(Tutor tt) {
 
         Conexion con = new Conexion();
+        boolean flg = false;
         try {
             con.conectar();
             String str = "call guardaDatosTutor(0, '"
@@ -269,7 +260,7 @@ public class DenunciaDto {
 
                     tt.setId(Integer.parseInt(rsguarda.getString("id")));
                     System.out.println("Datos del tutor guardados con exito " + tt.getId());
-                    return true;
+                    flg = true;
                 } else {
                     System.out.println("Ocurrio un error: saveDatosTutor() ");
                 }
@@ -278,12 +269,13 @@ public class DenunciaDto {
         } catch (NumberFormatException | SQLException e) {
             System.out.println(e + " saveDatosTutor()");
         }
-        return false;
+        return flg;
 
     }
 
     private boolean saveDatosInvolucrado(Datos_involucrado di) {
         Conexion con = new Conexion();
+        boolean flg = false;
         try {
             con.conectar();
             String str = "call guardaDatosInvolucrado(0, '"
@@ -298,7 +290,7 @@ public class DenunciaDto {
 
                     di.setId(Integer.parseInt(rsguarda.getString("id")));
                     System.out.println("Datos del involucrado guardados con exito " + di.getId());
-                    return true;
+                    flg = true;
                 } else {
                     System.out.println("Ocurrio un error: saveDatosInvolucrado() ");
                 }
@@ -307,7 +299,7 @@ public class DenunciaDto {
         } catch (NumberFormatException | SQLException e) {
             System.out.println(e + " saveDatosInvolucrado()");
         }
-        return false;
+        return flg;
 
     }
 
@@ -321,7 +313,7 @@ public class DenunciaDto {
                     + dh.getLugar() + "', '"
                     + dh.getDescripcion() + "', '"
                     + dh.getTestigos() + "', '"
-                    + dh.getMediosIndex()+ "', '"
+                    + dh.getMediosIndex() + "', '"
                     + dh.getMediosDescripcion() + "', '"
                     + dh.getOtros() + "');";
 
@@ -333,7 +325,7 @@ public class DenunciaDto {
 
                     dh.setId(Integer.parseInt(rsguarda.getString("id")));
                     System.out.println("Hechos guardados con exito " + dh.getId());
-                    flg= true;
+                    flg = true;
                 } else {
                     System.out.println("Ocurrio un error: saveDescripcionHechos() ");
                 }
@@ -574,39 +566,64 @@ public class DenunciaDto {
         }
         return tt;
     }
-   public ImageIcon getArchivoByHechosId(int id){
-       System.out.println("getArchivoByHechosId");
+
+    public ImageIcon getArchivoByHechosId(int id) {
+        System.out.println("getArchivoByHechosId");
         Conexion con = new Conexion();
         ImageIcon icono = null;
- 
+
         try {
             con.conectar();
 
             String str = "call getArchivoByHechosId('" + id + "');";
             ResultSet rsguarda = con.consulta(str);
 
-            while (rsguarda.next()) {
-                String fileName = rsguarda.getString("nombre_archivo");
+            if (rsguarda.next()) {
                 Blob blob = rsguarda.getBlob("archivo");
-                byte [] data = blob.getBytes(1, (int) blob.length());
+                byte[] data = blob.getBytes(1, (int) blob.length());
                 BufferedImage img = null;
-                
+
                 try {
                     img = ImageIO.read(new ByteArrayInputStream(data));
                 } catch (IOException ex) {
                     Logger.getLogger(DenunciaDto.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                icono  = new ImageIcon(img);
-              
-                    
-            }con.cierraConexion();
-        }catch (SQLException e) {
+                icono = new ImageIcon(img);
+
+            }
+            con.cierraConexion();
+        } catch (SQLException e) {
             System.out.println(e + " getArchivoByHechosId()");
         }
-            
+
         return icono;
 
     }
+        public byte[] getArchivoBytesByHechosId(int id) {
+        Conexion con = new Conexion();
+        byte[] data = null;
+
+        try {
+            con.conectar();
+
+            String str = "call getArchivoByHechosId('" + id + "');";
+            ResultSet rsguarda = con.consulta(str);
+
+            if (rsguarda.next()) {
+                Blob blob = rsguarda.getBlob("archivo");
+                data = blob.getBytes(1, (int) blob.length());
+                
+
+            }
+            con.cierraConexion();
+        } catch (SQLException e) {
+            System.out.println(e + " getArchivoBytesByHechosId()");
+        }
+
+        return data;
+
+    }
+
     public void setAlumnoInfo(Datos_denunciante dd) {
         Conexion con = new Conexion();
         String sm = "";
@@ -615,7 +632,6 @@ public class DenunciaDto {
         try {
             con.conectar();
             String str = "select * from Alumno_denunciante where denunciante_id = " + dd.getId() + ";";
-            System.out.println(str);
             ResultSet rsguarda = con.consulta(str);
             while (rsguarda.next()) {
                 sm = rsguarda.getString("semestre");
