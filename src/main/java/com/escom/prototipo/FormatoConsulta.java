@@ -14,6 +14,7 @@ public class FormatoConsulta extends javax.swing.JFrame {
         
         dto= new DenunciaDto();
         dnc = dto.getDatosDenunciaById(id);
+        
         initComponents();
 
         DiaPresentField.setText(dnc.getFecha());
@@ -85,6 +86,8 @@ public class FormatoConsulta extends javax.swing.JFrame {
         MediosField.setText(dnc.getDh().getMediosString());
         ElementoProbatorioField.setText(dnc.getDh().getMediosDescripcion());
         OtrosField.setText(dnc.getDh().getOtros());
+        
+        dto.getArchivoByHechosId(dnc.getDh().getId());
     }
 
     @SuppressWarnings("unchecked")
