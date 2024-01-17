@@ -153,6 +153,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         jLabel53 = new javax.swing.JLabel();
         BIFDD = new javax.swing.JButton();
         ArchivoButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(this.MAXIMIZED_BOTH);
@@ -491,6 +492,15 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(206, 226, 240));
+        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jButton1.setText("Inicio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -717,13 +727,16 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                 .addComponent(LugarHechosField))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(EnviarButton)
-                        .addComponent(jLabel37))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(EnviarButton)
+                            .addComponent(jLabel37))
+                        .addGap(110, 110, 110)
+                        .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(BIFDD)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 297, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -955,7 +968,9 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(EnviarButton)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel37)
+                    .addComponent(jButton1))
                 .addGap(25, 25, 25))
         );
 
@@ -1327,6 +1342,13 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ArchivoButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Bienvenido bv = new Bienvenido(isCoordinador);
+        bv.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1409,6 +1431,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> TurnoDenuncianteCombo;
     private javax.swing.JComboBox<String> TurnoInvolucradoCombo;
     private javax.swing.JTextField UADenuncianteField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
