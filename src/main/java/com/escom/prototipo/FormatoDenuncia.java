@@ -154,6 +154,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         BIFDD = new javax.swing.JButton();
         ArchivoButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(this.MAXIMIZED_BOTH);
@@ -627,7 +628,9 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(ElementoProbatorioCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
-                        .addComponent(ArchivoButton))
+                        .addComponent(ArchivoButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel46))
@@ -956,7 +959,8 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ElementoProbatorioCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ArchivoButton))
+                    .addComponent(ArchivoButton)
+                    .addComponent(jLabel4))
                 .addGap(17, 17, 17)
                 .addComponent(jLabel46)
                 .addGap(12, 12, 12)
@@ -1334,11 +1338,12 @@ public class FormatoDenuncia extends javax.swing.JFrame {
         JFileChooser fileChooser = new JFileChooser();
         // Muestra el file chooser y captura la respuesta del usuario
         int returnValue = fileChooser.showOpenDialog(null);
-
+        
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             System.out.println("Archivo seleccionado: " + fileChooser.getSelectedFile().getAbsolutePath());
             file = fileChooser.getSelectedFile().getAbsolutePath();
+            jLabel4.setText(file);
         }
     }//GEN-LAST:event_ArchivoButtonActionPerformed
 
@@ -1465,6 +1470,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;

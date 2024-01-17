@@ -3,6 +3,9 @@ package com.escom.prototipo;
 import com.escom.prototipo.DAOs.Denuncia;
 import com.escom.prototipo.DAOs.Tutor;
 import com.escom.prototipo.DTOs.DenunciaDto;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 public class FormatoConsulta extends javax.swing.JFrame {
 
@@ -87,8 +90,13 @@ public class FormatoConsulta extends javax.swing.JFrame {
         ElementoProbatorioField.setText(dnc.getDh().getMediosDescripcion());
         OtrosField.setText(dnc.getDh().getOtros());
         
-        dto.getArchivoByHechosId(dnc.getDh().getId());
-    }
+       ImageIcon icono =  dto.getArchivoByHechosId(dnc.getDh().getId());
+
+       System.out.println(jLabel4.getWidth() +" " +jLabel4.getHeight()+ " "+ jLabel4.getText());
+        Icon imagen = new ImageIcon(icono.getImage().getScaledInstance(200, 200,Image.SCALE_DEFAULT));
+
+        jLabel4.setIcon(imagen);
+    }   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -184,6 +192,7 @@ public class FormatoConsulta extends javax.swing.JFrame {
         MediosField = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         OcupacionDenuncianteField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(this.MAXIMIZED_BOTH);
@@ -376,6 +385,8 @@ public class FormatoConsulta extends javax.swing.JFrame {
 
         OcupacionDenuncianteField.setEnabled(false);
 
+        jLabel4.setText("Archivo");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -562,6 +573,10 @@ public class FormatoConsulta extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(OcupacionDenuncianteField)))
                 .addGap(574, 574, 574))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -742,7 +757,9 @@ public class FormatoConsulta extends javax.swing.JFrame {
                 .addComponent(jLabel44)
                 .addGap(12, 12, 12)
                 .addComponent(OtrosField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(167, 167, 167))
+                .addGap(30, 30, 30)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jScrollPane2.setViewportView(jPanel1);
@@ -766,13 +783,13 @@ public class FormatoConsulta extends javax.swing.JFrame {
         setBounds(0, 0, 884, 2123);
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void BIFDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BIFDDActionPerformed
         // TODO add your handling code here:
         Bienvenido Ifdd = new Bienvenido(true);
         Ifdd.setVisible(true);
         dispose();
     }//GEN-LAST:event_BIFDDActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -798,7 +815,7 @@ public class FormatoConsulta extends javax.swing.JFrame {
         }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new FormatoConsulta("2").setVisible(true);
+            new FormatoConsulta("10").setVisible(true);
         });
     }
 
@@ -863,6 +880,7 @@ public class FormatoConsulta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;

@@ -12,18 +12,24 @@ import com.escom.prototipo.DAOs.Estadisticas;
 import com.escom.prototipo.DAOs.Tutor;
 import com.escom.prototipo.conexion.Conexion;
 import com.itextpdf.text.pdf.parser.Path;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Paths;
+import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
 /**
@@ -568,9 +574,10 @@ public class DenunciaDto {
         }
         return tt;
     }
-   public void getArchivoByHechosId(int id){
+   public ImageIcon getArchivoByHechosId(int id){
        System.out.println("getArchivoByHechosId");
         Conexion con = new Conexion();
+        ImageIcon icono = null;
  
         try {
             con.conectar();
@@ -580,43 +587,24 @@ public class DenunciaDto {
 
             while (rsguarda.next()) {
                 String fileName = rsguarda.getString("nombre_archivo");
-                InputStream inputStream = rsguarda.getBinaryStream("archivo");
-
-                        // Guardar el archivo PDF en el sistema de archivos
-                       /* JFileChooser fileChooser = new JFileChooser();
-                        fileChooser.setSelectedFile(new File(fileName));
-
-                        int userSelection = fileChooser.showSaveDialog(null);
-
-                        if (userSelection == JFileChooser.APPROVE_OPTION) {
-                            File fileToSave = fileChooser.getSelectedFile();
-                            Path filePath = (Path) Paths.get(fileToSave.getAbsolutePath());*/
-                       
-                            Path filePath = (Path) Paths.get("/");
-
-                            FileOutputStream outputStream = null;
-                    try {
-                        outputStream = new FileOutputStream(filePath.toString());
-                    } catch (FileNotFoundException ex) {
-                        Logger.getLogger(DenunciaDto.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                                byte[] buffer = new byte[1024];
-                    try {
-                        while (inputStream.read(buffer) > 0) {
-                            outputStream.write(buffer);
-                        }
-                    } catch (IOException ex) {
-                        Logger.getLogger(DenunciaDto.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                                System.out.println("Archivo PDF recuperado y guardado en: " + filePath);
-                    //}
+                Blob blob = rsguarda.getBlob("archivo");
+                byte [] data = blob.getBytes(1, (int) blob.length());
+                BufferedImage img = null;
+                
+                try {
+                    img = ImageIO.read(new ByteArrayInputStream(data));
+                } catch (IOException ex) {
+                    Logger.getLogger(DenunciaDto.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                icono  = new ImageIcon(img);
+              
+                    
             }con.cierraConexion();
         }catch (SQLException e) {
-            System.out.println(e + " getAlumnoInfo()");
+            System.out.println(e + " getArchivoByHechosId()");
         }
             
-        
+        return icono;
 
     }
     public void setAlumnoInfo(Datos_denunciante dd) {
