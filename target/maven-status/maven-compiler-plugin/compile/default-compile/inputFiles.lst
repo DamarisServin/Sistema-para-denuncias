@@ -1,29 +1,29 @@
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Datos_involucrado.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\email\EmailSender.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\pdf\PdfGenerator.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Usuario.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\Bienvenido.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\Reportes.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\test\FileChooserExample.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\test\PdfGenerator.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Tutor.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\RecuperarContraseña.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DTOs\UsuarioDto.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\test\table.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\validaciones\Validaciones.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Datos_denunciante.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\FormatoConsulta.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\CentrosAyuda.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\FormatoDenuncia.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Descripcion_hechos.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Estadisticas.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DTOs\CentrosDto.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\TablaDenuncias.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\test\JTableToExcel.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Denuncia.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DTOs\DenunciaDto.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\DAOs\Centro_de_ayuda.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\Registro.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\conexion\Conexion.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\InicioSesion.java
-C:\Users\damar\OneDrive\Escritorio\Sistema-para-denuncias\src\main\java\com\escom\prototipo\test\EmailSender.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/Bienvenido.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/FormatoConsulta.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/CentrosAyuda.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/DAOs/Datos_denunciante.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/test/EmailSender.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/test/PdfGenerator.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/validaciones/Validaciones.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/TablaDenuncias.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/InicioSesion.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/DAOs/Denuncia.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/test/JTableToExcel.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/test/FileChooserExample.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/Reportes.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/DTOs/DenunciaDto.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/DAOs/Centro_de_ayuda.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/DAOs/Estadisticas.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/FormatoDenuncia.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/DTOs/CentrosDto.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/conexion/Conexion.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/test/table.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/pdf/PdfGenerator.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/RecuperarContraseña.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/DAOs/Tutor.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/Registro.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/email/EmailSender.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/DAOs/Usuario.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/DAOs/Descripcion_hechos.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/DTOs/UsuarioDto.java
+/Users/montes/OneDrive - Instituto Politecnico Nacional/TTR/2024-1/Proyecto/Sistema-para-denuncias/src/main/java/com/escom/prototipo/DAOs/Datos_involucrado.java

@@ -815,7 +815,7 @@ public class FormatoConsulta extends javax.swing.JFrame {
         }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new FormatoConsulta("10").setVisible(true);
+            new FormatoConsulta("8").setVisible(true);
         });
     }
 
