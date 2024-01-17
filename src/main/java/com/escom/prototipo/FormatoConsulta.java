@@ -89,13 +89,19 @@ public class FormatoConsulta extends javax.swing.JFrame {
         MediosField.setText(dnc.getDh().getMediosString());
         ElementoProbatorioField.setText(dnc.getDh().getMediosDescripcion());
         OtrosField.setText(dnc.getDh().getOtros());
-        
-       ImageIcon icono =  dto.getArchivoByHechosId(dnc.getDh().getId());
+        if (dnc.getDh().getMedios() ){
+            
+            ImageIcon icono =  dto.getArchivoByHechosId(dnc.getDh().getId());
+            if(icono != null){
+                jLabel4.setVisible(true);
+                System.out.println("Existe img");
+                Icon imagen = new ImageIcon(icono.getImage().getScaledInstance(250, 250,Image.SCALE_DEFAULT));
+                jLabel4.setIcon(imagen);      
+            } 
 
-       System.out.println(jLabel4.getWidth() +" " +jLabel4.getHeight()+ " "+ jLabel4.getText());
-        Icon imagen = new ImageIcon(icono.getImage().getScaledInstance(200, 200,Image.SCALE_DEFAULT));
-
-        jLabel4.setIcon(imagen);
+        }else{
+            ElementoProbatorioField.setVisible(false);
+        }
     }   
 
     @SuppressWarnings("unchecked")
@@ -193,6 +199,7 @@ public class FormatoConsulta extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         OcupacionDenuncianteField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jLabel4.setVisible(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(this.MAXIMIZED_BOTH);

@@ -630,7 +630,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(ArchivoButton)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel46))
@@ -960,7 +960,7 @@ public class FormatoDenuncia extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ElementoProbatorioCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ArchivoButton)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addComponent(jLabel46)
                 .addGap(12, 12, 12)
@@ -1128,7 +1128,9 @@ public class FormatoDenuncia extends javax.swing.JFrame {
             if (v.isNumber(aux1) && v.isNumber(aux2) && v.isNumber(aux3)) {
                 if (v.isHour(aux4)) {
                     dh = new Descripcion_hechos(v.getDate(aux1, aux2, aux3, aux4), aux5, aux6, aux7, flag, aux9, aux10);
-                    dh.setArchivo(file);
+                    if(dh.getMedios()){
+                        dh.setArchivo(file);
+                    }
                     rtrn = true;
                 } else {
                     JOptionPane.showMessageDialog(null, "Asegurate que la fecha tenga el siguiente formato:  HH:MM", "Campo inválido", JOptionPane.WARNING_MESSAGE);
@@ -1288,10 +1290,12 @@ public class FormatoDenuncia extends javax.swing.JFrame {
     private void ElementoProbatorioComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ElementoProbatorioComboFocusLost
         if (ElementoProbatorioCombo.getSelectedIndex() == 0) {
             jLabel46.setVisible(true);
+            jLabel4.setVisible(true);
             ElementoProbatorioField.setVisible(true);
             ArchivoButton.setVisible(true);
         } else {
             jLabel46.setVisible(false);
+            jLabel4.setVisible(false);
             ElementoProbatorioField.setVisible(false);
             ArchivoButton.setVisible(false);
         }

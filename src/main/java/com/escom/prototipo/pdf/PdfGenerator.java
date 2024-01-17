@@ -5,17 +5,25 @@
 package com.escom.prototipo.pdf;
 
 import com.escom.prototipo.DAOs.Denuncia;
+import com.escom.prototipo.DTOs.DenunciaDto;
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Section;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.CMYKColor;
 import com.itextpdf.text.pdf.PdfWriter;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -121,7 +129,7 @@ public class PdfGenerator {
                 sectionTitle = new Paragraph("Testigos", blueFont);
                 section1 = chapter1.addSection(sectionTitle);
                 sectionContent = new Paragraph("Indique el nombre completo de los principales testigos en caso de tenerlos y datos de localización: "
-                        +d.getDh().getFecha());
+                        +d.getDh().getTestigos());
                 section1.add(sectionContent);
                 
                 sectionTitle = new Paragraph("Medios Probatorios", blueFont);
@@ -140,6 +148,25 @@ public class PdfGenerator {
                 section1.add(sectionContent);
 
                 document.add(chapter1);
+                
+                if (d.getDh().getMedios() ){
+                    DenunciaDto dto = new DenunciaDto();
+                     byte[] data = dto.getArchivoBytesByHechosId(d.getDh().getId());
+                    if(data != null){
+                        System.out.println("Existe img");
+                        Image im = null;
+                        try {
+                            im = Image.getInstance(data);
+                        } catch (BadElementException | IOException ex) {
+                            Logger.getLogger(PdfGenerator.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        document.add(im);
+                    } 
+
+                }
+                
+                
+                
             } catch (DocumentException | FileNotFoundException e) {
                 System.out.println(e+ "PDF Generator");
             } finally {
