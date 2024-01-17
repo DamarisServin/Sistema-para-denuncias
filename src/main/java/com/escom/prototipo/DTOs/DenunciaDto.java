@@ -11,10 +11,20 @@ import com.escom.prototipo.DAOs.Descripcion_hechos;
 import com.escom.prototipo.DAOs.Estadisticas;
 import com.escom.prototipo.DAOs.Tutor;
 import com.escom.prototipo.conexion.Conexion;
+import com.itextpdf.text.pdf.parser.Path;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -125,6 +135,7 @@ public class DenunciaDto {
                     + dd.getDomicilio() + "', '"
                     + dd.getTelefono() + "', '"
                     + dd.getCorreo() + "', '"
+                    + dd.getOcupacion() + "', '"
                     + dd.getUnidad_academica() + "', '"
                     + dd.getTurno() + "', '"
                     + dd.getAnonimoIndex() + "', '"
@@ -288,7 +299,7 @@ public class DenunciaDto {
                     + dh.getLugar() + "', '"
                     + dh.getDescripcion() + "', '"
                     + dh.getTestigos() + "', '"
-                    + dh.getMedios() + "', '"
+                    + dh.getMediosIndex()+ "', '"
                     + dh.getMediosDescripcion() + "', '"
                     + dh.getOtros() + "');";
 
@@ -541,7 +552,56 @@ public class DenunciaDto {
         }
         return tt;
     }
+   public File getArchivoByHechosId(String id) throws SQLException  {
+        Conexion con = new Conexion();
+ 
+        try {
+            con.conectar();
 
+            String str = "call getArchivoByHechosId('" + id + "');";
+            ResultSet rsguarda = con.consulta(str);
+
+            while (rsguarda.next()) {
+                String fileName = rsguarda.getString("nombre_archivo");
+                InputStream inputStream = rsguarda.getBinaryStream("archivo");
+
+                        // Guardar el archivo PDF en el sistema de archivos
+                       /* JFileChooser fileChooser = new JFileChooser();
+                        fileChooser.setSelectedFile(new File(fileName));
+
+                        int userSelection = fileChooser.showSaveDialog(null);
+
+                        if (userSelection == JFileChooser.APPROVE_OPTION) {
+                            File fileToSave = fileChooser.getSelectedFile();
+                            Path filePath = (Path) Paths.get(fileToSave.getAbsolutePath());*/
+                       
+                            Path filePath = (Path) Paths.get("/");
+
+                            FileOutputStream outputStream = null;
+                    try {
+                        outputStream = new FileOutputStream(filePath.toString());
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(DenunciaDto.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                                byte[] buffer = new byte[1024];
+                    try {
+                        while (inputStream.read(buffer) > 0) {
+                            outputStream.write(buffer);
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(DenunciaDto.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                                System.out.println("Archivo PDF recuperado y guardado en: " + filePath);
+                    //}
+            }
+        }catch (SQLException e) {
+            System.out.println(e + " getAlumnoInfo()");
+        }
+            con.cierraConexion();
+        
+        return null;
+    }
     public void setAlumnoInfo(Datos_denunciante dd) {
         Conexion con = new Conexion();
         String sm = "";

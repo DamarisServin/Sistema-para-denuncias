@@ -60,13 +60,45 @@ public class PdfGenerator {
                 sectionContent = new Paragraph("Correo Electrónico: "+d.getDd().getCorreo());
                 section1.add(sectionContent);
                 sectionContent = new Paragraph("Ocupación: "+d.getDd().getOcupacion());
+
+                
+                //Campos alumno trabajador, tutor
+                if(d.getDd().getOcupacion().contains("Alumno")){
+                    section1.add(sectionContent);
+                    sectionContent = new Paragraph("Semestre: "+d.getDd().getSemestre());
+                    section1.add(sectionContent);
+                    sectionContent = new Paragraph("Grupo: "+d.getDd().getGrupo());
+                    section1.add(sectionContent);
+                    sectionContent = new Paragraph("Carrera: "+d.getDd().getCarrera());
+                }
+                if(d.getDd().getOcupacion().contains("Trabajador")){
+                    section1.add(sectionContent);
+                    sectionContent = new Paragraph("Funcion Actual: "+d.getDd().getFuncion());
+                    section1.add(sectionContent);
+                    sectionContent = new Paragraph("Tipo de contrato: "+d.getDd().getContrato());
+                    section1.add(sectionContent);
+                }
+
                 section1.add(sectionContent);
                 sectionContent = new Paragraph("Unidad Académica de Procedencia: "+d.getDd().getUnidad_academica());
                 section1.add(sectionContent);
                 sectionContent = new Paragraph("Turno: "+d.getDd().getTurno());
                 section1.add(sectionContent);
                 
-                //Campos alumno trabajador, tutor
+                if(d.getDd().getEdad()<18){
+                    sectionTitle = new Paragraph("Datos del tutor", blueFont);
+                    section1 = chapter1.addSection(sectionTitle);
+                    sectionContent = new Paragraph("Nombre Completo: "+d.getDd().getTt().getNombre_completo());
+                    section1.add(sectionContent);
+                    sectionContent = new Paragraph("Edad: "+d.getDd().getTt().getEdad() +" años");
+                    section1.add(sectionContent);
+                    sectionContent = new Paragraph("Género: "+d.getDd().getTt().getGenero());
+                    section1.add(sectionContent);
+                    sectionContent = new Paragraph("Domicilio: "+d.getDd().getTt().getDomicilio());
+                    section1.add(sectionContent);
+                    sectionContent = new Paragraph("Correo Electrónico: "+d.getDd().getTt().getCorreo());
+                    section1.add(sectionContent);
+                }
                 
                 sectionTitle = new Paragraph("Datos de la persona involucrada", blueFont);
                 section1 = chapter1.addSection(sectionTitle);

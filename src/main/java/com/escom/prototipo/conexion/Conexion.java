@@ -85,7 +85,7 @@ public class Conexion {
             preparedStatement.setInt(3, id);
 
             preparedStatement.executeUpdate();
-            System.out.println("Archivo PDF guardado en la base de datos.");
+            System.out.println("Archivo guardado en la base de datos.");
             return true;
         } catch (FileNotFoundException | SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
