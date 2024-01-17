@@ -102,12 +102,12 @@ public class DenunciaDto {
             ResultSet rsguarda = con.consulta(str);
 
             if (rsguarda.next()) {
-                if (rsguarda.getString("Resultado").equals("Datos del denunciante guardados con exito")) {
-                    System.out.println("Datos del denunciante guardados con exito");
+                if (rsguarda.getString("Resultado").equals("Denuncia guardada con exito")) {
+                    System.out.println("Denuncia guardada con exito");
                     d.setId(Integer.parseInt(rsguarda.getString("id")));
                     return true;
                 } else {
-                    System.out.println("Ocurrio un error: saveDatosDenunciante() ");
+                    System.out.println("Ocurrio un error: saveDenuncia() ");
                 }
             }
             con.cierraConexion();
@@ -120,15 +120,12 @@ public class DenunciaDto {
 
     private boolean saveDatosDenunciante(Datos_denunciante dd) {
         Conexion con = new Conexion();
-        String aux = "null";
-        if (dd.getTt() != null) {
+        int aux = 0;
+        String str;
+        if (dd.getEdad() < 18) {
             saveDatosTutor(dd.getTt());
-            aux = dd.getTt().getId() + "";
-        }
-        try {
-            con.conectar();
-
-            String str = "call guardaDatosDenunciante(0, '"
+            aux = dd.getTt().getId();
+            str = "call guardaDatosDenunciante(0, '"
                     + dd.getNombre_completo() + "', '"
                     + dd.getEdad() + "', '"
                     + dd.getGeneroIndex() + "', '"
@@ -140,6 +137,24 @@ public class DenunciaDto {
                     + dd.getTurno() + "', '"
                     + dd.getAnonimoIndex() + "', '"
                     + aux + "');";
+            
+        }else{
+             str = "call guardaDatosDenunciante(0, '"
+                    + dd.getNombre_completo() + "', '"
+                    + dd.getEdad() + "', '"
+                    + dd.getGeneroIndex() + "', '"
+                    + dd.getDomicilio() + "', '"
+                    + dd.getTelefono() + "', '"
+                    + dd.getCorreo() + "', '"
+                    + dd.getOcupacion() + "', '"
+                    + dd.getUnidad_academica() + "', '"
+                    + dd.getTurno() + "', '"
+                    + dd.getAnonimoIndex() + "', null);";
+        }
+        try {
+            con.conectar();
+
+
             System.out.println(str);
             ResultSet rsguarda = con.consulta(str);
 
